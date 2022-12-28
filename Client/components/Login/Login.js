@@ -1,3 +1,3 @@
-const hello = () => { 
-    console.log("hello")
+const yeey = () => { 
+    console.log("yeyy")
 }
