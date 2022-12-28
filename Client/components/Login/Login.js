@@ -1,3 +1,5 @@
-const yeey = () => { 
-    console.log("yeyy")
-}
+const test = () =>{ 
+
+
+    console.log('yalla')
+} 

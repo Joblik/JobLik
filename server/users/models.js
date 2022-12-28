@@ -29,5 +29,5 @@ const mongoose = require('mongoose');
             type: [],
           },
       });
-      const User=mongoose.model('User',PostsSchema);
+      const User=mongoose.model('User',UserSchema);
       module.exports={User}
