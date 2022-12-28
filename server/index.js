@@ -3,17 +3,18 @@ const cors = require ('cors')
 const mongoose = require ('mongoose')
 const app = express()
 
-const Prouter=require('./posts/routes')
-
+const routerPosts=require('./posts/routes')
+const routerUsers=require('./users/routes')
 
 
 
 app.use(express.json())
 app.use (cors())
 
-app.use("/user",Prouter)
+app.use("/Posts",routerPosts)
+app.use("/Users",routerUsers)
 
-
+    
 
 const db= "mongodb+srv://root:root@cluster0.anvgobs.mongodb.net/?retryWrites=true&w=majority"; 
 mongoose.set('strictQuery',true) 
