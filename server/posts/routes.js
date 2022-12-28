@@ -6,7 +6,7 @@ const {
     DeleteOnePost
 
 }= require("./controler");
-
+    
 
 router.route('/addPost').post(addPost)
 router.route('/DeleteOnePost').delete(DeleteOnePost)

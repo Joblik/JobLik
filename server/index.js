@@ -19,7 +19,7 @@ const db= "mongodb+srv://root:root@cluster0.anvgobs.mongodb.net/?retryWrites=tru
 mongoose.set('strictQuery',true) 
 mongoose .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 .then((res) => {
-  console.log('Database temchi mrigla ..');
+  console.log('Database mrigla ..');
 })
 .catch((err) => console.log(err));
 
