@@ -11,6 +11,9 @@ const mongoose = require('mongoose');
         password: {
           type: String,require: true
         },
+        isVerified : {
+            type: Boolean ,default: false
+        },
         Uimage: {
           type: String,
           default:
