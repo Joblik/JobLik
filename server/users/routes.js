@@ -9,10 +9,11 @@ const {
   otp,
 } = require("./controler");
 
-router.route("/addUser").post(addUser);
-router.route("/DeleteOneUser").delete(DeleteOneUser);
-router.route("/UpdateOneUser").put(UpdateOneUser);
-router.route("/GetAllUser").get(GetAllUser);
+    
+router.route('/addUser').post(addUser)
+router.route('/DeleteOneUser/:id').delete(DeleteOneUser)
+router.route('/UpdateOneUser/:id').put(UpdateOneUser)
+router.route('/GetAllUser').get(GetAllUser)
 router.route("/login").post(login);
 router.route("/register").post(register);
 router.route("/otp").post(otp);
