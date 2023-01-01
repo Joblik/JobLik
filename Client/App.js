@@ -5,6 +5,7 @@ import LoginScreen from './screens/Login/LoginScreen'
 import Footer from './screens/Footer';
 import PostScreen from './screens/onePost/postScreen'
 import dd from './data/dummy'
+import CreatePost from './screens/createPost/CreatePost'
 
 export default function App() {
   return (
