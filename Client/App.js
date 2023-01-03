@@ -29,7 +29,6 @@ export default function App() {
       </View>
     <Footer/> 
     </View>
-  );
 }
   
 const styles = StyleSheet.create({

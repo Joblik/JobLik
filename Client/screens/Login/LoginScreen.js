@@ -69,7 +69,7 @@ const LoginScreen = ({ navigation }) => {
 style={styles.input}
 onChangeText={(e) => {
    setEmail(e)}}
-placeholder="Email"
+placeholder="Enter Email"
 />
          
         <Text
@@ -82,12 +82,12 @@ placeholder="Email"
 style={styles.input}
 onChangeText={(e) => {
    setPassword(e)}}
-placeholder="email"
+placeholder="Enter Password"
 />
          <Button title="Login"  onPress={handleSubmit}/>
-        <Button title="Forgot password" />
+        <Button title="Forgot password"  />
       </ImageBackground>
-      <Button title="connect with Google" />
+      <Button title="connect with Google"  />
     </View></SafeAreaView>
   );
 };
@@ -115,19 +115,22 @@ const styles = StyleSheet.create({
     height: 270,
     alignItems: "center",
     overflow: "hidden",
-    borderRadius: 30,
+    borderRadius: 15,
     borderColor: "black",
-    borderWidth: 0.5,
+    borderWidth: 1,
   },
   loginText: {
-    padding: 5,
+    padding: 3,
+    marginTop: 10
   },
   input: {
     height: 40,
-    margin: 12,
+    marginBottom: 5,
     borderWidth: 1,
     padding: 10,
-    },
+    width: 150,
+    backgroundColor: 'white'
+    }
 });
 
 
