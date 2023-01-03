@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
@@ -20,37 +21,43 @@ export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
+    (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="login">
+          <Stack.Screen name="login" component={LoginScreen} />
+          <Stack.Screen name="register" component={Register} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    ),
+    (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="register">
+          <Stack.Screen name="register" component={Register} />
+          <Stack.Screen name="login" component={LoginScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
    <NavigationContainer>
       <Stack.Navigator initialRouteName="createpost">
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="register" component={Register} />
         <Stack.Screen name="home" component={Home} />
-        <Stack.Screen name="createpost" component={CreatePost} />
-      
+        <Stack.Screen name="createpost" component={CreatePost} />   
       </Stack.Navigator>
-     
-      
-   
-    {/* <View style={styles.container}>
-      <View style={styles.view}>
-      <Followers data={dd}/>
-      </View>
-    <Footer/> 
-    </View> */}
     </NavigationContainer>
   );
 }
-  
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
   view: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

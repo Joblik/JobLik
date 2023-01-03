@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useLinkTo } from '@react-navigation/native';
-   
+import { useLinkTo } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -14,68 +13,76 @@ import Logo from "../../components/img/logo.png";
 import Input from "../../components/Input";
 import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
 
- 
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
 
-  async function handleSubmit(event) {
-   
+  async function handleSubmit() {
     try {
-       const user = await axios.post("http://localhost:8080/Users/login", {
-      email,
-      password,
-    });
+      const user = await axios.post("http://192.168.104.15:8080/Users/login", {
+        email,
+        password,
+      });
 
       if (user) {
         navigation.navigate("register");
         console.log(user.data.id);
-        localStorage.setItem("token", user.data.token);
-        localStorage.setItem("id", user.data.id);
+        AsyncStorage.setItem("token", JSON.stringify(user.data.token));
+        AsyncStorage.setItem("id", JSON.stringify(user.data.id));
       }
     } catch (error) {
-      console.log(JSON.stringify(error.message) );
+      console.log(error.message);
       alert("error");
     }
   }
 
   return (
     <SafeAreaView>
+      <View style={styles.root}>
+        <Image source={Logo} style={styles.logo} />
+        <Text style={styles.title}>Login</Text>
+        <ImageBackground
+          source={{
+            uri: "https://res.cloudinary.com/dqmhtibfm/image/upload/v1672263786/JobLik_xxx8ao.png",
+          }}
+          style={styles.img}
+        >
+          <Text style={styles.loginText}>Email</Text>
 
-    <View style={styles.root}>
-      <Image source={Logo} style={styles.logo} />
-      <Text style={styles.title}>Login</Text>
-      <ImageBackground
-        source={{
-          uri: "https://res.cloudinary.com/dqmhtibfm/image/upload/v1672263786/JobLik_xxx8ao.png",
-        }}
-        style={styles.img}
-      >
-        <Text
-          style={styles.loginText}
-          
-          
-        >
-          Email
-        </Text>
-        
-<TextInput
-style={styles.input}
-onChangeText={(e) => {
-   setEmail(e)}}
-placeholder="Email"
-/>
-         
-        <Text
-          style={styles.loginText}
-          onChange={(e) => setPassword(e.target.value)}
-        >
+          <TextInput
+            style={styles.input}
+            autoCapitalize={false}
+            onChangeText={(e) => {
+              setEmail(e);
+            }}
+            placeholder="Email"
+          />
+
+          <Text style={styles.loginText}> Password</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(e) => {
+              setPassword(e);
+            }}
+            placeholder="email"
+          />
+          <Button
+            title="Login"
+            onPress={handleSubmit}
+            disabled={!validateForm()}
+          />
+          <Button title="Forgot password" />
+        </ImageBackground>
+        <Button title="connect with Google" />
+      </View>
+    </SafeAreaView>
           Password
         </Text>
         <TextInput
@@ -96,7 +103,6 @@ placeholder="email"
   );
 
 };
-
 
 const styles = StyleSheet.create({
   title: {
@@ -132,9 +138,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    },
+  },
 });
 
-
- 
 export default LoginScreen;
