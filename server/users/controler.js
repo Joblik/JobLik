@@ -55,6 +55,7 @@ const UpdateOneUser = async (req, res) => {
 };
 
 async function login(req, res) {
+  console.log("xxxxx");
   try {
     const {
       body: { email, password },

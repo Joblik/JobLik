@@ -22,13 +22,7 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
      
-   );
-    <View style={styles.container}>
-      <View style={styles.view}>
-      <Followers data={dd}/>
-      </View>
-    <Footer/> 
-    </View>
+  
   );
 }
   
