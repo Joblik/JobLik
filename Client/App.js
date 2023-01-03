@@ -11,16 +11,22 @@ import Register from './screens/register/register';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import UserProfile from './screens/userProfile/UserProfile';
 import Followers from './screens/followers/Followers';
+import Followings from './screens/followings/Followings';
+import Forgot from './screens/ForgotPassword/Forgot';
+
+
+
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
-   <NavigationContainer>
-      <Stack.Navigator initialRouteName="login">
-        <Stack.Screen name="login" component={LoginScreen} />
-        <Stack.Screen name="register" component={Register} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Forgot />
+  //  <NavigationContainer>
+  //     <Stack.Navigator initialRouteName="login">
+  //       <Stack.Screen name="login" component={LoginScreen} />
+  //       <Stack.Screen name="register" component={Register} />
+  //     </Stack.Navigator>
+  //   </NavigationContainer>
      
    );
     <View style={styles.container}>
