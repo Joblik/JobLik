@@ -38,7 +38,7 @@ const LoginScreen = ({ navigation }) => {
         AsyncStorage.setItem("id", JSON.stringify(user.data.id));
       }
     } catch (error) {
-      console.log((error.message));
+      console.log(error.message);
       alert("error");
     }
   }
@@ -57,22 +57,15 @@ const LoginScreen = ({ navigation }) => {
           <Text style={styles.loginText}>Email</Text>
 
           <TextInput
-            style={styles.input} 
-            autoCapitalize = {false}
+            style={styles.input}
+            autoCapitalize={false}
             onChangeText={(e) => {
               setEmail(e);
             }}
             placeholder="Email"
           />
 
-          <Text
-            style={styles.loginText}
-            onChangeText={(e) => {
-              setPassword(e);
-            }}
-          >
-            Password
-          </Text>
+          <Text style={styles.loginText}> Password</Text>
           <TextInput
             style={styles.input}
             onChangeText={(e) => {
@@ -80,7 +73,11 @@ const LoginScreen = ({ navigation }) => {
             }}
             placeholder="email"
           />
-          <Button title="Login" onPress={handleSubmit} />
+          <Button
+            title="Login"
+            onPress={handleSubmit}
+            disabled={!validateForm()}
+          />
           <Button title="Forgot password" />
         </ImageBackground>
         <Button title="connect with Google" />

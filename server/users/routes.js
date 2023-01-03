@@ -7,15 +7,19 @@ const {
   login,
   register,
   otp,
+  forgetPassword,
+  changePassword
 } = require("./controler");
 
     
-router.post('/addUser',addUser).post(addUser)
-router.delete('/DeleteOneUser/:id',DeleteOneUser)
-router.put('/UpdateOneUser/:id',UpdateOneUser)
-router.get('/GetAllUser',GetAllUser)
-router.post("/login",login);
-router.post("/register",register);
-router.post("/otp",otp);
+router.route('/addUser').post(addUser)
+router.route('/DeleteOneUser/:id').delete(DeleteOneUser)
+router.route('/UpdateOneUser/:id').put(UpdateOneUser)
+router.route('/GetAllUser').get(GetAllUser)
+router.route("/login").post(login);
+router.route("/register").post(register);
+router.route("/otp").post(otp);
+router.route('/forget-pasword').post(forgetPassword)
+router.route('/forget-pasword/:token').post(changePassword)
 
 module.exports = router;

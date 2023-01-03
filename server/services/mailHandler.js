@@ -1,12 +1,12 @@
 const  nodemailer = require('nodemailer');
  const transporter = nodemailer.createTransport({
     pool: true,
-    host: "mail.croissant-rouge.org.tn",
+    host: "joblik4@gmail.com",
     port: 465,
     secure: true, // use TLS
     auth: {
-        user: "test.ali@croissant-rouge.org.tn",
-        pass: "7gQ.5{*=xwP]",
+        user: "joblik4@gmail.com",
+        pass: "Joblik1234",
     },
 });
 

@@ -5,6 +5,7 @@ const OTP = require("./OTP/otpSchema");
 const transporter = require("../services/mailHandler");
 const otpEmail = require("../emailTemp/otpTemp")
 const verifTemp = require("../emailTemp/verifiedTemp")
+const forgetPasswordTemp = require("../emailTemp/forgetPasswordTemp")
 
 
 
@@ -14,7 +15,7 @@ const GetAllUser = async (req, res) => {
       res.json(result);
     });
   } catch (err) {
-    res.json(err);
+   return  res.json(err);
   }
 };
 
@@ -27,7 +28,7 @@ const addUser = async (req, res) => {
       res.json(result);
     });
   } catch (err) {
-    console.log(err);
+ return    console.log(err);
   }
 };
 
@@ -37,7 +38,7 @@ const DeleteOneUser = async (req, res) => {
       res.json(result);
     });
   } catch (err) {
-    res.json(err);
+  return   res.json(err);
   }
 };
 
@@ -50,12 +51,11 @@ const UpdateOneUser = async (req, res) => {
       res.json(result);
     });
   } catch (err) {
-    res.json(err);
+  return   res.json(err);
   }
 };
 
 async function login(req, res) {
-  console.log("xxxxx");
   try {
     const {
       body: { email, password },
@@ -88,8 +88,7 @@ async function login(req, res) {
       .status(200)
       .json({ name: user.Username, email: user.email, token, id: user["_id"] });
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+ return     res.status(500).send(error);
   }
 }
 
@@ -126,7 +125,7 @@ const register = async (req, res) => {
     });
 
     const mailOptions = {
-      from: "JOB LIK <test.ali@croissant-rouge.org.tn>",
+      from: "JOB LIK <joblik4@gmail.com>",
       to: email,
       subject: "CONFIRM YOUR ACCOUNT",
       html: otpEmail(OTPcode),
@@ -140,7 +139,7 @@ const register = async (req, res) => {
       .status(200)
       .json({ message: "User Saved PLEASE VERIFY YOUR ACCOUNT" });
   } catch (error) {
-    res.status(500).send(error);
+  return   res.status(500).send(error);
   }
 };
 
@@ -177,7 +176,7 @@ const otp = async (req, res) => {
     await user.save();
 
     const mailOptions = {
-      from: "JOB LIK <test.ali@croissant-rouge.org.tn>",
+      from: "JOB LIK <joblik4@gmail.com>",
       to: email,
       subject: "ACCOUNT Verified",
       html: verifTemp(),
@@ -188,10 +187,74 @@ const otp = async (req, res) => {
       message: "USER VERIFIED",
     });
   } catch (err) {
-    res.status(500).send(err);
+   return  res.status(500).send(err);
   }
 };
 
+
+const forgetPassword = async (req , res) => {
+  try{
+    const {  body : {email}} = req
+
+    if (!email) { return res.status(301).json({
+      message: "Please fill all required fields",
+    }); }
+
+    const user = await User.findOne({ email });
+
+    if (user) {
+      const token = jwt.sign({ forgetPaswordId: user["_id"] }, "SECRETCODE");
+
+      const mailOptions = {
+        from: "JOB LIK <joblik4@gmail.com>",
+        to: email,
+        subject: "RESET PASSWORD",
+        html: forgetPasswordTemp("http://localhost:3000/forget-password",token),
+      };
+      await transporter.sendMail(mailOptions);
+
+    }
+
+    return res.status(200).json({ message: "Your request has been created, if the email is associated to an account an email of confirmation will be sent with a link to reset it." });
+
+  } catch (e) {
+  return   res.status(500).send(e);
+  }
+}
+
+const changePassword = async (req , res) => {
+  try{
+
+    const {params : {token} , body : {password}} = req
+    if (!password) { return res.status(301).json({
+      message: "Please fill all required fields",
+    }); }
+
+    const JwtRegEx = new RegExp(/^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)/)
+
+if (!JwtRegEx.test(token) ){
+  return res.redirect(301, '/login')
+}
+
+const userId = jwt.decode(token)
+const user = await User.findById(userId.forgetPaswordId)
+
+    if (!user){
+      return res.redirect(301, '/login')
+    }
+
+    const newHashedPassword  = await bcrypt.hash(password, 10)
+
+    user.password = newHashedPassword
+
+ await user.save()
+
+    return res.status(200).json({ message: "Your password has been changed" , Nuser});
+
+  } catch (e) {
+    return   res.status(500).send(e);
+  }
+}
 module.exports = {
   UpdateOneUser,
   GetAllUser,
@@ -200,4 +263,6 @@ module.exports = {
   login,
   register,
   otp,
+  forgetPassword,
+  changePassword
 };
