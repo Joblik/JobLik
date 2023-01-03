@@ -6,12 +6,14 @@ import Footer from './screens/Footer';
 import PostScreen from './screens/onePost/postScreen'
 import dd from './data/dummy'
 import CreatePost from './screens/createPost/CreatePost'
+import UserProfile from './screens/userProfile/UserProfile';
+import Followers from './screens/followers/Followers';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.view}>
-      <PostScreen data={dd}/>
+      <Followers data={dd}/>
       </View>
     <Footer/> 
     </View>
