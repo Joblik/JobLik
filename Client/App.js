@@ -11,24 +11,31 @@ import Register from './screens/register/register';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import UserProfile from './screens/userProfile/UserProfile';
 import Followers from './screens/followers/Followers';
+
+import Home from './screens/home/home'
+
+
+
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
    <NavigationContainer>
-      <Stack.Navigator initialRouteName="login">
+      <Stack.Navigator initialRouteName="home">
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="register" component={Register} />
+        <Stack.Screen name="home" component={Home} />
       </Stack.Navigator>
-    </NavigationContainer>
      
-   );
-    <View style={styles.container}>
+      
+   
+    {/* <View style={styles.container}>
       <View style={styles.view}>
       <Followers data={dd}/>
       </View>
     <Footer/> 
-    </View>
+    </View> */}
+    </NavigationContainer>
   );
 }
   

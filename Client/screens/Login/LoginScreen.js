@@ -88,8 +88,13 @@ placeholder="email"
         <Button title="Forgot password" />
       </ImageBackground>
       <Button title="connect with Google" />
-    </View></SafeAreaView>
+    </View>
+    
+    
+    </SafeAreaView>
+  
   );
+
 };
 
 
