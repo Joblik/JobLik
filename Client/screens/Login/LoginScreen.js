@@ -83,7 +83,25 @@ const LoginScreen = ({ navigation }) => {
         <Button title="connect with Google" />
       </View>
     </SafeAreaView>
+          Password
+        </Text>
+        <TextInput
+style={styles.input}
+onChangeText={(e) => {
+   setPassword(e)}}
+placeholder="email"
+/>
+         <Button title="Login"  onPress={handleSubmit}/>
+        <Button title="Forgot password" />
+      </ImageBackground>
+      <Button title="connect with Google" />
+    </View>
+    
+    
+    </SafeAreaView>
+  
   );
+
 };
 
 const styles = StyleSheet.create({

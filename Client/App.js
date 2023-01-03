@@ -1,16 +1,22 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
-import LoginScreen from "./screens/Login/LoginScreen";
-import Footer from "./screens/Footer";
-import PostScreen from "./screens/onePost/postScreen";
-import dd from "./data/dummy";
-import CreatePost from "./screens/createPost/CreatePost";
-import Register from "./screens/register/register";
-import { NavigationContainer } from "@react-navigation/native";
+
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import LoginScreen from './screens/Login/LoginScreen'
+import Footer from './screens/Footer';
+import PostScreen from './screens/onePost/postScreen'
+import dd from './data/dummy'
+
+import Register from './screens/register/register';
+ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import UserProfile from "./screens/userProfile/UserProfile";
-import Followers from "./screens/followers/Followers";
+import UserProfile from './screens/userProfile/UserProfile';
+import Followers from './screens/followers/Followers';
+
+import Home from './screens/home/home'
+import CreatePost from './screens/createPost/CreatePost'
+
+
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -31,6 +37,14 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     )
+   <NavigationContainer>
+      <Stack.Navigator initialRouteName="createpost">
+        <Stack.Screen name="login" component={LoginScreen} />
+        <Stack.Screen name="register" component={Register} />
+        <Stack.Screen name="home" component={Home} />
+        <Stack.Screen name="createpost" component={CreatePost} />   
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
