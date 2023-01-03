@@ -6,6 +6,8 @@ import DropDownPicker from "react-native-dropdown-picker";
 import GlobalStyles from "./globalStyles";
 
 
+
+
   const OnePost=()=>{
     return (
         <View>
