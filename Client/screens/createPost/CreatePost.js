@@ -15,13 +15,13 @@ const CreatePost = () => {
         // create a form data object with the form values
         const formData = new FormData();
         formData.append('Title', title);
-        formData.append('Description', description);
-        formData.append('Adress', location);
-        formData.append('reward', reward);
+        formData.append('Description', Description);
+        formData.append('Adress', Location);
+        formData.append('reward', Reward);
         formData.append('Uname', "r");
         formData.append('Uimage', "");
         // post the form data to the server using the fetch API
-        fetch('http://localhost:8080/user/addPost', {
+        fetch('http://localhost:8080/Posts/addPost', {
           method: 'POST',
           body: formData
         })
@@ -33,7 +33,6 @@ const CreatePost = () => {
             console.error(error);
           });
       };
-
 
 
     return (

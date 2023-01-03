@@ -26,17 +26,7 @@ export default function App() {
         <Stack.Screen name="register" component={Register} />
         <Stack.Screen name="home" component={Home} />
         <Stack.Screen name="createpost" component={CreatePost} />
-      
       </Stack.Navigator>
-     
-      
-   
-    {/* <View style={styles.container}>
-      <View style={styles.view}>
-      <Followers data={dd}/>
-      </View>
-    <Footer/> 
-    </View> */}
     </NavigationContainer>
   );
 }

@@ -1,11 +1,12 @@
 
-const { Posts} = require("./models");
+const { Posts} = require("../db");
 
 
 
 const GetAllPosts = async (req, res) => {
+  console.log(req.body);
   try {
-    await Posts.find({}).then(result => { res.json(result) })
+     Posts.find(({}),(err, result)=>{res.json(result)})
   }
   catch (err) {
     res.json(err)
@@ -20,7 +21,7 @@ const addPost = async (req, res) => {
     console.log(body);
     try {
       await Posts.create(body, (err, result) => {
-        if (err) res.json(err)
+        if (err) {res.json(err)}
         res.json(result)
       })
     }

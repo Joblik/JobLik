@@ -22,5 +22,5 @@ const mongoose = require('mongoose');
             type: Number,
           },
       });
-      const Posts=mongoose.model('Posts',PostsSchema);
-      module.exports={Posts}
+    
+      module.exports={PostsSchema}
