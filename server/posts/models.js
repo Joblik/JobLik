@@ -13,8 +13,6 @@ const mongoose = require('mongoose');
         },
         Uimage: {
           type: String,
-          default:
-            "https://res.cloudinary.com/dugewmeeh/image/upload/v1670743970/mawi%20cuisine/blank-profile-picture-973460_1280_pgdqwd.png",
         },
         Adress: {
           type: String,
