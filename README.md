@@ -4,7 +4,7 @@
 - npm install 
 - npm run dev / npm start
 
-* About JobLik : 
+                                      * About JobLik : 
 
 - Our application is made for the people who are interrested in the liberal profission 
 - The users will connect to our application so they can offer a jobs or getting jobs 
