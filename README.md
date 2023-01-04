@@ -12,4 +12,4 @@
 
 
 
-✨Do your magic GUYS and dont forget that the team depends on each member to deliver a mvp in the first presentation✨
+
