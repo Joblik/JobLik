@@ -28,13 +28,14 @@ const LoginScreen = ({ navigation }) => {
   async function handleSubmit(event) {
    
     try {
+     
        const user = await axios.post("http://192.168.104.5:8080/Users/login", {
       email,
       password,
     });
 
       if (user) {
-        navigation.navigate("register");
+        navigation.navigate("home");
         console.log(user.data.id);
         localStorage.setItem("token", user.data.token);
         localStorage.setItem("id", user.data.id);
@@ -94,7 +95,6 @@ placeholder="email"
     </SafeAreaView>
   
   );
-
 };
 
 
