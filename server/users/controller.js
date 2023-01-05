@@ -20,9 +20,7 @@ const GetAllUser = async (req, res) => {
 };
 
 const addUser = async (req, res) => {
-
-
-    const body = req.body;
+  const body = req.body;
   console.log(body);
   try {
     await User.create(body, (err, result) => {
@@ -32,7 +30,7 @@ const addUser = async (req, res) => {
   } catch (err) {
  return    console.log(err);
   }
-};
+}
 
 
 const DeleteOneUser = async (req, res) => {
@@ -112,12 +110,12 @@ const register = async (req, res) => {
       return res.status(400).json({ message: "email USED by another account" });
     }
 
-    const newpassword = await bcrypt.hash(password, 10);
+    const newPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
       Username,
       email,
-      password: newpassword,
+      password: newPassword,
     });
 
     const OTPcode = Math.floor(Math.random() * 1000000);
