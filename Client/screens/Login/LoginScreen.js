@@ -83,10 +83,12 @@ const LoginScreen = ({ navigation }) => {
         <Button title="connect with Google" />
       </View>
     </SafeAreaView>
+<<<<<<< HEAD
          
   
+=======
+>>>>>>> 925354979c1d7912cf8c65da85c18c02e92df711
   );
-
 };
 
 const styles = StyleSheet.create({

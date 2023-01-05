@@ -21,13 +21,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="login">
-        {/* <Stack.Screen name="ForgotPassword" component={ForgotPassWord} /> */}
+        <Stack.Screen name="ForgotPassword" component={ForgotPassWord} />
         <Stack.Screen name="register" component={Register} />
         <Stack.Screen name="otp" component={OTP} />
-        {/* <Stack.Screen name="home" component={Home} /> */}
-        
-        {/* <Stack.Screen name="login" component={LoginScreen} /> */}
-        {/* <Stack.Screen name="createpost" component={CreatePost} /> */}
+        <Stack.Screen name="home" component={Home} />
+        <Stack.Screen name="login" component={LoginScreen} />
+        <Stack.Screen name="createpost" component={CreatePost} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,16 +1,16 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const {
-    UpdateOnePost,
-    GetAllPosts,
-    addPost,
-    DeleteOnePost
+  updatePost,
+  getAllPosts,
+  addPost,
+  deletePost,
+  getOnePost,
+} = require("./controller");
 
-}= require("./controler");
-    
-
-router.route('/addPost').post(addPost)
-router.route('/DeleteOnePost').delete(DeleteOnePost)
-router.route('/UpdateOnePost').put(UpdateOnePost)
-router.route('/GetAllPosts').get(GetAllPosts)
+router.route("/getAllPosts").get(getAllPosts);
+router.route("/addPost").post(addPost);
+router.route("/:id").get(getOnePost);
+router.route("/:id").put(updatePost);
+router.route("/:id").delete(deletePost);
 
 module.exports = router;
