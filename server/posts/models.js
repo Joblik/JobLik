@@ -1,26 +1,29 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
+const PostsSchema = new mongoose.Schema({
+  
+  title: {
+    type: String,
+    require: true,
+  },
+  description: {
+    type: String,
+    require: true,
+  },
+  image: {
+    type: String,
+    require: true,
+  },
+  adress: {
+    type: String,
+    require: true,
+  },
+  owner: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+});
 
-    const PostsSchema = new mongoose.Schema({
-        Uname: {
-          type: String,
-        },
-        Title: {
-          type: String,
-        },
-        Description: {
-          type: String,
-        },
-        Uimage: {
-          type: String,
-        },
-        Adress: {
-          type: String,
-        },
-        
-        Reward: {
-            type: Number,
-          },
-      });
-    
-      module.exports={PostsSchema}
+module.exports = { PostsSchema };

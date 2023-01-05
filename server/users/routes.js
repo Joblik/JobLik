@@ -9,7 +9,7 @@ const {
   otp,
   forgetPassword,
   changePassword
-} = require("./controler");
+} = require("./controller");
 
     
 router.route('/addUser').post(addUser)
