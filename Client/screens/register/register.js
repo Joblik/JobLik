@@ -19,26 +19,21 @@ const Register = ({ navigation }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   function validateForm() {
-    return (
-      name.length > 0 &&
-      email.length > 0 &&
-      password.length > 0 &&
-      confirmPassword === password
-    );
+    return name.length > 0 && email.length > 0 && password.length > 0 && confirmPassword === password;
   }
 
   async function handleSubmit() {
     try {
-      const user = await axios.post(
-        "http://192.168.104.15:8080/Users/register",
+      const response = await axios.post(
+        "http://192.168.104.12:8080/Users/register",
         {
           name,
           email,
           password,
         }
       );
-      alert("Account has been created");
-      navigation.navigate("login");
+      alert(response.data.message);
+      navigation.navigate("otp");
     } catch (error) {
       console.log(error);
       alert(error.response.data.message);
