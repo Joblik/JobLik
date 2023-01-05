@@ -1,7 +1,44 @@
-import React from 'react'
-import { View , Text , Image , StyleSheet , ImageBackground, Button, TextInput} from 'react-native'
-import Logo from '../../components/img/logo.png'
-const Register = () => {
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ImageBackground,
+  Button,
+  TextInput,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Logo from "../../components/img/logo.png";
+import axios from "axios";
+
+const Register = ({ navigation }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  function validateForm() {
+    return name.length > 0 && email.length > 0 && password.length > 0 && confirmPassword === password;
+  }
+
+  async function handleSubmit() {
+    try {
+      const response = await axios.post(
+        "http://192.168.104.12:8080/Users/register",
+        {
+          name,
+          email,
+          password,
+        }
+      );
+      alert(response.data.message);
+      navigation.navigate("otp");
+    } catch (error) {
+      console.log(error);
+      alert(error.response.data.message);
+    }
+  }
   return (
     <View style={styles.view}>
         <Image source={Logo} style={styles.logo} /> 

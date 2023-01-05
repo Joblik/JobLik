@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useLinkTo } from '@react-navigation/native';
-   
+import { useLinkTo } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -11,9 +10,8 @@ import {
   TextInput,
 } from "react-native";
 import Logo from "../../components/img/logo.png";
-import Input from "../../components/Input";
-import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -28,11 +26,10 @@ const LoginScreen = ({ navigation }) => {
   async function handleSubmit(event) {
    
     try {
-     
-       const user = await axios.post("http://192.168.104.5:8080/Users/login", {
-      email,
-      password,
-    });
+      const user = await axios.post("http://192.168.104.6:8080/Users/login", {
+        email,
+        password,
+      });
 
       if (user) {
         navigation.navigate("home");
@@ -48,81 +45,86 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView>
+      <View style={styles.root}>
+        <Image source={Logo} style={styles.logo} />
+        <Text style={styles.title}>Login</Text>
+        <ImageBackground
+          source={{
+            uri: "https://res.cloudinary.com/dqmhtibfm/image/upload/v1672263786/JobLik_xxx8ao.png",
+          }}
+          style={styles.img}
+        >
+          <Text style={styles.loginText}>Email</Text>
 
-    <View style={styles.root}>
-      <Image source={Logo} style={styles.logo} />
-      <Text style={styles.title}>Login</Text>
-      <ImageBackground
-        source={{
-          uri: "https://res.cloudinary.com/dqmhtibfm/image/upload/v1672263786/JobLik_xxx8ao.png",
-        }}
-        style={styles.img}
-      >
-        <Text
-          style={styles.loginText}
-          
-          
-        >
-          Email
-        </Text>
-        
-<TextInput
-style={styles.input}
-onChangeText={(e) => {
-   setEmail(e)}}
-placeholder="Email"
-/>
-         
-        <Text
-          style={styles.loginText}
-          onChange={(e) => setPassword(e.target.value)}
-        >
-          Password
-        </Text>
-        <TextInput
-style={styles.input}
-onChangeText={(e) => {
-   setPassword(e)}}
-placeholder="email"
-/>
-         <Button title="Login"  onPress={handleSubmit}/>
-        <Button title="Forgot password" />
-      </ImageBackground>
-      <Button title="connect with Google" />
-    </View>
-    
-    
+          <TextInput
+            style={styles.input}
+            autoCapitalize={false}
+            onChangeText={(e) => {
+              setEmail(e);
+            }}
+            placeholder="Email"
+          />
+
+          <Text style={styles.loginText}> Password</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(e) => {
+              setPassword(e);
+            }}
+            placeholder="email"
+          />
+          <Button
+            title="Login"
+            onPress={handleSubmit}
+            disabled={!validateForm()}
+          />
+          <Button title="Forgot password" />
+        </ImageBackground>
+        <Button title="connect with Google" />
+      </View>
     </SafeAreaView>
-  
   );
 };
 
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 40,
-    color: "rgb(26,62,79)",
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  root: {
+  container: {
+    backgroundColor: "#003f5c",
     alignItems: "center",
-    paddingBottom: "20%",
+    justifyContent: "center",
   },
   logo: {
-    flex: 1,
-    width: 300,
-    height: 50,
-    resizeMode: "contain",
+       fontSize: null,
+    color: "#fb5b5a",
+    marginBottom: 5,
+  
   },
-  img: {
-    width: 290,
-    height: 270,
+  inputView: {
+    width: "80%",
+    backgroundColor: "#FFFF",
+    borderRadius: 25,
+    height: 50,
+    marginBottom: 20,
+    justifyContent: "center",
+    padding: 20,
+  },
+  inputText: {
+    height: 50,
+    color: "black",
+  },
+  forgot: {
+    color: "white",
+    fontSize: 11,
+  },
+  loginBtn: {
+    width: "80%",
+    backgroundColor: "#fb5b5a",
+    borderRadius: 25,
+    height: 50,
     alignItems: "center",
-    overflow: "hidden",
-    borderRadius: 30,
-    borderColor: "black",
-    borderWidth: 0.5,
+    justifyContent: "center",
+    marginTop: 40,
+    marginBottom: 10,
   },
   loginText: {
     padding: 5,
@@ -132,7 +134,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    },
+  },
 });
 
 
