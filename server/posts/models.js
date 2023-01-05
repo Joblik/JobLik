@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 const PostsSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    require: true,
-  },
+  
   title: {
     type: String,
     require: true,
