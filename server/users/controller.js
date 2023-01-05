@@ -22,17 +22,17 @@ const GetAllUser = async (req, res) => {
 const addUser = async (req, res) => {
 
 
+    const body = req.body;
+  console.log(body);
+  try {
+    await User.create(body, (err, result) => {
+      if (err) res.json(err);
+      res.json(result);
+    });
+  } catch (err) {
+ return    console.log(err);
+  }
 };
-  //   const body = req.body;
-//   console.log(body);
-//   try {
-//     await User.create(body, (err, result) => {
-//       if (err) res.json(err);
-//       res.json(result);
-//     });
-//   } catch (err) {
-//  return    console.log(err);
-//   }
 
 
 const DeleteOneUser = async (req, res) => {
@@ -125,10 +125,11 @@ const register = async (req, res) => {
     const newOTP = new OTP({
       userId: user["_id"],
       OTPcode,
+      expirationTime: Date.now() + 15 * 60 * 1000, 
     });
 
     const mailOptions = {
-      from: "JOB LIK <joblik4@gmail.com>",
+      from: "JOB LIK <test.ali@croissant-rouge.org.tn>",
       to: email,
       subject: "CONFIRM YOUR ACCOUNT",
       html: otpEmail(OTPcode),
@@ -174,12 +175,18 @@ const otp = async (req, res) => {
       });
     }
 
+    if (userOtp.expirationTime < Date.now()) {
+      return res.status(301).json({
+        message: "OTP expired",
+      });
+    }
+
     await OTP.findOneAndRemove({ userId: user["_id"] });
     user.isVerified = true;
     await user.save();
 
     const mailOptions = {
-      from: "JOB LIK <joblik4@gmail.com>",
+      from: "JOB LIK <test.ali@croissant-rouge.org.tn>",
       to: email,
       subject: "ACCOUNT Verified",
       html: verifTemp(),
@@ -208,12 +215,12 @@ const forgetPassword = async (req , res) => {
     if (user) {
       const token = jwt.sign({ forgetPaswordId: user["_id"] }, "SECRETCODE");
 
-      const mailOptions = {
-        from: "JOB LIK <joblik4@gmail.com>",
-        to: email,
-        subject: "RESET PASSWORD",
-        html: forgetPasswordTemp("http://localhost:3000/forget-password",token),
-      };
+     const mailOptions = {
+  from: "JOB LIK <test.ali@croissant-rouge.org.tn>",
+  to: email,
+  subject: "RESET PASSWORD",
+  html: forgetPasswordTemp("http://192.168.104.28:8080/forget-password/" + token),
+};
       await transporter.sendMail(mailOptions);
 
     }
