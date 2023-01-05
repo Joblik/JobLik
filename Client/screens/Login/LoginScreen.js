@@ -26,13 +26,13 @@ const LoginScreen = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
-      const user = await axios.post("http://192.168.104.15:8080/Users/login", {
+      const user = await axios.post("http://192.168.104.6:8080/Users/login", {
         email,
         password,
       });
 
       if (user) {
-        navigation.navigate("register");
+        navigation.navigate("home");
         console.log(user.data.id);
         AsyncStorage.setItem("token", JSON.stringify(user.data.token));
         AsyncStorage.setItem("id", JSON.stringify(user.data.id));
@@ -83,22 +83,7 @@ const LoginScreen = ({ navigation }) => {
         <Button title="connect with Google" />
       </View>
     </SafeAreaView>
-          Password
-        </Text>
-        <TextInput
-style={styles.input}
-onChangeText={(e) => {
-   setPassword(e)}}
-placeholder="email"
-/>
-         <Button title="Login"  onPress={handleSubmit}/>
-        <Button title="Forgot password" />
-      </ImageBackground>
-      <Button title="connect with Google" />
-    </View>
-    
-    
-    </SafeAreaView>
+         
   
   );
 
