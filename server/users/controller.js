@@ -21,18 +21,18 @@ const GetAllUser = async (req, res) => {
 
 const addUser = async (req, res) => {
 
+  const body = req.body;
+console.log(body);
+try {
+  await User.create(body, (err, result) => {
+    if (err) res.json(err);
+    res.json(result);
+  });
+} catch (err) {
+return    console.log(err);
+}
 
 };
-  //   const body = req.body;
-//   console.log(body);
-//   try {
-//     await User.create(body, (err, result) => {
-//       if (err) res.json(err);
-//       res.json(result);
-//     });
-//   } catch (err) {
-//  return    console.log(err);
-//   }
 
 
 const DeleteOneUser = async (req, res) => {

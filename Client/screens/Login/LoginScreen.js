@@ -1,19 +1,16 @@
 import React, { useState } from "react";
-import { useLinkTo } from "@react-navigation/native";
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  ImageBackground,
-  Button,
-  TextInput,
-} from "react-native";
 import Logo from "../../components/img/logo.png";
-import Input from "../../components/Input";
-import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from "react-native";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -26,7 +23,7 @@ const LoginScreen = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
-      const user = await axios.post("http://192.168.104.6:8080/Users/login", {
+      const user = await axios.post("http://192.168.104.16:8080/Users/login", {
         email,
         password,
       });
@@ -44,82 +41,94 @@ const LoginScreen = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView>
-      <View style={styles.root}>
+    <ScrollView>
+      <View style={styles.container}>
         <Image source={Logo} style={styles.logo} />
-        <Text style={styles.title}>Login</Text>
-        <ImageBackground
-          source={{
-            uri: "https://res.cloudinary.com/dqmhtibfm/image/upload/v1672263786/JobLik_xxx8ao.png",
-          }}
-          style={styles.img}
-        >
-          <Text style={styles.loginText}>Email</Text>
-
+        <View style={styles.inputView}>
           <TextInput
-            style={styles.input}
-            autoCapitalize={false}
+            style={styles.inputText}
+            placeholder="Email..."
+            placeholderTextColor="#003f5c"
             onChangeText={(e) => {
               setEmail(e);
             }}
-            placeholder="Email"
           />
-
-          <Text style={styles.loginText}> Password</Text>
+        </View>
+        <View style={styles.inputView}>
           <TextInput
-            style={styles.input}
+            secureTextEntry
+            style={styles.inputText}
+            placeholder="Password..."
+            placeholderTextColor="#003f5c"
             onChangeText={(e) => {
               setPassword(e);
             }}
-            placeholder="email"
           />
-          <Button
-            title="Login"
+        </View>
+        <TouchableOpacity>
+          <Text style={styles.forgot}>Forgot Password?</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.loginBtn}>
+          <Text
+            style={styles.loginText}
             onPress={handleSubmit}
             disabled={!validateForm()}
-          />
-          <Button title="Forgot password" />
-        </ImageBackground>
-        <Button title="connect with Google" />
+          >
+            LOGIN
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.loginText}>Signup</Text>
+        </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 40,
-    color: "rgb(26,62,79)",
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  root: {
+  container: {
+    
+    backgroundColor: "#003f5c",
     alignItems: "center",
-    paddingBottom: "20%",
+    justifyContent: "center",
   },
   logo: {
-    flex: 1,
-    width: 300,
-    height: 50,
-    resizeMode: "contain",
+   
+
+    fontSize: null,
+    color: "#fb5b5a",
+    marginBottom: 5,
+  
   },
-  img: {
-    width: 290,
-    height: 270,
+  inputView: {
+    width: "80%",
+    backgroundColor: "#FFFF",
+    borderRadius: 25,
+    height: 50,
+    marginBottom: 20,
+    justifyContent: "center",
+    padding: 20,
+  },
+  inputText: {
+    height: 50,
+    color: "black",
+  },
+  forgot: {
+    color: "white",
+    fontSize: 11,
+  },
+  loginBtn: {
+    width: "80%",
+    backgroundColor: "#fb5b5a",
+    borderRadius: 25,
+    height: 50,
     alignItems: "center",
-    overflow: "hidden",
-    borderRadius: 30,
-    borderColor: "black",
-    borderWidth: 0.5,
+    justifyContent: "center",
+    marginTop: 40,
+    marginBottom: 10,
   },
   loginText: {
-    padding: 5,
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
+    color: "white",
   },
 });
 
