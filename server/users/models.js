@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-  Username: {
+  username: {
     type: String,
     require: true,
   },
@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  Uimage: {
+  image: {
     type: String,
     default:
       "https://res.cloudinary.com/dqmhtibfm/image/upload/v1672229902/icon-5359553_960_720_owjtc1.webp",

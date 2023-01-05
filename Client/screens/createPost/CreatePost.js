@@ -7,17 +7,17 @@ import Input from '../../components/Input'
 const CreatePost = () => {
 
     const [title, setTitle] = useState("");
-    const [Description, setDescription] = useState("");
-    const [Location, setLocation] = useState("");
-    const [Reward, setReward] = useState("");
+    const [description, setDescription] = useState("");
+    const [location, setLocation] = useState("");
+    const [reward, setReward] = useState("");
     
     const handleSubmit = () => {
         // create a form data object with the form values
         const formData = new FormData();
         formData.append('Title', title);
-        formData.append('Description', Description);
-        formData.append('Adress', Location);
-        formData.append('reward', Reward);
+        formData.append('description', description);
+        formData.append('Adress', location);
+        formData.append('reward', reward);
         formData.append('Uname', "r");
         formData.append('Uimage', "");
         // post the form data to the server using the fetch API
@@ -32,6 +32,7 @@ const CreatePost = () => {
           .catch((error) => {
             console.error(error);
           });
+          
       };
 
 
