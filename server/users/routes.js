@@ -7,6 +7,8 @@ const {
   login,
   register,
   otp,
+  forgetPassword,
+  changePassword
 } = require("./controler");
 
     
@@ -17,5 +19,7 @@ router.route('/GetAllUser').get(GetAllUser)
 router.route("/login").post(login);
 router.route("/register").post(register);
 router.route("/otp").post(otp);
+router.route('/forget-pasword').post(forgetPassword)
+router.route('/forget-pasword/:token').post(changePassword)
 
 module.exports = router;
