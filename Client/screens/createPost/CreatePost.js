@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
-  Image,
   StyleSheet,
-  ImageBackground,
-  Button,
   TextInput,
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import Logo from "../../components/img/logo.png";
-import Input from "../../components/Input";
+
 import axios from "axios";
 import Footer from "../Footer";
+
 
 const CreatePost = ({ navigation }) => {
   const [title, setTitle] = useState("");
@@ -45,39 +42,47 @@ const CreatePost = ({ navigation }) => {
     <View>
     <ScrollView>
       <View style={styles.container}>
-        <View >
+        <View>
           <Text style={styles.text}>New Post</Text>
 
           <Text style={styles.base}>Title</Text>
-          <TextInput
-            placeholder="Insert The Title"
-            style={styles.input}
-            onChangeText={setTitle}
-            value={title}
-          />
+          <View style={styles.inputView}>
+            <TextInput
+              placeholder="Insert The Title"
+              style={styles.inputText}
+              onChangeText={setTitle}
+              value={title}
+            />
+          </View>
           <Text style={styles.base}>Image</Text>
-          <TextInput
-            placeholder="Insert Your Image"
-            style={styles.input}
-            onChangeText={setImage}
-            value={image}
-          />
+          <View style={styles.inputView}>
+            <TextInput
+              placeholder="Insert Your Image"
+              style={styles.inputText}
+              onChangeText={setImage}
+              value={image}
+            />
+          </View>
           <Text style={styles.base}>Description</Text>
-          <TextInput
-            placeholder="Insert The Description"
-            style={styles.input}
-            onChangeText={setDescription}
-            value={description}
-          />
+          <View style={styles.inputView}>
+            <TextInput
+              placeholder="Insert The Description"
+              style={styles.inputText}
+              onChangeText={setDescription}
+              value={description}
+            />
+          </View>
           <Text style={styles.base}>Adress</Text>
-          <TextInput
-            placeholder="Insert Your Adress"
-            style={styles.input}
-            onChangeText={setAdress}
-            value={adress}
-          />
+          <View style={styles.inputView}>
+            <TextInput
+              placeholder="Insert Your Adress"
+              style={styles.inputText}
+              onChangeText={setAdress}
+              value={adress}
+            />
+          </View>
 
-          <TouchableOpacity style={styles.postBtn} >
+          <TouchableOpacity style={styles.postBtn}>
             <Text
               color="#000000"
               title="Post"
@@ -104,9 +109,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 40,
-    color: "black",
+    color: "#fb5b5a",
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 18,
+    
   },
   desc: {
     fontSize: 10,
@@ -121,17 +127,15 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 0.5,
   },
-  inbtn: {
-    color: "black",
-  },
+
   base: {
     color: "#ffffff",
     textShadowColor: "black",
     textShadowRadius: 5,
   },
-  input: {
+  inputText: {
     backgroundColor: "white",
-    width: 150,
+    width: 300,
     height: 50,
     marginBottom: 20,
     marginTop: 10,
@@ -139,14 +143,15 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   postBtn: {
-    width: "100%",
+    width: 90,
     backgroundColor: "#fb5b5a",
     borderRadius: 25,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 10,
+    marginLeft: "93%",
   },
   postText: {
     color: "white",
