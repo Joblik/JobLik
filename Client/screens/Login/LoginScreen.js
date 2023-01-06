@@ -26,13 +26,13 @@ const LoginScreen = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
-      const user = await axios.post("http://192.168.104.16:8080/Users/login", {
+      const user = await axios.post("http://192.168.104.25:8080/Users/login", {
         email,
         password,
       });
 
       if (user) {
-        navigation.navigate("home");
+        navigation.navigate("login");
         console.log(user.data.id);
         AsyncStorage.setItem("token", JSON.stringify(user.data.token));
         AsyncStorage.setItem("id", JSON.stringify(user.data.id));

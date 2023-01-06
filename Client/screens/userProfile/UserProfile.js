@@ -4,7 +4,6 @@ import { View , Text , Image , StyleSheet , ImageBackground, Button, TextInput} 
 const UserProfile = () =>{
     return (
       <View style={styles.container}>
-        <View style={styles.background}>
           <Image
             source={{ uri: 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Free-Download.png' }}
             style={styles.profileImage}
@@ -17,7 +16,6 @@ const UserProfile = () =>{
               <Text style={styles.listItem}>Employer Rating: 4.7/5</Text>
             </View>
           </View>
-        </View>
         <View style={styles.buttonContainer}>
           <Button title="Following" color='black'/>
           <Button title="Follow" color='green'/>
@@ -29,21 +27,10 @@ const UserProfile = () =>{
   
   const styles = StyleSheet.create({
     container: {
+    backgroundColor: "#003f5c",
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-    },
-    background: {
-      width: '80%',
-      height: '40%',
-      backgroundColor: 'lightblue',
-      borderRadius: 10,
-      borderWidth: 2,
-      borderColor: 'black',
-      overflow:'hidden',
-      flexDirection: 'row',
-      alignItems: 'center',
-      padding: 20,
     },
     profileImage: {
       width: 150,
@@ -56,19 +43,23 @@ const UserProfile = () =>{
     titleText: {
       fontSize: 24,
       fontWeight: 'bold',
+      color: "#fb5b5a"
     },
     listContainer: {
       flexDirection: 'column',
+      color: "#fb5b5a"
     },
     listItem: {
       marginVertical: 5,
       fontSize: 16,
+      color: "white"
     },
     buttonContainer: {
       flexDirection: 'row',
       marginTop: 5,
       justifyContent: 'space-between',
       width: '80%',
+      color: "white"
     },
   });
   
