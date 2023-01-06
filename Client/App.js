@@ -24,13 +24,13 @@ export default function App() {
         initialRouteName="login"
         screenOptions={{ headerShown: false }}
       >
-        <Stack.Screen name="forgotPassword" component={ForgotPassWord} />
         <Stack.Screen name="register" component={Register} />
-        <Stack.Screen name="otp" component={OTP} />
+         <Stack.Screen name="login" component={LoginScreen} />
+         <Stack.Screen name="otp" component={OTP} />
+        <Stack.Screen name="forgotPassword" component={ForgotPassWord} />
         <Stack.Screen name="home" component={Home} />
-        <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="createPost" component={CreatePost} />
-        <Stack.Screen name="userprofile" component={UserProfile} />
+        <Stack.Screen name="userprofile" component={UserProfile} />     
       </Stack.Navigator>
     </NavigationContainer>
   );

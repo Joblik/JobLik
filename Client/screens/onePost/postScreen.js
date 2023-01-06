@@ -2,6 +2,7 @@ import React from 'react'
 import { View , Text , Image , StyleSheet , ImageBackground, Button} from 'react-native'
 import Logo from '../../components/img/logo.png'
 import Input from '../../components/Input'
+import Footer from '../Footer'
 
 
 const PostScreen = (props) => {
@@ -22,7 +23,7 @@ const PostScreen = (props) => {
             <Button color="#000000" title='Apply'></Button>
         </ImageBackground>
             
-            
+            <Footer /> 
         </View>
     )
 }

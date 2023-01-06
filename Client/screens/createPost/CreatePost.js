@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import axios from "axios";
+import Footer from "../Footer";
 
 
 const CreatePost = ({ navigation }) => {
@@ -38,6 +39,7 @@ const CreatePost = ({ navigation }) => {
   };
 
   return (
+    <View>
     <ScrollView>
       <View style={styles.container}>
         <View>
@@ -91,8 +93,9 @@ const CreatePost = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> 
     </ScrollView>
+    </View>
   );
 };
 
