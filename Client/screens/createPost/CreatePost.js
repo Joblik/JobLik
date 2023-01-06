@@ -13,6 +13,7 @@ import {
 import Logo from "../../components/img/logo.png";
 import Input from "../../components/Input";
 import axios from "axios";
+import Footer from "../Footer";
 
 const CreatePost = ({ navigation }) => {
   const [title, setTitle] = useState("");
@@ -41,6 +42,7 @@ const CreatePost = ({ navigation }) => {
   };
 
   return (
+    <View>
     <ScrollView>
       <View style={styles.container}>
         <View >
@@ -86,8 +88,9 @@ const CreatePost = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> 
     </ScrollView>
+    </View>
   );
 };
 

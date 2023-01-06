@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import axios from 'axios';
+import Footer from '../Footer';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -17,6 +18,7 @@ const Home = () => {
   console.log(posts);
 
   return (
+    <View>
     <FlatList
       data={posts}
       renderItem={({ item }) => (
@@ -24,6 +26,8 @@ const Home = () => {
       )}
       keyExtractor={item => item.id.toString()}
     />
+    <Footer/>
+    </View>
   );
 }
 
