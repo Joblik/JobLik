@@ -7,13 +7,14 @@ import {
   ImageBackground,
   Button,
   TextInput,
+  ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import Logo from "../../components/img/logo.png";
 import Input from "../../components/Input";
 import axios from "axios";
 
-
-const CreatePost = ({navigation}) => {
+const CreatePost = ({ navigation }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
@@ -40,50 +41,64 @@ const CreatePost = ({navigation}) => {
   };
 
   return (
-    <View style={{ justifyContent: "center", alignItems: "center" }}>
-      <Text style={styles.text}>New Post</Text>
-      <ImageBackground
-        source={{
-          uri: "https://res.cloudinary.com/dqmhtibfm/image/upload/v1672263786/JobLik_xxx8ao.png",
-        }}
-        style={styles.img}
-      >
-        <Text style={styles.base}>Title</Text>
-        <TextInput
-          placeholder="Insert The Title"
-          style={styles.input}
-          onChangeText={setTitle}
-          value={title}
-        />
-        <Text style={styles.base}>Image</Text>
-        <TextInput
-          placeholder="Insert Your Image"
-          style={styles.input}
-          onChangeText={setImage}
-          value={image}
-        />
-        <Text style={styles.base}>Description</Text>
-        <TextInput
-          placeholder="Insert The Description"
-          style={styles.input}
-          onChangeText={setDescription}
-          value={description}
-        />
-        <Text style={styles.base}>Adress</Text>
-        <TextInput
-          placeholder="Insert Your Adress"
-          style={styles.input}
-          onChangeText={setAdress}
-          value={adress}
-        />
+    <ScrollView>
+      <View style={styles.container}>
+        <View >
+          <Text style={styles.text}>New Post</Text>
 
-        <Button color="#000000" title="Post" onPress={handleSubmit}></Button>
-      </ImageBackground>
-    </View>
+          <Text style={styles.base}>Title</Text>
+          <TextInput
+            placeholder="Insert The Title"
+            style={styles.input}
+            onChangeText={setTitle}
+            value={title}
+          />
+          <Text style={styles.base}>Image</Text>
+          <TextInput
+            placeholder="Insert Your Image"
+            style={styles.input}
+            onChangeText={setImage}
+            value={image}
+          />
+          <Text style={styles.base}>Description</Text>
+          <TextInput
+            placeholder="Insert The Description"
+            style={styles.input}
+            onChangeText={setDescription}
+            value={description}
+          />
+          <Text style={styles.base}>Adress</Text>
+          <TextInput
+            placeholder="Insert Your Adress"
+            style={styles.input}
+            onChangeText={setAdress}
+            value={adress}
+          />
+
+          <TouchableOpacity style={styles.postBtn} >
+            <Text
+              color="#000000"
+              title="Post"
+              style={styles.postText}
+              onPress={handleSubmit}
+            >
+              POST
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#003f5c",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "35%",
+    flex: 1,
+  },
   text: {
     fontSize: 40,
     color: "black",
@@ -119,6 +134,19 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: "center",
     borderRadius: 20,
+  },
+  postBtn: {
+    width: "100%",
+    backgroundColor: "#fb5b5a",
+    borderRadius: 25,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  postText: {
+    color: "white",
   },
 });
 
