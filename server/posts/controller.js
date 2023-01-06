@@ -2,6 +2,7 @@ const { Posts } = require("../db");
 
 // Getting All Posts
 const getAllPosts = (req, res) => {
+  console.log("==============> done");
   Posts.find()
     .then((response) => res.status(200).send(response))
     .catch((err) => res.status(400).send(err));

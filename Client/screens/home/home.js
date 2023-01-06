@@ -6,19 +6,22 @@ import Footer from '../Footer';
 const Home = () => {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://192.168.104.25:8080/Posts/getAllPosts')
-      .then(response => {
-        setPosts(response.data);
-      }) 
-      .catch(error => {
+ 
+    const getMoviesFromApiAsync = async () => {
+      try {
+        const response = await fetch(
+          'http://192.168.1.175:8080/Posts/getAllPosts',
+        );
+        const data = await response.json();
+        setPosts(data)
+        return data;
+      } catch (error) {
         console.error(error);
-      });
-  }, []);
-  console.log(posts);
-
+      }
+    };
   return (
     <View>
+      
     <FlatList
       data={posts}
       renderItem={({ item }) => (
