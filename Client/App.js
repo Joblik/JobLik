@@ -21,7 +21,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="userprofile"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="forgotPassword" component={ForgotPassWord} />
@@ -30,6 +30,7 @@ export default function App() {
         <Stack.Screen name="home" component={Home} />
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="createPost" component={CreatePost} />
+        <Stack.Screen name="userprofile" component={UserProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
