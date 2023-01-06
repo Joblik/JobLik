@@ -21,7 +21,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="createPost"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="forgotPassword" component={ForgotPassWord} />
