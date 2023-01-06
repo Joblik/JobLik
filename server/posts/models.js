@@ -18,12 +18,12 @@ const PostsSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  owner: [
+  owner: 
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-  ],
+  
 });
 
 module.exports = { PostsSchema };
