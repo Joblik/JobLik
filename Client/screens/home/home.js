@@ -6,11 +6,12 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get('http://192.168.104.25:8080/Posts/getAllPosts')
-      .then(response => {
+    axios
+      .get("http://192.168.104.16:8080/Posts/getAllPosts")
+      .then((response) => {
         setPosts(response.data);
-      }) 
-      .catch(error => {
+      })
+      .catch((error) => {
         console.error(error);
       });
   }, []);

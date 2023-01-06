@@ -1,5 +1,5 @@
 import React from 'react'
-import { View , Text , Image , StyleSheet , ImageBackground, Button, TextInput} from 'react-native'
+import { View , Text , Image , StyleSheet , ImageBackground, Button, TextInput, TouchableOpacity} from 'react-native'
 
 const UserProfile = () =>{
     return (
@@ -21,6 +21,9 @@ const UserProfile = () =>{
           <Button title="Follow" color='green'/>
           <Button title="Followers" color='black'/>
         </View>
+        <TouchableOpacity>
+          <Text style={styles.btn}>+</Text>
+        </TouchableOpacity>
       </View>
     );
   };
