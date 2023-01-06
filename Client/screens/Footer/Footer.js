@@ -3,14 +3,7 @@ import { View , Text  , StyleSheet , ImageBackground, Button} from 'react-native
 const Footer = () => {
   return (
     <View style={styles.root}>
-      <ImageBackground
-        source={{
-          uri: 
-'https://res.cloudinary.com/dqmhtibfm/image/upload/v1672263786/JobLik_xxx8ao.png',
-        }}
-        style={styles.img}>
    <Text style={styles.arrow}>Footer</Text>
-   </ImageBackground>
     </View>
   )
 }
@@ -22,6 +15,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 400,
     height: 80,
+    backgroundColor: "#fb5b5a",
+    marginTop: 735,
   }, 
   arrow: {
     fontSize: 20,
@@ -30,11 +25,6 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: '#fff',
   },
-  img: {
-    width: 400,
-    height: 80,
-    alignItems : 'center', 
-    },
     loginText: { 
       padding: 5,
     }, 

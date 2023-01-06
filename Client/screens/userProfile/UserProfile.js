@@ -1,14 +1,19 @@
 import React from 'react'
-import { View , Text , Image , StyleSheet , ImageBackground, Button, TextInput, TouchableOpacity} from 'react-native'
+import { View , Text , Image , StyleSheet , ImageBackground, Button, TextInput} from 'react-native'
 
 const UserProfile = () =>{
     return (
       <View style={styles.container}>
-          <Image
-            source={{ uri: 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Free-Download.png' }}
-            style={styles.profileImage}
-          />
-          <View style={styles.textContainer}>
+      <Image
+      source={{ uri: 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Free-Download.png' }}
+      style={styles.profileImage}
+    />
+     <View style={styles.buttonContainer}>
+          <Button title="Following" color='black'/>
+          <Button title="Follow" color='green'/>
+          <Button title="Followers" color='black'/>
+        </View>
+     <View style={styles.textContainer}>
             <Text style={styles.titleText}>John Doe</Text>
             <View style={styles.listContainer}>
               <Text style={styles.listItem}>Located: Somewhere</Text>
@@ -21,9 +26,6 @@ const UserProfile = () =>{
           <Button title="Follow" color='green'/>
           <Button title="Followers" color='black'/>
         </View>
-        <TouchableOpacity>
-          <Text style={styles.btn}>+</Text>
-        </TouchableOpacity>
       </View>
     );
   };
@@ -39,9 +41,13 @@ const UserProfile = () =>{
       width: 150,
       height: 150,
       borderRadius: 75,
+      marginRight:200,
+      marginTop: -150,
     },
     textContainer: {
       flexDirection: 'column',
+      marginTop:150,
+      marginRight:100,
     },
     titleText: {
       fontSize: 24,
