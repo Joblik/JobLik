@@ -32,7 +32,7 @@ const LoginScreen = ({ navigation }) => {
       });
 
       if (user) {
-        navigation.navigate("userprofile");
+        navigation.navigate("home");
         console.log(user.data.id);
         AsyncStorage.setItem("token", JSON.stringify(user.data.token));
         AsyncStorage.setItem("id", JSON.stringify(user.data.id));
@@ -46,7 +46,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
-        <Image source={Logo} style={[styles.logo ,{height:height * 0.50}]} />
+        <Image source={Logo} style={[styles.logo, { height: height * 0.5 }]} />
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}
@@ -81,7 +81,12 @@ const LoginScreen = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={styles.loginText}>Signup</Text>
+          <Text
+            style={styles.loginText}
+            onPress={() => navigation.navigate("register")}
+          >
+            Signup
+          </Text>
         </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>

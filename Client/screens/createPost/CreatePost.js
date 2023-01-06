@@ -40,61 +40,62 @@ const CreatePost = ({ navigation }) => {
 
   return (
     <View>
-    <ScrollView>
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.text}>New Post</Text>
+      <ScrollView>
+        <View style={styles.container}>
+          <View>
+            <Text style={styles.text}>New Post</Text>
 
-          <Text style={styles.base}>Title</Text>
-          <View style={styles.inputView}>
-            <TextInput
-              placeholder="Insert The Title"
-              style={styles.inputText}
-              onChangeText={setTitle}
-              value={title}
-            />
-          </View>
-          <Text style={styles.base}>Image</Text>
-          <View style={styles.inputView}>
-            <TextInput
-              placeholder="Insert Your Image"
-              style={styles.inputText}
-              onChangeText={setImage}
-              value={image}
-            />
-          </View>
-          <Text style={styles.base}>Description</Text>
-          <View style={styles.inputView}>
-            <TextInput
-              placeholder="Insert The Description"
-              style={styles.inputText}
-              onChangeText={setDescription}
-              value={description}
-            />
-          </View>
-          <Text style={styles.base}>Adress</Text>
-          <View style={styles.inputView}>
-            <TextInput
-              placeholder="Insert Your Adress"
-              style={styles.inputText}
-              onChangeText={setAdress}
-              value={adress}
-            />
-          </View>
+            <Text style={styles.base}>Title</Text>
+            <View style={styles.inputView}>
+              <TextInput
+                placeholder="Insert The Title"
+                style={styles.inputText}
+                onChangeText={setTitle}
+                value={title}
+              />
+            </View>
+            <Text style={styles.base}>Image</Text>
+            <View style={styles.inputView}>
+              <TextInput
+                placeholder="Insert Your Image"
+                style={styles.inputText}
+                onChangeText={setImage}
+                value={image}
+              />
+            </View>
+            <Text style={styles.base}>Description</Text>
+            <View style={styles.inputView}>
+              <TextInput
+                placeholder="Insert The Description"
+                style={styles.inputText}
+                onChangeText={setDescription}
+                value={description}
+              />
+            </View>
+            <Text style={styles.base}>Adress</Text>
+            <View style={styles.inputView}>
+              <TextInput
+                placeholder="Insert Your Adress"
+                style={styles.inputText}
+                onChangeText={setAdress}
+                value={adress}
+              />
+            </View>
 
-          <TouchableOpacity style={styles.postBtn}>
-            <Text
-              color="#000000"
-              title="Post"
-              style={styles.postText}
-              onPress={handleSubmit}
-            >
-              POST
-            </Text>
-          </TouchableOpacity>
+            <TouchableOpacity style={styles.postBtn}>
+              <Text
+                color="#000000"
+                title="Post"
+                style={styles.postText}
+                onPress={handleSubmit}
+              >
+                POST
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View> 
-    </ScrollView>
+      </ScrollView>
+      <Footer navigation={navigation} />
     </View>
   );
 };

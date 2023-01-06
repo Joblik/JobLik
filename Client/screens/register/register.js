@@ -73,6 +73,7 @@ const Register = ({ navigation }) => {
         </View>
         <View style={styles.inputView}>
           <TextInput
+            secureTextEntry
             style={styles.inputText}
             placeholder="Password..."
             placeholderTextColor="#003f5c"

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Text, View } from 'react-native';
-import axios from 'axios';
+import {
+  StyleSheet,
+  Text,
+  View,
+  } from "react-native";
 import Footer from '../Footer';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -19,18 +22,25 @@ const Home = () => {
   console.log(posts);
 
   return (
-    <View>
-    <FlatList
+    <View style={styles.container}>
+         <FlatList
       data={posts}
       renderItem={({ item }) => (
         <Text>{item.title}</Text>
       )}
       keyExtractor={item => item.id.toString()}
-    />
-    <Footer/>
+    /> 
+      <Footer navigation={navigation} />
     </View>
   );
 }
-
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#003f5c",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 80,
+    }
+  }) 
 export default Home;
 
