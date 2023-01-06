@@ -10,9 +10,12 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  SafeAreaView,
+  Dimensions,
 } from "react-native";
 
 const LoginScreen = ({ navigation }) => {
+  const {height} = Dimensions.get('window')
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
@@ -23,7 +26,7 @@ const LoginScreen = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
-      const user = await axios.post("http://192.168.104.16:8080/Users/login", {
+      const user = await axios.post("http://192.168.221.205:8080/Users/login", {
         email,
         password,
       });
@@ -42,8 +45,8 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <View style={styles.container}>
-        <Image source={Logo} style={styles.logo} />
+      <SafeAreaView style={styles.container}>
+        <Image source={Logo} style={[styles.logo ,{height:height * 0.50}]} />
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}
@@ -80,7 +83,7 @@ const LoginScreen = ({ navigation }) => {
         <TouchableOpacity>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
     </ScrollView>
   );
 };
@@ -90,19 +93,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#003f5c",
     alignItems: "center",
     justifyContent: "center",
-  },
+    padding: 80,
+    },
   logo: {
-       fontSize: null,
-    color: "#fb5b5a",
-    marginBottom: 5,
-  
-  },
+    marginBottom: 20,
+    width: "100%",
+    height: 400,
+ flex:1  
+ },
   inputView: {
-    width: "80%",
+    width: "100%",
     backgroundColor: "#FFFF",
     borderRadius: 25,
-    height: 50,
-    marginBottom: 20,
+    height: 55,
+    marginBottom: 25,
     justifyContent: "center",
     padding: 20,
   },
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 40,
+    marginTop: 20,
     marginBottom: 10,
   },
   loginText: {

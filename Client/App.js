@@ -1,6 +1,6 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 import LoginScreen from "./screens/Login/LoginScreen";
 import Footer from "./screens/Footer";
 import PostScreen from "./screens/onePost/postScreen";
@@ -20,7 +20,10 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="login">
+      <Stack.Navigator
+        initialRouteName="createPost"
+        screenOptions={{ headerShown: false }}
+      >
         <Stack.Screen name="forgotPassword" component={ForgotPassWord} />
         <Stack.Screen name="register" component={Register} />
         <Stack.Screen name="otp" component={OTP} />
