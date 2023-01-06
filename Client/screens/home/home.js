@@ -9,11 +9,12 @@ const Home = () => {
     axios.get('http://192.168.104.25:8080/Posts/getAllPosts')
       .then(response => {
         setPosts(response.data);
-      })
+      }) 
       .catch(error => {
         console.error(error);
       });
   }, []);
+  console.log(posts);
 
   return (
     <FlatList
