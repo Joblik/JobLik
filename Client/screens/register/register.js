@@ -1,31 +1,39 @@
 import React, { useState } from "react";
 import {
-  View,
-  Text,
-  Image,
   StyleSheet,
-  ImageBackground,
-  Button,
+  Text,
+  View,
   TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  SafeAreaView,
+  Dimensions,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+
 import Logo from "../../components/img/logo.png";
 import axios from "axios";
 
 const Register = ({ navigation }) => {
+  const { height } = Dimensions.get("window");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   function validateForm() {
-    return name.length > 0 && email.length > 0 && password.length > 0 && confirmPassword === password;
+    return (
+      name.length > 0 &&
+      email.length > 0 &&
+      password.length > 0 &&
+      confirmPassword === password
+    );
   }
 
   async function handleSubmit() {
     try {
       const response = await axios.post(
-        "http://192.168.104.12:8080/Users/register",
+        "http://192.168.104.15:8080/Users/register",
         {
           name,
           email,
@@ -40,105 +48,106 @@ const Register = ({ navigation }) => {
     }
   }
   return (
-    <SafeAreaView>
-      <View style={styles.view}>
-        <Image source={Logo} style={styles.logo} />
-        <Text style={styles.title}>Register</Text>
-        <ImageBackground
-          source={{
-            uri: "https://res.cloudinary.com/dqmhtibfm/image/upload/v1672263786/JobLik_xxx8ao.png",
-          }}
-          style={styles.img}
-        >
-          <Text style={styles.base}>Name</Text>
+    <ScrollView>
+      <SafeAreaView style={styles.container}>
+        <Image source={Logo} style={[styles.logo, { height: height * 0.5 }]} />
+        <View style={styles.inputView}>
           <TextInput
-            placeholder="Insert Name"
-            style={styles.inpt}
+            style={styles.inputText}
+            placeholder="Name..."
+            placeholderTextColor="#003f5c"
             onChangeText={(e) => {
               setName(e);
             }}
           />
-          <Text style={styles.base}>Email</Text>
+        </View>
+        <View style={styles.inputView}>
           <TextInput
-            placeholder="Insert Email"
-            style={styles.inpt}
+            style={styles.inputText}
+            placeholder="Email..."
+            placeholderTextColor="#003f5c"
             onChangeText={(e) => {
               setEmail(e);
             }}
           />
-          <Text style={styles.base}>Password</Text>
+        </View>
+        <View style={styles.inputView}>
           <TextInput
-            placeholder="Insert Password"
-            style={styles.inpt}
+            style={styles.inputText}
+            placeholder="Password..."
+            placeholderTextColor="#003f5c"
             onChangeText={(e) => {
               setPassword(e);
             }}
           />
-          <Text style={styles.base}>Confirm Password </Text>
+        </View>
+        <View style={styles.inputView}>
           <TextInput
-            placeholder="Password Confirmation"
-            style={styles.inpt}
+            secureTextEntry
+            style={styles.inputText}
+            placeholder="Confirm Password..."
+            placeholderTextColor="#003f5c"
             onChangeText={(e) => {
               setConfirmPassword(e);
             }}
           />
-          <Button
-            color="#000000"
-            title="Register Now"
+        </View>
+
+        <TouchableOpacity style={styles.loginBtn}>
+          <Text
+            style={styles.loginText}
             onPress={handleSubmit}
             disabled={!validateForm()}
-          ></Button>
-        </ImageBackground>
-      </View>
-    </SafeAreaView>
+          >
+            Register Now
+          </Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({
-  view: {
+  container: {
+    backgroundColor: "#003f5c",
     alignItems: "center",
-    paddingBottom: "10%",
+    justifyContent: "center",
+    padding: 80,
   },
   logo: {
+    marginBottom: 20,
+    width: "100%",
+    height: 400,
     flex: 1,
-    width: 300,
+  },
+  inputView: {
+    width: "100%",
+    backgroundColor: "#FFFF",
+    borderRadius: 25,
+    height: 55,
+    marginBottom: 25,
+    justifyContent: "center",
+    padding: 20,
+  },
+  inputText: {
     height: 50,
-    resizeMode: "contain",
-  },
-  title: {
-    fontSize: 40,
     color: "black",
-    textAlign: "center",
-    marginBottom: 20,
   },
-  desc: {
-    fontSize: 10,
+  forgot: {
     color: "white",
+    fontSize: 11,
   },
-  img: {
-    width: 290,
-    height: 450,
-    alignItems: "center",
-    overflow: "hidden",
-    borderRadius: 30,
-    borderColor: "black",
-    borderWidth: 0.5,
-  },
-  inbtn: {
-    color: "black",
-  },
-  base: {
-    color: "#ffffff",
-    textShadowColor: "black",
-    textShadowRadius: 5,
-  },
-  inpt: {
-    backgroundColor: "white",
-    width: 150,
+  loginBtn: {
+    width: "80%",
+    backgroundColor: "#fb5b5a",
+    borderRadius: 25,
     height: 50,
-    marginBottom: 20,
-    marginTop: 10,
-    textAlign: "center",
-    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  loginText: {
+    color: "white",
   },
 });
 export default Register;
