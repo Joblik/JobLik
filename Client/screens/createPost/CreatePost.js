@@ -8,15 +8,13 @@ import {
   Button,
   TextInput,
   ScrollView,
-  TouchableOpacity
-
+  TouchableOpacity,
 } from "react-native";
 import Logo from "../../components/img/logo.png";
 import Input from "../../components/Input";
 import axios from "axios";
 
-
-const CreatePost = ({navigation}) => {
+const CreatePost = ({ navigation }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
@@ -45,14 +43,9 @@ const CreatePost = ({navigation}) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <View >
           <Text style={styles.text}>New Post</Text>
-          {/* <ImageBackground
-            source={{
-              uri: "https://res.cloudinary.com/dqmhtibfm/image/upload/v1672263786/JobLik_xxx8ao.png",
-            }}
-            style={styles.img}
-          > */}
+
           <Text style={styles.base}>Title</Text>
           <TextInput
             placeholder="Insert The Title"
@@ -82,12 +75,7 @@ const CreatePost = ({navigation}) => {
             value={adress}
           />
 
-          {/* <Button
-              color="#000000"
-              title="Post"
-              onPress={handleSubmit}
-          ></Button> */}
-          <TouchableOpacity style={styles.postBtn}>
+          <TouchableOpacity style={styles.postBtn} >
             <Text
               color="#000000"
               title="Post"
@@ -97,7 +85,6 @@ const CreatePost = ({navigation}) => {
               POST
             </Text>
           </TouchableOpacity>
-          {/* </ImageBackground> */}
         </View>
       </View>
     </ScrollView>
@@ -110,7 +97,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: "35%",
-    
+    flex: 1,
   },
   text: {
     fontSize: 40,
@@ -159,7 +146,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   postText: {
-    color:"white"
+    color: "white",
   },
 });
 
