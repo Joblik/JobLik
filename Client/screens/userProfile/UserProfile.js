@@ -43,12 +43,12 @@ const UserProfile = () =>{
       overflow:'hidden',
       flexDirection: 'row',
       alignItems: 'center',
+      justifyContent: 'space-between',
       padding: 20,
     },
     profileImage: {
-      width: 150,
-      height: 150,
-      borderRadius: 75,
+      width: 85,
+      height: 85,
     },
     textContainer: {
       flexDirection: 'column',

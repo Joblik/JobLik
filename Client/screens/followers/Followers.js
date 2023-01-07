@@ -1,7 +1,20 @@
 import React from 'react';
 import { View, Text, Button, FlatList, StyleSheet, Image } from 'react-native';
+import axios from 'axios';
 
-const users = ["user1","user2","user646","user4551","user36232","user6411","user6161","user494841","user656213","user9562","user65659","user652626","user956526","user595962","user965652","user595236"];
+async function getFollowers() {
+  try {
+    const response = await axios.get('https://localhost:8080/users/1');
+
+    const followers = response.data.followers;
+
+    console.log(followers);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+getFollowers();
 
 const Followers = () => {
   return (

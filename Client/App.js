@@ -13,6 +13,8 @@ import UserProfile from './screens/userProfile/UserProfile';
 import Followers from './screens/followers/Followers';
 import Followings from './screens/followings/Followings';
 import Forgot from './screens/ForgotPassword/Forgot';
+import AllChats from './screens/allChats/AllChats';
+import OneChatScreen from './screens/oneChat/OneChat';
 
 
 
@@ -20,7 +22,7 @@ export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
-    <Forgot />
+    <OneChatScreen/>
   //  <NavigationContainer>
   //     <Stack.Navigator initialRouteName="login">
   //       <Stack.Screen name="login" component={LoginScreen} />
