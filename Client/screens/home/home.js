@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  FlatList,
   } from "react-native";
 import Footer from '../Footer';
 
@@ -13,10 +14,11 @@ const Home = ({navigation}) => {
     const getMoviesFromApiAsync = async () => {
       try {
         const response = await fetch(
-          'http://192.168.1.175:8080/Posts/getAllPosts',
+          'http://192.168.104.19:8080/Posts/getAllPosts',
         );
-        const data = await response.json();
+        const data = await response.JSON();
         setPosts(data)
+        console.log('hello',data)
         return data;
       } catch (error) {
         console.error(error);

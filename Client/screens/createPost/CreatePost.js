@@ -22,7 +22,7 @@ const CreatePost = ({ navigation }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://192.168.104.30:8080/Posts/addPost",
+        "http://192.168.104.19:8080/Posts/addPost",
         {
           title: title,
           image: image,
