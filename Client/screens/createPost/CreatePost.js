@@ -9,12 +9,9 @@ import {
 } from "react-native";
 
 import axios from "axios";
-import Footer from "../Footer";
 
-
+   
 const CreatePost = ({ navigation }) => {
-  const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [adress, setAdress] = useState("");
 
@@ -24,15 +21,12 @@ const CreatePost = ({ navigation }) => {
       const response = await axios.post(
         "http://192.168.104.19:8080/Posts/addPost",
         {
-          title: title,
-          image: image,
           description: description,
           adress: adress,
         }
         );
         console.log(response.data);
         navigation.navigate("home");
-        console.log("ay 7aja");
     } catch (error) {
       console.log(error);
     }
@@ -44,25 +38,6 @@ const CreatePost = ({ navigation }) => {
         <View style={styles.container}>
           <View>
             <Text style={styles.text}>New Post</Text>
-
-            <Text style={styles.base}>Title</Text>
-            <View style={styles.inputView}>
-              <TextInput
-                placeholder="Insert The Title"
-                style={styles.inputText}
-                onChangeText={setTitle}
-                value={title}
-              />
-            </View>
-            <Text style={styles.base}>Image</Text>
-            <View style={styles.inputView}>
-              <TextInput
-                placeholder="Insert Your Image"
-                style={styles.inputText}
-                onChangeText={setImage}
-                value={image}
-              />
-            </View>
             <Text style={styles.base}>Description</Text>
             <View style={styles.inputView}>
               <TextInput
@@ -95,14 +70,12 @@ const CreatePost = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
-      <Footer navigation={navigation} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#003f5c",
     alignItems: "center",
     justifyContent: "center",
     padding: "35%",
@@ -110,7 +83,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 40,
-    color: "#fb5b5a",
+    color: "#003f5c",
     textAlign: "center",
     marginBottom: 18,
     
@@ -119,16 +92,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "white",
   },
-  img: {
-    width: 290,
-    height: 450,
-    alignItems: "center",
-    overflow: "hidden",
-    borderRadius: 30,
-    borderColor: "black",
-    borderWidth: 0.5,
-  },
-
+  
   base: {
     color: "#ffffff",
     textShadowColor: "black",
@@ -145,7 +109,7 @@ const styles = StyleSheet.create({
   },
   postBtn: {
     width: 90,
-    backgroundColor: "#fb5b5a",
+    backgroundColor: "#003f5c",
     borderRadius: 25,
     height: 50,
     alignItems: "center",
