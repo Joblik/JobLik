@@ -1,5 +1,5 @@
 import React from 'react'
-import { View , Text , Image , StyleSheet , ImageBackground, Button, TextInput, TouchableOpacity} from 'react-native'
+import { View , Text , Image , StyleSheet , ImageBackground, Button, TextInput, TouchableOpacity,ScrollView} from 'react-native'
 
 
 const UserProfile = ({navigation}) =>{
