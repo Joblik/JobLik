@@ -1,9 +1,10 @@
 import React from 'react'
-import { View , Text , Image , StyleSheet , ImageBackground, Button, TextInput} from 'react-native'
+import { View , Text , Image , StyleSheet , ImageBackground, Button, TextInput, ScrollView} from 'react-native'
 import Footer from '../Footer';
 
 const UserProfile = () =>{
     return (
+      <ScrollView>
       <View style={styles.container}>
       <Image
       source={{ uri: 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Free-Download.png' }}
@@ -24,6 +25,7 @@ const UserProfile = () =>{
           </View>
        <Footer /> 
       </View>
+      </ScrollView>
     );
   };
   

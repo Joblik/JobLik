@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import {  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  SafeAreaView,
+  Dimensions, } from 'react-native';
 import axios from 'axios';
-import Footer from '../Footer';
+import Footer from '../Footer/Footer';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -18,18 +26,20 @@ const Home = () => {
   console.log(posts);
 
   return (
-    <View>
-    <FlatList
-      data={posts}
-      renderItem={({ item }) => (
-        <Text>{item.title}</Text>
-      )}
-      keyExtractor={item => item.id.toString()}
-    />
+    <View style={styles.container}>
+    
     <Footer/>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#003f5c",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 80,
+    }
+  })
 
 export default Home;
 
