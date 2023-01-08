@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -8,7 +9,6 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
-
 
 const ProfileScreen = ({ route, navigation }) => {
   const [username, setUsername] = useState("");

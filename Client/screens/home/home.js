@@ -10,37 +10,44 @@ import {  StyleSheet,
   Dimensions, } from 'react-native';
 import axios from 'axios';
 import Footer from '../Footer/Footer';
+import { Card } from "react-native-elements";
 
 const Home = ({navigation}) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://192.168.104.21:8080/Posts/getAllPosts")
-      .then((response) => {
-        setPosts(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    async function fetchPosts() {
+      const response = await axios.get("http://192.168.104.22:8080/Posts/getAllPosts");
+      setPosts(response.data);  // update the state variable with the posts data
+    }
+    fetchPosts();
   }, []);
   // console.log(posts);
 
   return (
     <View style={styles.container}>
     
-    <Footer navigation={navigation}/>
+    <Footer/>
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#003f5c",
+    flex: 1,  // to make the container take up the whole screen
+  },
+  scrollableContainer: {
+    flex: 1,  // to make the scrollable container take up the remaining space
+  },
+  text: {
+    fontSize: 16,
+    color: "#003f5c",
+  },
+  footerContainer: {
     alignItems: "center",
-    justifyContent: "center",
-    padding: 80,
-    }
-  })
+    backgroundColor: "#fbfbfb",
+    paddingVertical: 20,
+  },
+});
 
 export default Home;
-
