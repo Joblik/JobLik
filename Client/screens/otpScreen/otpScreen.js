@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Logo from "../../components/img/logo.png";
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   StyleSheet,
   Text,
@@ -14,37 +12,36 @@ import {
   Dimensions,
 } from "react-native";
 
-const LoginScreen = ({ navigation }) => {
-  const {height} = Dimensions.get('window')
-  const [email, setEmail] = useState("");
+import axios from "axios";
 
-  const [password, setPassword] = useState("");
+const OTP = ({ navigation }) => {
+  const { height } = Dimensions.get("window");
+
+  const [email, setEmail] = useState("");
+  const [otp, setOTP] = useState("");
 
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return email.length > 0 && otp.length > 0;
   }
 
   async function handleSubmit() {
     try {
-      const user = await axios.post("http://192.168.104.16:8080/Users/login", {
-        email,
-        password,
-      });
-
-      if (user) {
-        navigation.navigate("home");
-        console.log(user.data.id);
-        AsyncStorage.setItem("token", JSON.stringify(user.data.token));
-        AsyncStorage.setItem("id", JSON.stringify(user.data.id));
-      }
+      const response = await axios.post(
+        "http://192.168.104.15:8080/Users/otp",
+        {
+          email,
+          otp,
+        }
+      );
+      alert(response.data.message);
+      navigation.navigate("login");
     } catch (error) {
-      console.log(error.message);
-      alert("error");
+      console.log(error);
+      alert(error.response.data.message);
     }
   }
 
   return (
-
     <ScrollView>
       <SafeAreaView style={styles.container}>
         <Image source={Logo} style={[styles.logo, { height: height * 0.5 }]} />
@@ -53,45 +50,30 @@ const LoginScreen = ({ navigation }) => {
             style={styles.inputText}
             placeholder="Email..."
             placeholderTextColor="#003f5c"
-            onChangeText={(e) => {
-              setEmail(e);
-            }}
+            onChangeText={(e) => setEmail(e)}
           />
         </View>
         <View style={styles.inputView}>
           <TextInput
             secureTextEntry
             style={styles.inputText}
-            placeholder="Password..."
+            placeholder="OTP..."
             placeholderTextColor="#003f5c"
-            onChangeText={(e) => {
-              setPassword(e);
-            }}
+            onChangeText={(e) => setOTP(e)}
           />
         </View>
-        <TouchableOpacity>
-          <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity>
+
         <TouchableOpacity style={styles.loginBtn}>
           <Text
             style={styles.loginText}
             onPress={handleSubmit}
             disabled={!validateForm()}
           >
-            LOGIN
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text
-            style={styles.loginText}
-            onPress={() => navigation.navigate("register")}
-          >
-            Signup
+            Verify
           </Text>
         </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
-
   );
 };
 
@@ -101,13 +83,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 80,
-    },
+    flex: 1,
+  },
   logo: {
     marginBottom: 20,
     width: "100%",
     height: 400,
- flex:1  
- },
+    flex: 1,
+  },
   inputView: {
     width: "100%",
     backgroundColor: "#FFFF",
@@ -131,7 +114,6 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     height: 50,
     alignItems: "center",
-
     justifyContent: "center",
     marginTop: 20,
     marginBottom: 10,
@@ -141,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default OTP;
