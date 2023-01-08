@@ -16,7 +16,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="userProfile"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="register" component={Register} />
