@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
+  View, Text, Image, FlatList
   } from "react-native";
 import Footer from '../Footer';
 
@@ -24,27 +21,50 @@ const Home = ({navigation}) => {
         console.error(error);
       }
     };
-  return (
-    <View>
-      
-    <FlatList
-      data={posts}
-      renderItem={({ item }) => (
-        <Text>{item.title}</Text>
-      )}
-      keyExtractor={item => item.id.toString()}
-    /> 
-      <Footer navigation={navigation} />
-    </View>
-  );
-}
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#003f5c",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 80,
-    }
-  }) 
+  
+    return (
+      <FlatList
+        data={posts}
+        renderItem={({ item }) => (
+          <View style={styles.cardContainer}>
+            <View style={styles.cardHeader}>
+              <Image
+                source={{ uri: item.user.profileImageUrl }}
+                style={styles.profileImage}
+              />
+              <Text style={styles.username}>{item.user.username}</Text>
+            </View>
+            <Text style={styles.postContent}>{item.content}</Text>
+          </View>
+        )}
+        keyExtractor={(item) => item.id}
+      />
+    );
+  };
+  
+  const styles = {
+    cardContainer: {
+      padding: 20,
+      borderBottomWidth: 1,
+      borderColor: '#ccc',
+    },
+    cardHeader: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    profileImage: {
+      width: 50,
+      height: 50,
+      borderRadius: 25,
+      marginRight: 10,
+    },
+    username: {
+      fontWeight: 'bold',
+    },
+    postContent: {
+      marginTop: 10,
+    },
+  };
+  
 export default Home;
 
