@@ -34,6 +34,7 @@ const UserProfile = ({navigation}) =>{
     container: {
       backgroundColor: "#003f5c",
       flex: 1,
+
       justifyContent: "center",
       alignItems: "center",
     },
@@ -54,6 +55,7 @@ const UserProfile = ({navigation}) =>{
       marginTop: 50,
       marginBottom: 10,
       marginLeft: 90
+
     },
     textContainer: {
       flexDirection: "column",

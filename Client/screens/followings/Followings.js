@@ -1,35 +1,21 @@
 import React from 'react';
-import { View, Text, Button, FlatList, StyleSheet, Image } from 'react-native';
-import axios from 'axios';
+import { View, Text, Button, FlatList, StyleSheet, Image} from 'react-native';
 
-async function getFollowers() {
-  try {
-    const response = await axios.get('https://localhost:8080/users/1');
+const users = ["user1","user2","user646","user4551","user36232","user6411","user6161","user494841","user656213","user9562","user65659","user652626","user956526","user595962","user965652","user595236"];
 
-    const followers = response.data.followers;
-
-    console.log(followers);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-getFollowers();
-
-const Followers = () => {
+const Followings = () => {
   return (
     <View>
-      <Text style={{ fontSize: 22, fontWeight: 'bold', padding: 35, fontFamily: 'Roboto', textAlign: 'center' }}>User51115 have {users.length} followers</Text>
+      <Text style={{ fontSize: 22, fontWeight: 'bold', padding: 35, fontFamily: 'Roboto', textAlign: 'center' }}>User51115 is following {users.length} users</Text>
       <Button title="Go Back" color='gray'/>
       <FlatList
         style={styles.listContainer}
         data={users}
         renderItem={({ item }) => (
           <View style={styles.listItem}>
-            <Image
+             <Image
               source={{ uri: 'https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png' }}
-              style={{ width: 50, height: 50 }}
-            />
+              style={{ width: 50, height: 50 }}/>
             <Text>{item}</Text>
             <Button title="..." color='gray'/>
           </View>
@@ -48,12 +34,12 @@ const styles = StyleSheet.create({
   },
   listItem: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 10,
+    alignItems: 'center',
+    padding: 30,
     borderBottomWidth: 1,
     borderBottomColor: '#CCC'
   }
 });
 
-export default Followers;
+export default Followings;
