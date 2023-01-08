@@ -19,20 +19,20 @@ const CreatePost = ({ navigation }) => {
   const [adress, setAdress] = useState("");
 
   const handleSubmit = async (e) => {
-    console.log("ay 7aja");
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://192.168.104.16:8080/Posts/addPost",
+        "http://192.168.104.19:8080/Posts/addPost",
         {
           title: title,
           image: image,
           description: description,
           adress: adress,
         }
-      );
-      console.log(response.data);
-      navigation.navigate("home");
+        );
+        console.log(response.data);
+        navigation.navigate("home");
+        console.log("ay 7aja");
     } catch (error) {
       console.log(error);
     }
