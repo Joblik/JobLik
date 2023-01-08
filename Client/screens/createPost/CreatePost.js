@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,12 +6,25 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  KeyboardAvoidingView
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import axios from "axios";
 
    
 const CreatePost = ({ navigation }) => {
+  const [userId, setUserId] = useState(null);  // create a state variable for the user's _id
+
+  useEffect(() => {
+    async function getUserId() {
+      const id = await AsyncStorage.getItem("id");  // retrieve the user's _id from AsyncStorage
+      setUserId(JSON.parse(id));  // update the state variable with the user's _id
+    }
+    getUserId();
+    console.log(userId);
+  }, []);
+
   const [description, setDescription] = useState("");
   const [adress, setAdress] = useState("");
 
@@ -19,22 +32,24 @@ const CreatePost = ({ navigation }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://192.168.104.19:8080/Posts/addPost",
+        "http://192.168.104.22:8080/Posts/addPost",
         {
           description: description,
           adress: adress,
+          userId: userId,  // use the userId state variable here
         }
-        );
-        console.log(response.data);
-        navigation.navigate("home");
+      );
+      console.log(response.data);
+      navigation.navigate("home");
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
+    <KeyboardAvoidingView behavior="position" style={styles.ScrollView}>
+    <ScrollView contentContainerStyle={styles.contentContainer} >
     <View>
-      <ScrollView>
+      
         <View style={styles.container}>
           <View>
             <Text style={styles.text}>New Post</Text>
@@ -69,8 +84,10 @@ const CreatePost = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
+        </View>
       </ScrollView>
-    </View>
+    
+    </KeyboardAvoidingView>
   );
 };
 
@@ -90,11 +107,11 @@ const styles = StyleSheet.create({
   },
   desc: {
     fontSize: 10,
-    color: "white",
+    color: "#003f5c",
   },
   
   base: {
-    color: "#ffffff",
+    color: "#003f5c",
     textShadowColor: "black",
     textShadowRadius: 5,
   },
