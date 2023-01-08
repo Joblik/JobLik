@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,9 +8,17 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
-import FormButton from "../../components/FormButton";
 
-const ProfileScreen = ({ route }) => {
+
+const ProfileScreen = ({ route, navigation }) => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [image, setImage] = useState("");
+  const [phone, setPhone] = useState("");
+  const [job, setJob] = useState("");
+  const [domain, seDomain] = useState("");
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <ScrollView
@@ -42,7 +50,12 @@ const ProfileScreen = ({ route }) => {
           ) : (
             <>
               <TouchableOpacity style={styles.userBtn}>
-                <Text style={styles.userBtnTxt}>Edit</Text>
+                <Text
+                  style={styles.userBtnTxt}
+                  onPress={() => navigation.navigate("EditProfile")}
+                >
+                  Edit
+                </Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.userBtn}>

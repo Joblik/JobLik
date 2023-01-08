@@ -9,6 +9,7 @@ import ForgotPassWord from "./screens/forgotPassword/forgotPassword";
 import Home from "./screens/home/home";
 import CreatePost from "./screens/createPost/CreatePost";
 import OTP from "./screens/otpScreen/otpScreen";
+import EditProfile from "./screens/userProfile/EditProfile";
 
 
 export default function App() {
@@ -17,17 +18,17 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="userProfile"
-
+        initialRouteName="login"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="register" component={Register} />
-         <Stack.Screen name="login" component={LoginScreen} />
-         <Stack.Screen name="otp" component={OTP} />
+        <Stack.Screen name="login" component={LoginScreen} />
+        <Stack.Screen name="otp" component={OTP} />
         <Stack.Screen name="forgotPassword" component={ForgotPassWord} />
         <Stack.Screen name="home" component={Home} />
         <Stack.Screen name="createPost" component={CreatePost} />
-        <Stack.Screen name="userProfile" component={UserProfile} />     
+        <Stack.Screen name="userProfile" component={UserProfile} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
