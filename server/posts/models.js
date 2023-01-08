@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const { Schema} = mongoose;
 const PostsSchema = new mongoose.Schema({
   
   description: {
