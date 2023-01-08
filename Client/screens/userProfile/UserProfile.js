@@ -4,6 +4,7 @@ import { View , Text , Image , StyleSheet , ImageBackground, Button, TextInput, 
 
 const UserProfile = ({navigation}) =>{
     return (
+      <ScrollView>
       <View style={styles.container}>
       <Image
       source={{ uri: 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Free-Download.png' }}
@@ -27,6 +28,7 @@ const UserProfile = ({navigation}) =>{
           </View>
         
       </View>
+      </ScrollView>
     );
   };
   

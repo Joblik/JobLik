@@ -1,40 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import {
-  StyleSheet,
+import {  StyleSheet,
   Text,
   View,
-  FlatList,
-  } from "react-native";
-import Footer from '../Footer';
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  SafeAreaView,
+  Dimensions, } from 'react-native';
+import axios from 'axios';
+import Footer from '../Footer/Footer';
 
-const Home = ({navigation}) => {
+const Home = () => {
   const [posts, setPosts] = useState([]);
 
- 
-    const getMoviesFromApiAsync = async () => {
-      try {
-        const response = await fetch(
-          'http://192.168.104.19:8080/Posts/getAllPosts',
-        );
-        const data = await response.JSON();
-        setPosts(data)
-        console.log('hello',data)
-        return data;
-      } catch (error) {
+  useEffect(() => {
+    axios.get('http://192.168.104.25:8080/Posts/getAllPosts')
+      .then(response => {
+        setPosts(response.data);
+      }) 
+      .catch(error => {
         console.error(error);
-      }
-    };
+      });
+  }, []);
+  console.log(posts);
+
   return (
-    <View>
-      
-    <FlatList
-      data={posts}
-      renderItem={({ item }) => (
-        <Text>{item.title}</Text>
-      )}
-      keyExtractor={item => item.id.toString()}
-    /> 
-      <Footer navigation={navigation} />
+    <View style={styles.container}>
+    
+    <Footer/>
     </View>
   );
 }
@@ -45,6 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 80,
     }
-  }) 
+  })
+
 export default Home;
 

@@ -12,6 +12,7 @@ import {
   ScrollView,
   SafeAreaView,
   Dimensions,
+  KeyboardAvoidingView ,
 } from "react-native";
 
 const LoginScreen = ({ navigation }) => {
@@ -26,7 +27,7 @@ const LoginScreen = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
-      const user = await axios.post("http://192.168.104.19:8080/Users/login", {
+      const user = await axios.post("http://192.168.104.22:8080/Users/login", {
         email,
         password,
       });
@@ -44,10 +45,10 @@ const LoginScreen = ({ navigation }) => {
   }
 
   return (
-
-    <ScrollView>
+  <KeyboardAvoidingView behavior="position" style={styles.ScrollView}>
+    <ScrollView contentContainerStyle={styles.contentContainer} >
       <SafeAreaView style={styles.container}>
-        <Image source={Logo} style={[styles.logo, { height: height * 0.5 }]} />
+        <Image source={Logo} style={[styles.logo ,{height:height * 0.50}]} />
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}
@@ -74,7 +75,7 @@ const LoginScreen = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity style={styles.loginBtn}>
           <Text
-            style={styles.loginText}
+            style={styles.loginTexte}
             onPress={handleSubmit}
             disabled={!validateForm()}
           >
@@ -82,22 +83,24 @@ const LoginScreen = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text
-            style={styles.loginText}
-            onPress={() => navigation.navigate("register")}
-          >
-            Signup
-          </Text>
+          <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
-
+    </KeyboardAvoidingView >
   );
 };
 
 const styles = StyleSheet.create({
+  ScrollView: {
+    flex: 1,
+    scrollEnabled:false,
+  },
+  contentContainer: {
+    flexGrow: 1,
+  },
   container: {
-    backgroundColor: "#003f5c",
+    // backgroundColor: "#003f5c",
     alignItems: "center",
     justifyContent: "center",
     padding: 80,
@@ -122,21 +125,23 @@ const styles = StyleSheet.create({
     color: "black",
   },
   forgot: {
-    color: "white",
+    color: "#003f5c",
     fontSize: 11,
   },
   loginBtn: {
     width: "80%",
-    backgroundColor: "#fb5b5a",
+    backgroundColor: "#003f5c",
     borderRadius: 25,
     height: 50,
     alignItems: "center",
-
     justifyContent: "center",
     marginTop: 20,
     marginBottom: 10,
   },
   loginText: {
+    color: "#003f5c",
+  },
+  loginTexte: {
     color: "white",
   },
 });
