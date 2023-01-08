@@ -10,6 +10,7 @@ import Home from "./screens/home/home";
 import CreatePost from "./screens/createPost/CreatePost";
 import OTP from "./screens/otpScreen/otpScreen";
 
+
 export default function App() {
   const Stack = createNativeStackNavigator();
 

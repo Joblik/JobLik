@@ -44,6 +44,7 @@ const LoginScreen = ({ navigation }) => {
   }
 
   return (
+
     <ScrollView>
       <SafeAreaView style={styles.container}>
         <Image source={Logo} style={[styles.logo, { height: height * 0.5 }]} />
@@ -90,6 +91,7 @@ const LoginScreen = ({ navigation }) => {
         </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
+
   );
 };
 
@@ -129,6 +131,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     height: 50,
     alignItems: "center",
+
     justifyContent: "center",
     marginTop: 20,
     marginBottom: 10,
