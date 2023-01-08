@@ -1,70 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View, Text, Image, FlatList
-  } from "react-native";
-import Footer from '../Footer';
+import {  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  SafeAreaView,
+  Dimensions, } from 'react-native';
+import axios from 'axios';
+import Footer from '../Footer/Footer';
 
-const Home = ({navigation}) => {
+const Home = () => {
   const [posts, setPosts] = useState([]);
 
- 
-    const getMoviesFromApiAsync = async () => {
-      try {
-        const response = await fetch(
-          'http://192.168.104.19:8080/Posts/getAllPosts',
-        );
-        const data = await response.JSON();
-        setPosts(data)
-        console.log('hello',data)
-        return data;
-      } catch (error) {
+  useEffect(() => {
+    axios.get('http://192.168.104.25:8080/Posts/getAllPosts')
+      .then(response => {
+        setPosts(response.data);
+      }) 
+      .catch(error => {
         console.error(error);
-      }
-    };
-  
-    return (
-      <FlatList
-        data={posts}
-        renderItem={({ item }) => (
-          <View style={styles.cardContainer}>
-            <View style={styles.cardHeader}>
-              <Image
-                source={{ uri: item.user.profileImageUrl }}
-                style={styles.profileImage}
-              />
-              <Text style={styles.username}>{item.user.username}</Text>
-            </View>
-            <Text style={styles.postContent}>{item.content}</Text>
-          </View>
-        )}
-        keyExtractor={(item) => item.id}
-      />
-    );
-  };
-  
-  const styles = {
-    cardContainer: {
-      padding: 20,
-      borderBottomWidth: 1,
-      borderColor: '#ccc',
-    },
-    cardHeader: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    profileImage: {
-      width: 50,
-      height: 50,
-      borderRadius: 25,
-      marginRight: 10,
-    },
-    username: {
-      fontWeight: 'bold',
-    },
-    postContent: {
-      marginTop: 10,
-    },
-  };
-  
+      });
+  }, []);
+  console.log(posts);
+
+  return (
+    <View style={styles.container}>
+    
+    <Footer/>
+    </View>
+  );
+}
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#003f5c",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 80,
+    }
+  })
+
 export default Home;
 
