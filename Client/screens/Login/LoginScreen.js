@@ -46,7 +46,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
   <KeyboardAvoidingView behavior="position" style={styles.ScrollView}>
-    <ScrollView contentContainerStyle={styles.contentContainer} keyboardShouldPersistTaps='always'>
+    <ScrollView contentContainerStyle={styles.contentContainer} >
       <SafeAreaView style={styles.container}>
         <Image source={Logo} style={[styles.logo ,{height:height * 0.50}]} />
         <View style={styles.inputView}>
