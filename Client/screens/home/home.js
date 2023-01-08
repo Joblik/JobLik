@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import {
-  StyleSheet,
+import {  StyleSheet,
   Text,
   View,
-  } from "react-native";
-import Footer from '../Footer';
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  SafeAreaView,
+  Dimensions, } from 'react-native';
+import axios from 'axios';
+import Footer from '../Footer/Footer';
 
-const Home = ({navigation}) => {
+const Home = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://192.168.104.16:8080/Posts/getAllPosts")
-      .then((response) => {
+    axios.get('http://192.168.104.25:8080/Posts/getAllPosts')
+      .then(response => {
         setPosts(response.data);
-      })
-      .catch((error) => {
+      }) 
+      .catch(error => {
         console.error(error);
       });
   }, []);
@@ -23,14 +27,8 @@ const Home = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-         <FlatList
-      data={posts}
-      renderItem={({ item }) => (
-        <Text>{item.title}</Text>
-      )}
-      keyExtractor={item => item.id.toString()}
-    /> 
-      <Footer navigation={navigation} />
+    
+    <Footer/>
     </View>
   );
 }
@@ -41,6 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 80,
     }
-  }) 
+  })
+
 export default Home;
 
