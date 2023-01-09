@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../components/img/logo.png";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,20 +14,43 @@ import {
   Dimensions,
   KeyboardAvoidingView ,
 } from "react-native";
+import * as WebBrowser from 'expo-web-browser';
+import * as google from 'expo-auth-session/providers/google'
 
+WebBrowser.maybeCompleteAuthSession();
 const LoginScreen = ({ navigation }) => {
   const {height} = Dimensions.get('window')
   const [email, setEmail] = useState("");
-
+  const [accessToken, setAccessToken] = useState(null);
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState("");
 
+const [request,response,promptAsync] = google.useIdTokenAuthRequest({
+  clientId : "957226030438-2bf3s4mnhov6qqqfdpcq2rh3ujev216j.apps.googleusercontent.com",
+  iosClientId: "957226030438-85cn449iofvmm7pfgb1thfb58sbttvm5.apps.googleusercontent.com"
+})
+
+React.useEffect(()=>{
+  if(response?.type === "success"){
+    setAccessToken(response.authentication.accessToken);
+    accessToken && fetchUserInfo();
+  }
+},[response,accessToken])
+
+async function fetchUserInfo(){
+  let response = await fetch("https://googleapis.com/userinfo/v2/me",{
+    headers:{Authorization:`Bearer ${accessToken}`}
+  });
+  const userInfo = await response.json();
+  setUser(userInfo);
+} 
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
 
   async function handleSubmit() {
     try {
-      const user = await axios.post("http://192.168.104.22:8080/Users/login", {
+      const user = await axios.post("http://192.168.104.14:8080/Users/login", {
         email,
         password,
       });
@@ -42,6 +65,16 @@ const LoginScreen = ({ navigation }) => {
       console.log(error.message);
       alert("error");
     }
+  }
+  const SignInWithGoogle = () => {
+    return (
+      <TouchableOpacity disabled={!request} onPress={() => {
+        promptAsync()
+      }}>
+        <Text style={styles.loginText}>Sign In With Google</Text>
+        <Image source={require("../../assets/btn.png")} style={{ width: 300, height: 40 }} />
+      </TouchableOpacity>
+    )
   }
 
   return (
@@ -85,6 +118,21 @@ const LoginScreen = ({ navigation }) => {
         <TouchableOpacity>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
+        
+        {user === null && <SignInWithGoogle />}
+
+      
+      
+          <TouchableOpacity disabled={!request} onPress={()=> {
+  promptAsync()
+}}>
+ 
+  <Image source={require("../../assets/btn.png")} style={{width: 300, height: 40}} />
+</TouchableOpacity>
+
+      
+
+        
       </SafeAreaView>
     </ScrollView>
     </KeyboardAvoidingView >
