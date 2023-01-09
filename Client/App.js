@@ -22,13 +22,12 @@ export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
-    <OneChatScreen/>
-  //  <NavigationContainer>
-  //     <Stack.Navigator initialRouteName="login">
-  //       <Stack.Screen name="login" component={LoginScreen} />
-  //       <Stack.Screen name="register" component={Register} />
-  //     </Stack.Navigator>
-  //   </NavigationContainer>
+   <NavigationContainer>
+      <Stack.Navigator initialRouteName="login">
+        <Stack.Screen name="login" component={LoginScreen} />
+        <Stack.Screen name="register" component={Register} />
+      </Stack.Navigator>
+    </NavigationContainer>
      
    );
     <View style={styles.container}>
