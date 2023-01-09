@@ -6,7 +6,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ForgotPassWord from "./screens/forgotPassword/forgotPassword";
 import OTP from "./screens/otpScreen/otpScreen";
-import TabNav from "./navigation/TabNav"
+import TabNav from "../Client/navigation/TabNav"
+
+
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -14,7 +16,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="home"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="register" component={Register} />

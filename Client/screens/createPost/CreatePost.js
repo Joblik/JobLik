@@ -32,7 +32,7 @@ const CreatePost = ({ navigation }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://192.168.104.21:8080/Posts/addPost",
+        "http://192.168.104.14:8080/Posts/addPost",
         {
           description: description,
           adress: adress,
