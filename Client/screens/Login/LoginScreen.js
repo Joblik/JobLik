@@ -50,7 +50,7 @@ async function fetchUserInfo(){
 
   async function handleSubmit() {
     try {
-      const user = await axios.post("http://192.168.104.14:8080/Users/login", {
+      const user = await axios.post("http://192.168.1.175:8080/Users/login", {
         email,
         password,
       });

@@ -11,10 +11,10 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await axios.get("http://192.168.104.14:8080/Posts/getAllPosts");
+      const response = await axios.get("http://192.168.1.175:8080/Posts/getAllPosts");
       setPosts(response.data);  
     }
-    fetchPosts();
+    fetchPosts(); 
   }, []);
   console.log(posts);
   const screenHeight = Dimensions.get('window').height;

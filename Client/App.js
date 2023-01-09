@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ForgotPassWord from "./screens/forgotPassword/forgotPassword";
 import OTP from "./screens/otpScreen/otpScreen";
 import TabNav from "../Client/navigation/TabNav"
+import AllChat from "../Client/screens/allChats/AllChats"
 
 
 
@@ -16,10 +17,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="register"
+        initialRouteName="allChat"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="register" component={Register} />
+        <Stack.Screen name="allChat" component={AllChat} />
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="forgotPassword" component={ForgotPassWord} />
         <Stack.Screen name="otp" component={OTP} />

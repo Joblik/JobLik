@@ -13,7 +13,7 @@ const PostsSchema = new mongoose.Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: "users",
-    required: true,
+    required: false,
   },
   
 });
