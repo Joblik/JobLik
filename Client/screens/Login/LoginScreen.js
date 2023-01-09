@@ -123,11 +123,11 @@ async function fetchUserInfo(){
 
       
       
-          <TouchableOpacity disabled={!request} onPress={()=> {
+          <TouchableOpacity style={styles.google} disabled={!request} onPress={()=> {
   promptAsync()
 }}>
  
-  <Image source={require("../../assets/btn.png")} style={{width: 300, height: 40}} />
+  <Image  source={require("../../assets/btn.png")} style={{width: 300, height: 40}} />
 </TouchableOpacity>
 
       
@@ -171,6 +171,7 @@ const styles = StyleSheet.create({
     height: 50,
     color: "black",
   },
+  
   forgot: {
     color: "#003f5c",
     fontSize: 11,
@@ -191,6 +192,16 @@ const styles = StyleSheet.create({
   loginTexte: {
     color: "white",
   },
+  google: {
+    width: "80%",
+    backgroundColor: "white",
+    borderRadius: 25,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    marginBottom: 10,
+  }
 });
 
 export default LoginScreen;

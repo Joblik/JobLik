@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View,Dimensions,Text,TextInput,ScrollView } from "react-native";
 import {Card} from "react-native-elements"
 import axios from "axios";
+// import { useRefresh } from 'react-native-refresh-control';
 
 
 const Home = ({navigation}) => {
+  // const { refresh } = useRefresh();
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -34,7 +36,14 @@ const Home = ({navigation}) => {
           />
         </View>
       <View style={styles.scrollableContainer}>
-        <ScrollView>
+        <ScrollView 
+        //  refreshControl={
+        //   <RefreshControl
+        //     refreshing={refreshing}
+        //     onRefresh={refresh}
+        //   />
+        // }
+        >
           {posts.map((post) => (
            <Card key={post._id}
            containerStyle={{

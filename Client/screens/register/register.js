@@ -9,6 +9,7 @@ import {
   ScrollView,
   SafeAreaView,
   Dimensions,
+  KeyboardAvoidingView
 } from "react-native";
 
 import Logo from "../../components/img/logo.png";
@@ -48,7 +49,8 @@ const Register = ({ navigation }) => {
     }
   }
   return (
-    <ScrollView>
+    <KeyboardAvoidingView behavior="position" style={styles.ScrollView}>
+    <ScrollView contentContainerStyle={styles.contentContainer}>
       <SafeAreaView style={styles.container}>
         <Image source={Logo} style={[styles.logo, { height: height * 0.5 }]} />
         <View style={styles.inputView}>
@@ -105,6 +107,7 @@ const Register = ({ navigation }) => {
         </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
+    </KeyboardAvoidingView >
   );
 };
 const styles = StyleSheet.create({
@@ -159,6 +162,13 @@ const styles = StyleSheet.create({
   },
   loginTexte: {
     color: "white",
+  },
+  ScrollView: {
+    flex: 1,
+    scrollEnabled:false,
+  },
+  contentContainer: {
+    flexGrow: 1,
   },
 });
 
