@@ -1,50 +1,68 @@
 import React, { useState, useEffect } from 'react';
-import {
-  StyleSheet,
+import {  StyleSheet,
   Text,
   View,
-  FlatList,
-  } from "react-native";
-import Footer from '../Footer';
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  SafeAreaView,
+  Dimensions, } from 'react-native';
+import axios from 'axios';
+import Footer from '../Footer/Footer';
+import { Card } from "react-native-elements";
 
 const Home = ({navigation}) => {
   const [posts, setPosts] = useState([]);
 
- 
-    const getMoviesFromApiAsync = async () => {
-      try {
-        const response = await fetch(
-          'http://192.168.104.19:8080/Posts/getAllPosts',
-        );
-        const data = await response.JSON();
-        setPosts(data)
-        console.log('hello',data)
-        return data;
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  useEffect(() => {
+    async function fetchPosts() {
+      const response = await axios.get("http://192.168.104.27:8080/Posts/getAllPosts");
+      setPosts(response.data);  // update the state variable with the posts data
+    }
+    fetchPosts();
+  }, []);
+  console.log(posts);
+
   return (
-    <View>
-      
-    <FlatList
-      data={posts}
-      renderItem={({ item }) => (
-        <Text>{item.title}</Text>
-      )}
-      keyExtractor={item => item.id.toString()}
-    /> 
-      <Footer navigation={navigation} />
+    <View style={styles.container}>
+      <ScrollView style={styles.scrollableContainer}>
+        {posts.map((post) => (
+          <Card key={post._id}
+          containerStyle={{
+            borderRadius: 20,
+            width: "140%",
+            height: "10%",
+            marginBottom: 15,
+            // bottom: 20
+          }}>
+            <Text style={styles.text}>
+              {post.description}, {post.adress}, {post.userId}
+            </Text>
+          </Card>
+        ))}
+      </ScrollView>
+      <Footer navigation={navigation} style={styles.footerContainer} />
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#003f5c",
+    flex: 1,  // to make the container take up the whole screen
+  },
+  scrollableContainer: {
+    flex: 1,  // to make the scrollable container take up the remaining space
+  },
+  text: {
+    fontSize: 16,
+    color: "#003f5c",
+  },
+  footerContainer: {
     alignItems: "center",
-    justifyContent: "center",
-    padding: 80,
-    }
-  }) 
-export default Home;
+    backgroundColor: "#fbfbfb",
+    paddingVertical: 20,
+  },
+});
 
+export default Home;
