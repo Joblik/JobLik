@@ -12,13 +12,15 @@ import OTP from "./screens/otpScreen/otpScreen";
 import Footer from "./screens/Footer/Footer";
 
 
+
+
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="home"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="register" component={Register} />
