@@ -22,7 +22,7 @@ const CreatePost = ({ navigation }) => {
       setUserId(JSON.parse(id));  // update the state variable with the user's _id
     }
     getUserId();
-    console.log(userId);
+    
   }, []);
 
   const [description, setDescription] = useState("");
@@ -36,7 +36,7 @@ const CreatePost = ({ navigation }) => {
         {
           description: description,
           adress: adress,
-          userId: userId,  // use the userId state variable here
+          userId: userId, // use the userId state variable here
         }
       );
       console.log(response.data);

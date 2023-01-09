@@ -1,16 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import {  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  SafeAreaView,
-  Dimensions, } from 'react-native';
-import axios from 'axios';
-import Footer from '../Footer/Footer';
-import { Card } from "react-native-elements";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import axios from "axios";
 
 
 const Home = ({navigation}) => {
