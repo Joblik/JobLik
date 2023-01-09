@@ -7,7 +7,7 @@ const Footer = ({ navigation }) => {
       <View style={{ width: "33.3%" }}>
         <Text
           style={[styles.text, { textAlign: "center" }]}
-          onPress={() => navigation.navigate("userProfile")}
+          onPress={() => navigation.navigate("UserProfile")}
         >
           Profile
         </Text>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: 400,
     height: 80,
-    backgroundColor: "#fb5b5a",
+    backgroundColor: "#006097",
     marginTop: 700,
   },
 });

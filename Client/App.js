@@ -9,29 +9,24 @@ import ForgotPassWord from "./screens/forgotPassword/forgotPassword";
 import Home from "./screens/home/home";
 import CreatePost from "./screens/createPost/CreatePost";
 import OTP from "./screens/otpScreen/otpScreen";
-import EditProfile from "./screens/userProfile/EditProfile";
-import Footer from "./screens/Footer/Footer";
-import TabNav from "./navigation/TabNav";
+
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
-      <Stack.Screen name="register" component={Register} />
-
-      <Stack.Screen name="login" component={LoginScreen} />
-      <Stack.Screen name="forgotPassword" component={ForgotPassWord} />
-      <Stack.Screen name="otp" component={OTP} />
-      <TabNav>
-        <Stack.Navigator
-          initialRouteName="login"
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name="home" component={Home} />
-          <Stack.Screen name="createPost" component={CreatePost} />
-          <Stack.Screen name="UserProfile" component={UserProfile} />
-        </Stack.Navigator>
-      </TabNav>
+      <Stack.Navigator
+        initialRouteName="UserProfile"
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="register" component={Register} />
+        <Stack.Screen name="login" component={LoginScreen} />
+        <Stack.Screen name="forgotPassword" component={ForgotPassWord} />
+        <Stack.Screen name="otp" component={OTP} />
+        <Stack.Screen name="home" component={Home} />
+        <Stack.Screen name="createPost" component={CreatePost} />
+        <Stack.Screen name="UserProfile" component={UserProfile} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

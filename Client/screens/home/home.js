@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import axios from "axios";
-import Footer from "../Footer/Footer";
+// import TabNav from "../../navigation/TabNav"
+import Footer from "../Footer/Footer"
 
 const Home = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
@@ -9,7 +10,7 @@ const Home = ({ navigation }) => {
   useEffect(() => {
     async function fetchPosts() {
       const response = await axios.get(
-        "http://192.168.1.179/Posts/getAllPosts"
+        "http://192.168.104.21/Posts/getAllPosts"
       );
       setPosts(response.data); // update the state variable with the posts data
     }
@@ -17,7 +18,9 @@ const Home = ({ navigation }) => {
   }, []);
   // console.log(posts);
 
-  return <View style={styles.container}></View>;
+  return <View style={styles.container}>
+   <Footer navigation={navigation}/>
+  </View>;
 };
 
 const styles = StyleSheet.create({

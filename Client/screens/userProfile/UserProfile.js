@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -8,10 +9,9 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
-import Footer from "../Footer/Footer"
-
-
-const ProfileScreen = ({ route, navigation }) => {
+import AsyncStorage from "@react-native-async-storage/async-storage";
+const ProfileScreen = ({ navigation }) => {
+  const [userId, setUserId] = useState(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,10 +20,16 @@ const ProfileScreen = ({ route, navigation }) => {
   const [job, setJob] = useState("");
   const [domain, seDomain] = useState("");
   useEffect(() => {
+    async function getUserId() {
+      const id = await AsyncStorage.getItem("id");
+      setUserId(JSON.parse(id));
+    }
+    getUserId();
     async function fetchUser() {
       const response = await axios.get(
-        `http://192.168.104.22:8080/users/${userId}`
+        `http://192.168.104.21:8080/Users/${userId}`
       );
+
       const user = response.data;
       setUsername(user.username);
       setEmail(user.email);
@@ -52,37 +58,11 @@ const ProfileScreen = ({ route, navigation }) => {
           }}
           style={styles.userImg}
         />
-        <Text style={styles.userName}>{username}</Text>
+
+        {/* <Text style={styles.userName}>{username}</Text>
         <Text style={styles.aboutUser}>
           {job} at {domain}
-        </Text>
-        <View style={styles.userBtnWrapper}>
-          
-            <>
-              <TouchableOpacity style={styles.userBtn} onPress={() => {}}>
-                <Text style={styles.userBtnTxt}>Message</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.userBtn} onPress={() => {}}>
-                <Text style={styles.userBtnTxt}>Follow</Text>
-              </TouchableOpacity>
-            </>
-          
-            <>
-              <TouchableOpacity style={styles.userBtn}>
-                <Text
-                  style={styles.userBtnTxt}
-                  onPress={() => navigation.navigate("EditProfile")}
-                >
-                  Edit
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.userBtn}>
-                <Text style={styles.userBtnTxt}>Logout</Text>
-              </TouchableOpacity>
-            </>
-        
-        </View>
+        </Text> */}
 
         <View style={styles.userInfoWrapper}>
           <View style={styles.userInfoItem}>
@@ -98,7 +78,39 @@ const ProfileScreen = ({ route, navigation }) => {
             <Text style={styles.userInfoSubTitle}>Following</Text>
           </View>
         </View>
-      <Footer />
+        <View style={styles.userName}>
+          <Text style={styles.userName}>{username}</Text>
+          <Text style={styles.userName}>{email}</Text>
+          <Text style={styles.userName}>Secteur</Text>
+          <Text style={styles.userName}>JOB</Text>
+          <Text style={styles.userName}>{password}</Text>
+          <Text style={styles.userName}>Phone</Text>
+        </View>
+        <View style={styles.userBtnWrapper}>
+          <>
+            <TouchableOpacity style={styles.userBtn} onPress={() => {}}>
+              <Text style={styles.userBtnTxt}>Message</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.userBtn} onPress={() => {}}>
+              <Text style={styles.userBtnTxt}>Follow</Text>
+            </TouchableOpacity>
+          </>
+
+          <>
+            <TouchableOpacity style={styles.userBtn}>
+              <Text
+                style={styles.userBtnTxt}
+                onPress={() => navigation.navigate("EditProfile")}
+              >
+                Edit
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.userBtn}>
+              <Text style={styles.userBtnTxt}>Logout</Text>
+            </TouchableOpacity>
+          </>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -117,15 +129,17 @@ const styles = StyleSheet.create({
     width: 150,
     borderRadius: 75,
     marginTop: 40,
-    marginBottom: -50,
+    marginBottom: 20,
   },
   userName: {
+    color: "black",
     fontSize: 18,
     fontWeight: "bold",
     marginTop: 10,
     marginBottom: 10,
   },
   aboutUser: {
+    color: "black",
     fontSize: 12,
     fontWeight: "600",
     color: "#666",
@@ -145,6 +159,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 12,
     marginHorizontal: 5,
+    marginTop:80
   },
   userBtnTxt: {
     color: "#003f5c",
