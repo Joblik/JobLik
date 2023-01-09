@@ -10,6 +10,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const ProfileScreen = ({ navigation }) => {
   const [userId, setUserId] = useState(null);
   const [username, setUsername] = useState("");
@@ -31,6 +32,7 @@ const ProfileScreen = ({ navigation }) => {
       );
 
       const user = response.data;
+      console.log("🚀 ~ file: UserProfile.js:35 ~ fetchUser ~ user", user)
       setUsername(user.username);
       setEmail(user.email);
       setPassword(user.password);
@@ -39,6 +41,7 @@ const ProfileScreen = ({ navigation }) => {
       setJob(user.job);
       seDomain(user.domain);
     }
+      console.log("🚀 ~ file: UserProfile.js:44 ~ fetchUser ~ setUsername", setUsername)
     fetchUser();
   }, []);
 
@@ -81,10 +84,10 @@ const ProfileScreen = ({ navigation }) => {
         <View style={styles.userName}>
           <Text style={styles.userName}>{username}</Text>
           <Text style={styles.userName}>{email}</Text>
-          <Text style={styles.userName}>Secteur</Text>
-          <Text style={styles.userName}>JOB</Text>
+          <Text style={styles.userName}>{domain}</Text>
+          <Text style={styles.userName}>{job}</Text>
           <Text style={styles.userName}>{password}</Text>
-          <Text style={styles.userName}>Phone</Text>
+          <Text style={styles.userName}>{phone}</Text>
         </View>
         <View style={styles.userBtnWrapper}>
           <>

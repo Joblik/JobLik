@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: 400,
     height: 80,
-    backgroundColor: "#006097",
+    backgroundColor: "#fb5b5a",
     marginTop: 700,
   },
 });

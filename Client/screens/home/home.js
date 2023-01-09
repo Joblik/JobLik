@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import axios from "axios";
-// import TabNav from "../../navigation/TabNav"
-import Footer from "../Footer/Footer"
 
-const Home = ({ navigation }) => {
+
+const Home = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -12,14 +11,14 @@ const Home = ({ navigation }) => {
       const response = await axios.get(
         "http://192.168.104.21/Posts/getAllPosts"
       );
-      setPosts(response.data); // update the state variable with the posts data
+      setPosts(response.data); 
     }
     fetchPosts();
   }, []);
-  // console.log(posts);
+
 
   return <View style={styles.container}>
-   <Footer navigation={navigation}/>
+   
   </View>;
 };
 
