@@ -1,63 +1,79 @@
-import React from 'react'
-import { View , Text , Image , StyleSheet , ImageBackground, Button, TextInput, TouchableOpacity} from 'react-native'
-import Logo from '../../components/img/logo.png'
-import Input from '../../components/Input'
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, Button, Text, FlatList } from 'react-native';
+import axios from 'axios';
 
-const chats = [
-    {
-        user: 'user1',
-        lastMsg: 'hey!'
-    },
-    {
-        user: 'user2',
-        lastMsg: 'Hello World'
-    },
-    {
-        user: 'user3',
-        lastMsg: 'how are u?'
-    },
-    {
-        user: 'user4',
-        lastMsg: 'lorem ipsum dolor sit amet'
-    },
-]
+const Chat = () => {
+  const [sender, setSender] = useState('');
+  const [receiver, setReceiver] = useState('');
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
 
-const AllChats = () => {
-    return (
-      <View>
-        <Text style={styles.sectionTitle}>Chats</Text>
-        {chats.map((chat) => (
-          <TouchableOpacity style={styles.chatContainer} key={chat.user}>
-            <View style={styles.chatBox}>
-              <Text style={styles.title}>{chat.user}</Text>
-              <Text style={styles.subtitle}>{chat.lastMsg}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </View>
-    );
+  useEffect(() => {
+    const fetchMessages = async () => {
+      const res = await axios.get(`http://192.168.1.175:8080/Chats/fetchMessages/${sender}/${receiver}`);
+      setMessages(res.data.messages);
+    };
+    fetchMessages();
+  }, []);
+
+  const sendMessage = async () => {
+    try {
+      await axios.post('http://192.168.1.175:8080/Chats/sendMessage', { sender, receiver, message });
+      setMessage('');
+      const res = await axios.get(`http://192.168.1.175:8080/Chats/fetchMessages/${sender}/${receiver}`);
+      setMessages(res.data.messages);
+    } catch (error) {
+      console.error(error);
+    }
   };
-  
-  const styles = StyleSheet.create({
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      padding: 20,
-    },
-    title: {
-      fontSize: 20,
-      fontWeight: 'bold',
-    },
-    subtitle: {
-      fontSize: 16,
-    },
-    chatContainer: {
-      margin: 10,
-    },
-    chatBox: {
-      padding: 20,
-      backgroundColor: '#f2f2f2',
-    },
-  });
 
-  export default AllChats
+  return (
+    <View>
+      <View>
+      <Text>hhhhhhhhhhhhhhhhhhhhh</Text>
+      </View>
+      <View>
+      <Text>hhhhhhhhhhhhhhhhhhhhh</Text>
+      </View>
+      <View>
+      <Text>hhhhhhhhhhhhhhhhhhhhh</Text>
+      </View>
+      <View>
+      <Text>hhhhhhhhhhhhhhhhhhhhh</Text>
+      </View>
+      <View>
+      <Text>hhhhhhhhhhhhhhhhhhhhh</Text>
+      </View>
+      <View>
+      <Text>hhhhhhhhhhhhhhhhhhhhh</Text>
+      </View>
+      <TextInput
+        value={sender}
+        onChangeText={text => setSender(text)}
+        placeholder="Enter your username"
+      />
+      <TextInput
+        value={receiver}
+        onChangeText={text => setReceiver(text)}
+        placeholder="Enter the receiver's username"
+      />
+      <TextInput
+        value={message}
+        onChangeText={text => setMessage(text)}
+        placeholder="Enter your message"
+      />
+      <Button onPress={sendMessage} title="Send" />
+      <FlatList
+        data={messages}
+        renderItem={({ item }) => (
+          <View>
+            <Text>{item.sender}: {item.message}</Text>
+          </View>
+        )}
+        keyExtractor={item => item._id}
+      />
+    </View>
+  );
+};
+
+export default Chat;

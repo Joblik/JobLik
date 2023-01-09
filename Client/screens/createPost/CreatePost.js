@@ -22,7 +22,7 @@ const CreatePost = ({ navigation }) => {
       setUserId(JSON.parse(id));  // update the state variable with the user's _id
     }
     getUserId();
-    console.log(userId);
+    console.log("hyhy");
   }, []);
 
   const [description, setDescription] = useState("");
@@ -32,11 +32,11 @@ const CreatePost = ({ navigation }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://192.168.104.27:8080/Posts/addPost",
+        "http://192.168.1.175:8080/Posts/addPost",
         {
           description: description,
           adress: adress,
-          userId: userId,  // use the userId state variable here
+          userId: userId, // use the userId state variable here
         }
       );
       console.log(response.data);

@@ -9,6 +9,7 @@ import {
   ScrollView,
   SafeAreaView,
   Dimensions,
+  KeyboardAvoidingView
 } from "react-native";
 
 import Logo from "../../components/img/logo.png";
@@ -33,7 +34,7 @@ const Register = ({ navigation }) => {
   async function handleSubmit() {
     try {
       const response = await axios.post(
-        "http://qh-2nj.anonymous.client.exp.direct:80:8080/Users/register",
+        "http://192.168.1.175:8080/Users/register",
         {
           name,
           email,
@@ -48,7 +49,8 @@ const Register = ({ navigation }) => {
     }
   }
   return (
-    <ScrollView>
+    <KeyboardAvoidingView behavior="position" style={styles.ScrollView}>
+    <ScrollView contentContainerStyle={styles.contentContainer}>
       <SafeAreaView style={styles.container}>
         <Image source={Logo} style={[styles.logo, { height: height * 0.5 }]} />
         <View style={styles.inputView}>
@@ -96,7 +98,7 @@ const Register = ({ navigation }) => {
 
         <TouchableOpacity style={styles.loginBtn}>
           <Text
-            style={styles.loginText}
+            style={styles.loginTexte}
             onPress={handleSubmit}
             disabled={!validateForm()}
           >
@@ -105,21 +107,29 @@ const Register = ({ navigation }) => {
         </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
+    </KeyboardAvoidingView >
   );
 };
 const styles = StyleSheet.create({
+  ScrollView: {
+    flex: 1,
+    scrollEnabled:false,
+  },
+  contentContainer: {
+    flexGrow: 1,
+  },
   container: {
-    backgroundColor: "#003f5c",
+    // backgroundColor: "#003f5c",
     alignItems: "center",
     justifyContent: "center",
     padding: 80,
-  },
+    },
   logo: {
     marginBottom: 20,
     width: "100%",
     height: 400,
-    flex: 1,
-  },
+ flex:1  
+ },
   inputView: {
     width: "100%",
     backgroundColor: "#FFFF",
@@ -134,12 +144,12 @@ const styles = StyleSheet.create({
     color: "black",
   },
   forgot: {
-    color: "white",
+    color: "#003f5c",
     fontSize: 11,
   },
   loginBtn: {
     width: "80%",
-    backgroundColor: "#fb5b5a",
+    backgroundColor: "#003f5c",
     borderRadius: 25,
     height: 50,
     alignItems: "center",
@@ -148,7 +158,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   loginText: {
+    color: "#003f5c",
+  },
+  loginTexte: {
     color: "white",
   },
+  ScrollView: {
+    flex: 1,
+    scrollEnabled:false,
+  },
+  contentContainer: {
+    flexGrow: 1,
+  },
 });
+
 export default Register;

@@ -3,11 +3,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const OTP = require("./OTP/otpSchema");
 const transporter = require("../services/mailHandler");
-const otpEmail = require("../emailTemp/otpTemp")
-const verifTemp = require("../emailTemp/verifiedTemp")
-const forgetPasswordTemp = require("../emailTemp/forgetPasswordTemp")
-
-
+const otpEmail = require("../emailTemp/otpTemp");
+const verifTemp = require("../emailTemp/verifiedTemp");
+const forgetPasswordTemp = require("../emailTemp/forgetPasswordTemp");
 
 const GetAllUser = async (req, res) => {
   try {
@@ -15,7 +13,16 @@ const GetAllUser = async (req, res) => {
       res.json(result);
     });
   } catch (err) {
-   return  res.json(err);
+    return res.json(err);
+  }
+};
+const GetOneUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    res.json(user);
+  } catch (err) {
+    return res.json(err);
   }
 };
 
@@ -28,10 +35,9 @@ const addUser = async (req, res) => {
       res.json(result);
     });
   } catch (err) {
- return    console.log(err);
+    return console.log(err);
   }
-}
-
+};
 
 const DeleteOneUser = async (req, res) => {
   try {
@@ -39,7 +45,7 @@ const DeleteOneUser = async (req, res) => {
       res.json(result);
     });
   } catch (err) {
-  return   res.json(err);
+    return res.json(err);
   }
 };
 
@@ -52,7 +58,7 @@ const UpdateOneUser = async (req, res) => {
       res.json(result);
     });
   } catch (err) {
-  return   res.json(err);
+    return res.json(err);
   }
 };
 
@@ -89,7 +95,7 @@ async function login(req, res) {
       .status(200)
       .json({ name: user.username, email: user.email, token, id: user["_id"] });
   } catch (error) {
- return     res.status(500).send(error);
+    return res.status(500).send(error);
   }
 }
 
@@ -123,7 +129,7 @@ const register = async (req, res) => {
     const newOTP = new OTP({
       userId: user["_id"],
       OTPcode,
-      expirationTime: Date.now() + 15 * 60 * 1000, 
+      expirationTime: Date.now() + 15 * 60 * 1000,
     });
 
     const mailOptions = {
@@ -141,7 +147,7 @@ const register = async (req, res) => {
       .status(200)
       .json({ message: "User Saved PLEASE VERIFY YOUR ACCOUNT" });
   } catch (error) {
-  return   res.status(500).send(error);
+    return res.status(500).send(error);
   }
 };
 
@@ -195,74 +201,87 @@ const otp = async (req, res) => {
       message: "USER VERIFIED",
     });
   } catch (err) {
-   return  res.status(500).send(err);
+    return res.status(500).send(err);
   }
 };
 
+const forgetPassword = async (req, res) => {
+  try {
+    const {
+      body: { email },
+    } = req;
 
-const forgetPassword = async (req , res) => {
-  try{
-    const {  body : {email}} = req
-
-    if (!email) { return res.status(301).json({
-      message: "Please fill all required fields",
-    }); }
+    if (!email) {
+      return res.status(301).json({
+        message: "Please fill all required fields",
+      });
+    }
 
     const user = await User.findOne({ email });
 
     if (user) {
       const token = jwt.sign({ forgetPaswordId: user["_id"] }, "SECRETCODE");
 
-     const mailOptions = {
-  from: "JOB LIK <test.ali@croissant-rouge.org.tn>",
-  to: email,
-  subject: "RESET PASSWORD",
-  html: forgetPasswordTemp("http://192.168.104.28:8080/forget-password/" + token),
-};
+      const mailOptions = {
+        from: "JOB LIK <test.ali@croissant-rouge.org.tn>",
+        to: email,
+        subject: "RESET PASSWORD",
+        html: forgetPasswordTemp(
+          "http://192.168.104.28:8080/forget-password/" + token
+        ),
+      };
       await transporter.sendMail(mailOptions);
-
     }
 
-    return res.status(200).json({ message: "Your request has been created, if the email is associated to an account an email of confirmation will be sent with a link to reset it." });
-
+    return res.status(200).json({
+      message:
+        "Your request has been created, if the email is associated to an account an email of confirmation will be sent with a link to reset it.",
+    });
   } catch (e) {
-  return   res.status(500).send(e);
+    return res.status(500).send(e);
   }
-}
+};
 
-const changePassword = async (req , res) => {
-  try{
-
-    const {params : {token} , body : {password}} = req
-    if (!password) { return res.status(301).json({
-      message: "Please fill all required fields",
-    }); }
-
-    const JwtRegEx = new RegExp(/^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)/)
-
-if (!JwtRegEx.test(token) ){
-  return res.redirect(301, '/login')
-}
-
-const userId = jwt.decode(token)
-const user = await User.findById(userId.forgetPaswordId)
-
-    if (!user){
-      return res.redirect(301, '/login')
+const changePassword = async (req, res) => {
+  try {
+    const {
+      params: { token },
+      body: { password },
+    } = req;
+    if (!password) {
+      return res.status(301).json({
+        message: "Please fill all required fields",
+      });
     }
 
-    const newHashedPassword  = await bcrypt.hash(password, 10)
+    const JwtRegEx = new RegExp(
+      /^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)/
+    );
 
-    user.password = newHashedPassword
+    if (!JwtRegEx.test(token)) {
+      return res.redirect(301, "/login");
+    }
 
- await user.save()
+    const userId = jwt.decode(token);
+    const user = await User.findById(userId.forgetPaswordId);
 
-    return res.status(200).json({ message: "Your password has been changed" , Nuser});
+    if (!user) {
+      return res.redirect(301, "/login");
+    }
 
+    const newHashedPassword = await bcrypt.hash(password, 10);
+
+    user.password = newHashedPassword;
+
+    await user.save();
+
+    return res
+      .status(200)
+      .json({ message: "Your password has been changed", Nuser });
   } catch (e) {
-    return   res.status(500).send(e);
+    return res.status(500).send(e);
   }
-}
+};
 module.exports = {
   UpdateOneUser,
   GetAllUser,
@@ -272,5 +291,6 @@ module.exports = {
   register,
   otp,
   forgetPassword,
-  changePassword
+  changePassword,
+  GetOneUser,
 };
