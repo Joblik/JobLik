@@ -11,27 +11,27 @@ import CreatePost from "./screens/createPost/CreatePost";
 import OTP from "./screens/otpScreen/otpScreen";
 import EditProfile from "./screens/userProfile/EditProfile";
 import Footer from "./screens/Footer/Footer";
-
-
+import TabNav from "./navigation/TabNav";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="login"
+      <Stack.Screen name="register" component={Register} />
 
-        screenOptions={{ headerShown: false }}
-      >
-        <Stack.Screen name="register" component={Register} />
-        <Stack.Screen name="login" component={LoginScreen} />
-        <Stack.Screen name="otp" component={OTP} />
-        <Stack.Screen name="forgotPassword" component={ForgotPassWord} />
-        <Stack.Screen name="home" component={Home} />
-        <Stack.Screen name="createPost" component={CreatePost} />
-        <Stack.Screen name="userProfile" component={UserProfile} />    
-        <Stack.Screen name="footer" component={Footer} />    
-      </Stack.Navigator>
+      <Stack.Screen name="login" component={LoginScreen} />
+      <Stack.Screen name="forgotPassword" component={ForgotPassWord} />
+      <Stack.Screen name="otp" component={OTP} />
+      <TabNav>
+        <Stack.Navigator
+          initialRouteName="login"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="home" component={Home} />
+          <Stack.Screen name="createPost" component={CreatePost} />
+          <Stack.Screen name="UserProfile" component={UserProfile} />
+        </Stack.Navigator>
+      </TabNav>
     </NavigationContainer>
   );
 }

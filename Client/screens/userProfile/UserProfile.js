@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -9,6 +8,8 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
+import Footer from "../Footer/Footer"
+
 
 const ProfileScreen = ({ route, navigation }) => {
   const [username, setUsername] = useState("");
@@ -18,6 +19,22 @@ const ProfileScreen = ({ route, navigation }) => {
   const [phone, setPhone] = useState("");
   const [job, setJob] = useState("");
   const [domain, seDomain] = useState("");
+  useEffect(() => {
+    async function fetchUser() {
+      const response = await axios.get(
+        `http://192.168.104.22:8080/users/${userId}`
+      );
+      const user = response.data;
+      setUsername(user.username);
+      setEmail(user.email);
+      setPassword(user.password);
+      setImage(user.image);
+      setPhone(user.phone);
+      setJob(user.job);
+      seDomain(user.domain);
+    }
+    fetchUser();
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -35,10 +52,12 @@ const ProfileScreen = ({ route, navigation }) => {
           }}
           style={styles.userImg}
         />
-        <Text style={styles.userName}></Text>
-        <Text style={styles.aboutUser}></Text>
+        <Text style={styles.userName}>{username}</Text>
+        <Text style={styles.aboutUser}>
+          {job} at {domain}
+        </Text>
         <View style={styles.userBtnWrapper}>
-          {route.params ? (
+          
             <>
               <TouchableOpacity style={styles.userBtn} onPress={() => {}}>
                 <Text style={styles.userBtnTxt}>Message</Text>
@@ -47,7 +66,7 @@ const ProfileScreen = ({ route, navigation }) => {
                 <Text style={styles.userBtnTxt}>Follow</Text>
               </TouchableOpacity>
             </>
-          ) : (
+          
             <>
               <TouchableOpacity style={styles.userBtn}>
                 <Text
@@ -62,7 +81,7 @@ const ProfileScreen = ({ route, navigation }) => {
                 <Text style={styles.userBtnTxt}>Logout</Text>
               </TouchableOpacity>
             </>
-          )}
+        
         </View>
 
         <View style={styles.userInfoWrapper}>
@@ -79,6 +98,7 @@ const ProfileScreen = ({ route, navigation }) => {
             <Text style={styles.userInfoSubTitle}>Following</Text>
           </View>
         </View>
+      <Footer />
       </ScrollView>
     </SafeAreaView>
   );
@@ -119,7 +139,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   userBtn: {
-    borderColor: "#2e64e5",
+    borderColor: "#000000",
     borderWidth: 2,
     borderRadius: 3,
     paddingVertical: 8,
@@ -127,7 +147,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   userBtnTxt: {
-    color: "#2e64e5",
+    color: "#003f5c",
   },
   userInfoWrapper: {
     flexDirection: "row",

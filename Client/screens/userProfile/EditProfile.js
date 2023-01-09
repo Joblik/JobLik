@@ -9,12 +9,20 @@ const UserProfileScreen = () => {
 
   const handleSave = () => {
     // Save user details to database or storage
+    const user = {
+      name,
+      email,
+      phone,
+      profileImage,
+    };
+    console.log(user);
+
   };
 
   return (
     <View>
       <Text>Name</Text>
-      <TextInput value={name} onChangeText={setName} />
+      <TextInput  onChangeText={setName} />
       <Text>Email</Text>
       <TextInput value={email} onChangeText={setEmail} />
       <Text>Phone</Text>
