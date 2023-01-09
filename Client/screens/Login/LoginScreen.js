@@ -27,7 +27,7 @@ const LoginScreen = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
-      const user = await axios.post("http://192.168.104.22:8080/Users/login", {
+      const user = await axios.post("http://192.168.104.21:8080/Users/login", {
         email,
         password,
       });
@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   container: {
-    // backgroundColor: "#003f5c",
     alignItems: "center",
     justifyContent: "center",
     padding: 80,

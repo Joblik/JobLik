@@ -1,58 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import {  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  SafeAreaView,
-  Dimensions, } from 'react-native';
-import axios from 'axios';
-import Footer from '../Footer/Footer';
-import { Card } from "react-native-elements";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import axios from "axios";
 
-const Home = ({navigation}) => {
+
+const Home = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await axios.get("http://192.168.104.22:8080/Posts/getAllPosts");
-      setPosts(response.data);  // update the state variable with the posts data
+      const response = await axios.get(
+        "http://192.168.104.21/Posts/getAllPosts"
+      );
+      setPosts(response.data); 
     }
     fetchPosts();
   }, []);
-  console.log(posts);
 
-  return (
-    <View style={styles.container}>
-      <ScrollView style={styles.scrollableContainer}>
-        {posts.map((post) => (
-          <Card key={post._id}
-          containerStyle={{
-            borderRadius: 20,
-            width: "140%",
-            height: "10%",
-            marginBottom: 15,
-            // bottom: 20
-          }}>
-            <Text style={styles.text}>
-              {post.description}, {post.adress}, {post.userId}
-            </Text>
-          </Card>
-        ))}
-      </ScrollView>
-      <Footer navigation={navigation} style={styles.footerContainer} />
-    </View>
-  );
-}
+
+  return <View style={styles.container}>
+   
+  </View>;
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,  // to make the container take up the whole screen
+    flex: 1, // to make the container take up the whole screen
   },
   scrollableContainer: {
-    flex: 1,  // to make the scrollable container take up the remaining space
+    flex: 1, // to make the scrollable container take up the remaining space
   },
   text: {
     fontSize: 16,
