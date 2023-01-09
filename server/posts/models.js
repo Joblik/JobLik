@@ -1,28 +1,29 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const { Schema} = mongoose;
+const PostsSchema = new mongoose.Schema({
+  
+  description: {
+    type: String,
+    require: true,
+  },
+  adress: {
+    type: String,
+    require: true,
+  },
+  title: {
+    type: String,
+    require: true,
+  },
+  img: {
+    type: String,
+    require: false,
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
+    required: true,
+  },
+  
+});
 
-
-    const PostsSchema = new mongoose.Schema({
-        Uname: {
-          type: String,
-        },
-        Title: {
-          type: String,
-        },
-        Description: {
-          type: String,
-        },
-        Uimage: {
-          type: String,
-          default:
-            "https://res.cloudinary.com/dugewmeeh/image/upload/v1670743970/mawi%20cuisine/blank-profile-picture-973460_1280_pgdqwd.png",
-        },
-        Adress: {
-          type: String,
-        },
-        
-        Reward: {
-            type: Number,
-          },
-      });
-      const Posts=mongoose.model('Posts',PostsSchema);
-      module.exports={Posts}
+module.exports = { PostsSchema };
