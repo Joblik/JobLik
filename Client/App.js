@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ForgotPassWord from "./screens/forgotPassword/forgotPassword";
 import OTP from "./screens/otpScreen/otpScreen";
-import TabNav from "./navigation/TabNav"
+import TabNav from "../Client/navigation/TabNav"
 
 
 

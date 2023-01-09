@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View,Dimensions,Text,TextInput,ScrollView } from "react-native";
+import {Card} from "react-native-elements"
 import axios from "axios";
 
 
@@ -9,14 +10,14 @@ const Home = ({navigation}) => {
   useEffect(() => {
     async function fetchPosts() {
       const response = await axios.get("http://192.168.104.14:8080/Posts/getAllPosts");
-      setPosts(response.data);  // update the state variable with the posts data
+      setPosts(response.data);  
     }
     fetchPosts();
   }, []);
   console.log(posts);
   const screenHeight = Dimensions.get('window').height;
 
-  // Calculate the height of the Card based on its content
+  
   const cardHeight = screenHeight * 0.15;
   
   return (
@@ -49,7 +50,7 @@ const Home = ({navigation}) => {
           ))}
         </ScrollView>
       </View>
-      <Footer navigation={navigation} style={styles.footerContainer} />
+  
     </View>
   );
 }
@@ -68,28 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#003f5c",
   },
-  footerContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    width:"100%",
-    marginBottom:"7%",
-    ...Platform.select({
-      ios: {
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: "center",
-    backgroundColor: "#fbfbfb",
-    paddingVertical: 20,
-  },
+
   inputView: {
     width: "130%",
     backgroundColor: "#FFFF",
