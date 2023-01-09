@@ -33,7 +33,7 @@ const Register = ({ navigation }) => {
   async function handleSubmit() {
     try {
       const response = await axios.post(
-        "http://192.168.104.19:8080/Users/register",
+        "http://qh-2nj.anonymous.client.exp.direct:80:8080/Users/register",
         {
           name,
           email,

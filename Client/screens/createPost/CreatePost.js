@@ -19,7 +19,7 @@ const CreatePost = ({ navigation }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://192.168.104.19:8080/Posts/addPost",
+        "http://qh-2nj.anonymous.client.exp.direct:80:8080/Posts/addPost",
         {
           description: description,
           adress: adress,
