@@ -27,16 +27,20 @@ const CreatePost = ({ navigation }) => {
 
   const [description, setDescription] = useState("");
   const [adress, setAdress] = useState("");
+  const [title, setTitle] = useState("");
+  const [img, setImg] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://192.168.1.175:8080/Posts/addPost",
+        "http://192.168.103.7:8080/Posts/addPost",
         {
           description: description,
           adress: adress,
           userId: userId, // use the userId state variable here
+          title: title,
+          img: img,
         }
       );
       console.log(response.data);
@@ -53,23 +57,41 @@ const CreatePost = ({ navigation }) => {
         <View style={styles.container}>
           <View>
             <Text style={styles.text}>New Post</Text>
+            <Text style={styles.base}>Title</Text>
+            <View style={styles.inputView}>
+              <TextInput
+                placeholder="Insert The Title"
+                style={styles.inputText}
+                onChangeText={setTitle}
+                value={title}
+              />
+            </View>
             <Text style={styles.base}>Description</Text>
             <View style={styles.inputView}>
               <TextInput
                 placeholder="Insert The Description"
-                style={styles.inputText}
+                style={styles.inputDesc}
                 onChangeText={setDescription}
                 value={description}
               />
             </View>
-            <Text style={styles.base}>Adress</Text>
+            <Text style={styles.base}>Address</Text>
             <View style={styles.inputView}>
               <TextInput
-                placeholder="Insert Your Adress"
+                placeholder="Insert Your Address"
                 style={styles.inputText}
                 onChangeText={setAdress}
                 value={adress}
               />
+              <Text style={styles.base}>Image Link</Text>
+            <View style={styles.inputView}>
+              <TextInput
+                placeholder="Insert The Image Link"
+                style={styles.inputText}
+                onChangeText={setImg}
+                value={img}
+              />
+            </View>
             </View>
 
             <TouchableOpacity style={styles.postBtn}>
@@ -102,7 +124,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: "#003f5c",
     textAlign: "center",
-    marginBottom: 18,
+    marginBottom: 15,
     
   },
   desc: {
@@ -113,7 +135,7 @@ const styles = StyleSheet.create({
   base: {
     color: "#003f5c",
     textShadowColor: "black",
-    textShadowRadius: 5,
+    textShadowRadius: 2,
   },
   inputText: {
     backgroundColor: "white",
@@ -122,7 +144,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 10,
     textAlign: "center",
-    borderRadius: 20,
+    borderRadius: 2,
+  },
+  inputDesc: {
+    backgroundColor: "white",
+    width: 300,
+    height: 150,
+    marginBottom: 20,
+    marginTop: 10,
+    textAlign: "center",
+    borderRadius: 2,
   },
   postBtn: {
     width: 90,
