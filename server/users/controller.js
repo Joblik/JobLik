@@ -281,7 +281,66 @@ const changePassword = async (req, res) => {
   } catch (e) {
     return res.status(500).send(e);
   }
-};
+}; 
+
+const addFollower = async (userId, followerId) => {
+  try {
+      const user = await User.findById(userId);
+      const follower = await User.findById(followerId);
+
+      if (!user || !follower) {
+          throw new Error('User or follower not found');
+      }
+
+      if(user.followers.includes(followerId)){
+          throw new Error('User is already a follower');
+      }
+      user.followers.push(followerId);
+      follower.following.push(userId);
+      await user.save();
+      await follower.save();
+      return user;
+  } catch (err) {
+      throw new Error(err.message);
+  }
+}; 
+const removeFollower = async (userId, unfollowerId) => {
+  try {
+      const user = await User.findById(userId);
+      const unfollower = await User.findById(unfollowerId);
+
+      if (!user || !unfollower) {
+          throw new Error('User or unfollower not found');
+      }
+
+      if(!user.followers.includes(unfollowerId)){
+          throw new Error('User is not a follower');
+      }
+      user.followers = user.followers.filter(followerId => followerId.toString() !== unfollowerId.toString());
+      unfollower.following = unfollower.following.filter(followingId => followingId.toString() !== userId.toString());
+      await user.save();
+      await unfollower.save();
+      return user;
+  } catch (err) {
+      throw new Error(err.message);
+  }
+}; 
+const getFollowers = async (userId) => {
+  try {
+      const user = await User.findById(userId).populate('followers');
+      return { followers: user.followers };
+  } catch (err) {
+      throw new Error(err.message);
+  }
+}; 
+const getFollowing = async (userId) => {
+  try {
+      const user = await User.findById(userId).populate('following');
+      return { following: user.following };
+  } catch (err) {
+      throw new Error(err.message);
+  }
+}; 
 module.exports = {
   UpdateOneUser,
   GetAllUser,

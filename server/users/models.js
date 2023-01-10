@@ -31,5 +31,21 @@ job:{
 domain:{ 
   type: String
 },
+following: [
+  {
+      "userId": ObjectId()
+  },
+  {
+      "userId": ObjectId()
+  }
+],
+follower: [
+  {
+      "userId": ObjectId()
+  },
+  {
+      "userId": ObjectId()
+  }
+]
 });
 module.exports = mongoose.model("User", UserSchema);
