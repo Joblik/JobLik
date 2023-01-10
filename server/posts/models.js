@@ -10,10 +10,18 @@ const PostsSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  title: {
+    type: String,
+    require: true,
+  },
+  img: {
+    type: String,
+    require: false,
+  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: "users",
-    required: true,
+    required: false,
   },
   
 });

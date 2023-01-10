@@ -5,6 +5,8 @@ import Colorss from "../components/Colorss";
 import Home from "../screens/home/home";
 import UserProfile from "../screens/userProfile/UserProfile";
 import CreatePost from "../screens/createPost/CreatePost";
+import New from "../screens/createPost/New"
+import Search from "../screens/Search";
 
 const Tab = createBottomTabNavigator();
 export default function TabNavigation() {
@@ -30,9 +32,22 @@ export default function TabNavigation() {
           ),
         }}
       />
+       <Tab.Screen
+        name="Search"
+        component={Search}
+        options={{
+          tabBarIcon: ({ size, focused }) => (
+            <MaterialCommunityIcons
+              name="card-search"
+              size={size}
+              color={focused ? "#0274b3" : "gray"}
+            />
+          ),
+        }}
+      />
       <Tab.Screen
         name="Post"
-        component={CreatePost}
+        component={New}
         options={{
           tabBarIcon: ({ size, focused }) => (
             <MaterialCommunityIcons

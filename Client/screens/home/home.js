@@ -8,15 +8,18 @@ import axios from "axios";
 const Home = ({navigation}) => {
   // const { refresh } = useRefresh();
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([])
+
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await axios.get("http://192.168.104.14:8080/Posts/getAllPosts");
+      const response = await axios.get("http://192.168.103.7:8080/Posts/getAllPosts");
       setPosts(response.data);  
+      setFilteredPosts(response.data)
     }
-    fetchPosts();
+    fetchPosts(); 
   }, []);
-  console.log(posts);
+  console.log('posts:'+posts);
   const screenHeight = Dimensions.get('window').height;
 
   
@@ -25,17 +28,10 @@ const Home = ({navigation}) => {
   return (
     
     <View style={styles.container}>
-       <View style={styles.inputView}>
-          <TextInput
-            style={styles.inputText}
-            placeholder="search..."
-            placeholderTextColor="#003f5c"
-            onChangeText={(e) => {
-              setEmail(e);
-            }}
-          />
-        </View>
       <View style={styles.scrollableContainer}>
+
+        <Text style={{fontSize: 28}}>Welcome !</Text>
+
         <ScrollView 
         //  refreshControl={
         //   <RefreshControl
@@ -44,7 +40,8 @@ const Home = ({navigation}) => {
         //   />
         // }
         >
-          {posts.map((post) => (
+          {
+          filteredPosts.map((post) => (
            <Card key={post._id}
            containerStyle={{
              borderRadius: 20,
@@ -52,14 +49,27 @@ const Home = ({navigation}) => {
              height: cardHeight,
              marginBottom: 15,
            }}>
-       <Text style={styles.text}>{post.description}</Text>
+        
+      <Text style={styles.text}>{post.title}</Text>
+       <Text style={styles.text}>{post.description.slice(0,30)+'...'}</Text>
        <Text style={styles.text}>{post.adress}</Text>
        <Text style={styles.text}>{post.userId}</Text>
      </Card>
           ))}
         </ScrollView>
       </View>
-  
+      <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Search.."
+            placeholderTextColor="#003f5c"
+            onChangeText={(e) => {
+              setFilteredPosts(posts.filter(p => p.description.toLowerCase().includes(e.toLowerCase()) || p.title.toLowerCase().includes(e.toLowerCase()) || p.adress.toLowerCase().includes(e.toLowerCase())))
+              console.log('filtered:'+filteredPosts +'/'+posts)
+            }}
+            
+          />
+        </View>
     </View>
   );
 }
@@ -68,7 +78,7 @@ const styles = StyleSheet.create({
     // backgroundColor: "#003f5c",
     alignItems: "center",
     justifyContent: "center",
-    padding: 80,
+    padding: 85,
   },
   scrollableContainer: {
     flexGrow: 1,
@@ -81,16 +91,17 @@ const styles = StyleSheet.create({
 
   inputView: {
     width: "130%",
-    backgroundColor: "#FFFF",
-    borderRadius: 25,
-    height: 55,
-    marginBottom: 25,
+    backgroundColor: "#FFFFF0",
+    borderRadius: 10,
+    height: 40,
     justifyContent: "center",
-    padding: 20,
+    padding: 10
   },
   inputText: {
-    height: 50,
+    height: 20,
+    textAlign: 'center',
     color: "black",
+    marginBottom: 5,
   },
   
   })
