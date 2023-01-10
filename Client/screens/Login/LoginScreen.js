@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Logo from "../../components/img/logo.png";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -13,62 +13,21 @@ import {
   SafeAreaView,
   Dimensions,
   KeyboardAvoidingView ,
-  Button
 } from "react-native";
-// import * as WebBrowser from 'expo-web-browser';
-// import * as google from 'expo-auth-session/providers/google'
-// import { GoogleSignin } from '@react-native-google-signin/google-signin';
-// import config from '../../components/firebase'
-// import auth from '@react-native-firebase/auth';
-// WebBrowser.maybeCompleteAuthSession();
+
 const LoginScreen = ({ navigation }) => {
   const {height} = Dimensions.get('window')
   const [email, setEmail] = useState("");
-  const [accessToken, setAccessToken] = useState(null);
+
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState("");
-  // GoogleSignin.configure({
-  //   webClientId: '815528479624-bsrlq4mhrusigsf6gu31vr0n2o84nf1s.apps.googleusercontent.com',
-  // });
 
-  // async function onGoogleButtonPress() {
-  //   // Check if your device supports Google Play
-  //   await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-  //   // Get the users ID token
-  //   const { idToken } = await GoogleSignin.signIn();
-  
-  //   // Create a Google credential with the token
-  //   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-  
-  //   // Sign-in the user with the credential
-  //   return auth().signInWithCredential(googleCredential);
-  // }
-// const [request,response,promptAsync] = google.useIdTokenAuthRequest({
-//   clientId : "957226030438-2bf3s4mnhov6qqqfdpcq2rh3ujev216j.apps.googleusercontent.com",
-//   iosClientId: "957226030438-85cn449iofvmm7pfgb1thfb58sbttvm5.apps.googleusercontent.com"
-// })
-
-// React.useEffect(()=>{
-//   if(response?.type === "success"){
-//     setAccessToken(response.authentication.accessToken);
-//     accessToken && fetchUserInfo();
-//   }
-// },[response,accessToken])
-
-// async function fetchUserInfo(){
-//   let response = await fetch("https://googleapis.com/userinfo/v2/me",{
-//     headers:{Authorization:`Bearer ${accessToken}`}
-//   });
-//   const userInfo = await response.json();
-//   setUser(userInfo);
-// } 
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
 
   async function handleSubmit() {
     try {
-      const user = await axios.post("http://192.168.104.14:8080/Users/login", {
+      const user = await axios.post("http://192.168.104.21:8080/Users/login", {
         email,
         password,
       });
@@ -84,16 +43,6 @@ const LoginScreen = ({ navigation }) => {
       alert("error");
     }
   }
-  // const SignInWithGoogle = () => {
-  //   return (
-  //     <TouchableOpacity disabled={!request} onPress={() => {
-  //       promptAsync()
-  //     }}>
-  //       <Text style={styles.loginText}>Sign In With Google</Text>
-  //       <Image source={require("../../assets/btn.png")} style={{ width: 300, height: 40 }} />
-  //     </TouchableOpacity>
-  //   )
-  // }
 
   return (
   <KeyboardAvoidingView behavior="position" style={styles.ScrollView}>
@@ -136,24 +85,6 @@ const LoginScreen = ({ navigation }) => {
         <TouchableOpacity>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
-        
-        {user === null && <SignInWithGoogle />}
-
-      
-      
-          {/* <TouchableOpacity style={styles.google} disabled={!request} onPress={()=> {
-  promptAsync()
-}}>
- 
-  <Image  source={require("../../assets/btn.png")} style={{width: 300, height: 40}} />
-</TouchableOpacity> */}
-
-{/* <Button
-      title="Google Sign-In"
-      onPress={() => onGoogleButtonPress().then(() => console.log('Signed in with Google!'))}
-    /> */}
-
-        
       </SafeAreaView>
     </ScrollView>
     </KeyboardAvoidingView >
@@ -169,6 +100,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   container: {
+    // backgroundColor: "#003f5c",
     alignItems: "center",
     justifyContent: "center",
     padding: 80,
@@ -192,7 +124,6 @@ const styles = StyleSheet.create({
     height: 50,
     color: "black",
   },
-  
   forgot: {
     color: "#003f5c",
     fontSize: 11,
@@ -213,16 +144,6 @@ const styles = StyleSheet.create({
   loginTexte: {
     color: "white",
   },
-  google: {
-    width: "80%",
-    backgroundColor: "white",
-    borderRadius: 25,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 20,
-    marginBottom: 10,
-  }
 });
 
 export default LoginScreen;
