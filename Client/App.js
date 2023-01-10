@@ -4,12 +4,11 @@ import LoginScreen from "./screens/Login/LoginScreen";
 import Register from "./screens/register/register";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ForgotPassword from "./screens/ForgotPassword/forgotPassword";
+import ForgotPassword from "../Client/screens/forgotPassword/forgotPassword";
 import OTP from "./screens/otpScreen/otpScreen";
 import TabNav from "../Client/navigation/TabNav"
 import AllChat from "../Client/screens/allChats/AllChats"
 import Search from "./screens/Search";
-
 
 
 
@@ -19,7 +18,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="createPost"
+        initialRouteName="UserProfile"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="register" component={Register} />
