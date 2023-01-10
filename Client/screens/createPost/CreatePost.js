@@ -22,7 +22,7 @@ const CreatePost = ({ navigation }) => {
       setUserId(JSON.parse(id));  // update the state variable with the user's _id
     }
     getUserId();
-    console.log(userId);
+    
   }, []);
 
   const [description, setDescription] = useState("");
@@ -34,11 +34,11 @@ const CreatePost = ({ navigation }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://1192.168.103.10:8080/Posts/addPost",
+        "http://192.168.104.14:8080/Posts/addPost",
         {
           description: description,
           adress: adress,
-          userId: userId,  // use the userId state variable here
+          userId: userId, // use the userId state variable here
           title: title,
           img: img,
         }
@@ -75,10 +75,10 @@ const CreatePost = ({ navigation }) => {
                 value={description}
               />
             </View>
-            <Text style={styles.base}>Adress</Text>
+            <Text style={styles.base}>Address</Text>
             <View style={styles.inputView}>
               <TextInput
-                placeholder="Insert Your Adress"
+                placeholder="Insert Your Address"
                 style={styles.inputText}
                 onChangeText={setAdress}
                 value={adress}
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   base: {
     color: "#003f5c",
     textShadowColor: "black",
-    textShadowRadius: 5,
+    textShadowRadius: 2,
   },
   inputText: {
     backgroundColor: "white",
