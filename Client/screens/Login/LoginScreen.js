@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Logo from "../../components/img/logo.png";
 import client from "../../api/client";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,36 +14,13 @@ import {
   Dimensions,
   KeyboardAvoidingView ,
 } from "react-native";
-import * as WebBrowser from 'expo-web-browser';
-import * as google from 'expo-auth-session/providers/google'
 
-WebBrowser.maybeCompleteAuthSession();
 const LoginScreen = ({ navigation }) => {
   const {height} = Dimensions.get('window')
   const [email, setEmail] = useState("");
-  const [accessToken, setAccessToken] = useState(null);
+
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState("");
 
-const [request,response,promptAsync] = google.useIdTokenAuthRequest({
-  clientId : "957226030438-2bf3s4mnhov6qqqfdpcq2rh3ujev216j.apps.googleusercontent.com",
-  iosClientId: "957226030438-85cn449iofvmm7pfgb1thfb58sbttvm5.apps.googleusercontent.com"
-})
-
-React.useEffect(()=>{
-  if(response?.type === "success"){
-    setAccessToken(response.authentication.accessToken);
-    accessToken && fetchUserInfo();
-  }
-},[response,accessToken])
-
-async function fetchUserInfo(){
-  let response = await fetch("https://googleapis.com/userinfo/v2/me",{
-    headers:{Authorization:`Bearer ${accessToken}`}
-  });
-  const userInfo = await response.json();
-  setUser(userInfo);
-} 
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
@@ -65,16 +42,6 @@ async function fetchUserInfo(){
       console.log(error.message);
       alert("error");
     }
-  }
-  const SignInWithGoogle = () => {
-    return (
-      <TouchableOpacity disabled={!request} onPress={() => {
-        promptAsync()
-      }}>
-        <Text style={styles.loginText}>Sign In With Google</Text>
-        <Image source={require("../../assets/btn.png")} style={{ width: 300, height: 40 }} />
-      </TouchableOpacity>
-    )
   }
 
   return (
@@ -118,21 +85,6 @@ async function fetchUserInfo(){
         <TouchableOpacity>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
-        
-        {user === null && <SignInWithGoogle />}
-
-      
-      
-          <TouchableOpacity style={styles.google} disabled={!request} onPress={()=> {
-  promptAsync()
-}}>
- 
-  <Image  source={require("../../assets/btn.png")} style={{width: 300, height: 40}} />
-</TouchableOpacity>
-
-      
-
-        
       </SafeAreaView>
     </ScrollView>
     </KeyboardAvoidingView >
@@ -148,6 +100,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   container: {
+    // backgroundColor: "#003f5c",
     alignItems: "center",
     justifyContent: "center",
     padding: 80,
@@ -171,7 +124,6 @@ const styles = StyleSheet.create({
     height: 50,
     color: "black",
   },
-  
   forgot: {
     color: "#003f5c",
     fontSize: 11,
@@ -192,16 +144,6 @@ const styles = StyleSheet.create({
   loginTexte: {
     color: "white",
   },
-  google: {
-    width: "80%",
-    backgroundColor: "white",
-    borderRadius: 25,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 20,
-    marginBottom: 10,
-  }
 });
 
 export default LoginScreen;

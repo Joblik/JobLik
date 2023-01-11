@@ -5,7 +5,7 @@ import Colorss from "../components/Colorss";
 import Home from "../screens/home/home";
 import UserProfile from "../screens/userProfile/UserProfile";
 import New from "../screens/createPost/New"
-// import Search from "../screens/Search/Search"
+import Search from "../screens/Search/Search"
 
 
 const Tab = createBottomTabNavigator();
@@ -32,7 +32,11 @@ export default function TabNavigation() {
           ),
         }}
       />
-       {/* <Tab.Screen
+
+       <Tab.Screen
+
+  
+
         name="Search"
         component={Search}
         options={{
@@ -44,7 +48,12 @@ export default function TabNavigation() {
             />
           ),
         }}
-      /> */}
+
+      />
+        
+
+      
+
       <Tab.Screen
         name="Post"
         component={New}
