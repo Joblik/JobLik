@@ -6,12 +6,13 @@ import {
   ImageBackground,
   Text,
   StyleSheet,
+  Image,
 } from "react-native";
 import Theme from "../../utils/Theme.style";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { TextInput } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
+import client from "../../api/client";
 
 const cover = { uri: "https://wallpaper.dog/large/5477484.jpg" };
 
@@ -27,18 +28,17 @@ const Profile = ({ navigation }) => {
     }
     getUserId();
     async function fetchUser() {
-      const response = await axios.get(
-        `http://192.168.104.26:8080/Users/${userId}`
-      );
+      const response = await client.get(`/Users/${userId}`);
 
       const user = response.data;
+      console.log("🚀 ~ file: UserProfile.js:42 ~ fetchUser ~ user", user);
 
       setForm(user);
-      console.log("🚀 ~ file: UserProfile.js:25 ~ fetchUser ~ user", user);
     }
 
     fetchUser();
   }, [userId]);
+  // console.log("🚀 ~ file: UserProfile.js:49 ~ Profile ~ userId", userId)
 
   return (
     <View style={[Theme.mainScreen, Theme.whiteBack, { marginTop: 30 }]}>
@@ -73,9 +73,27 @@ const Profile = ({ navigation }) => {
                 Theme.pl20,
                 style.imgBackground,
               ]}
-              source={form.image}
+              source={cover}
               resizeMode="cover"
             ></ImageBackground>
+            <Image
+              style={[
+                {
+                  borderColor: "#ecf0f1",
+                  borderWidth: 2,
+                  borderRadius: 50,
+                  height: 100,
+                  width: 100,
+                  marginBottom: -70,
+                  marginTop: -20,
+                },
+              ]}
+              source={{
+                uri: "https://scontent.ftun5-1.fna.fbcdn.net/v/t39.30808-6/301572632_619322496221354_8359942737408873830_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=VQ5aMWHw95MAX8IoF7U&_nc_ht=scontent.ftun5-1.fna&oh=00_AfDgQqUjSqAOtA7Rr7NpjxbtOOtZclCyVHpIBHv9L2kCmQ&oe=63C2D1C1",
+              }}
+              size={120}
+            />
+            <View></View>
           </View>
           <View style={[Theme.p10]}>
             <View>
@@ -115,7 +133,9 @@ const Profile = ({ navigation }) => {
             <View style={[Theme.flxDirectionRow]}>
               <TouchableOpacity
                 style={[Theme.btnM50, Theme.mr10, Theme.linkedinBack]}
-                onPress={() => navigation.navigate("EditProfile")}
+                onPress={() =>
+                  navigation.navigate("editProfile", { form: form })
+                }
               >
                 <Text style={[Theme.whiteFont, Theme.fontBold, Theme.f15]}>
                   Edit Profile
@@ -247,7 +267,7 @@ const Profile = ({ navigation }) => {
                       Email
                     </Text>
                     <Text style={[Theme.fontSemiBold, { marginBottom: 20 }]}>
-                      email : {form.email}
+                      {form.email}
                     </Text>
                   </View>
                 </View>

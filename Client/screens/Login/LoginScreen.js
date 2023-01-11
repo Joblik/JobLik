@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../../components/img/logo.png";
-import axios from "axios";
+import client from "../../api/client";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   StyleSheet,
@@ -50,7 +50,7 @@ async function fetchUserInfo(){
 
   async function handleSubmit() {
     try {
-      const user = await axios.post("http://192.168.104.26:8080/Users/login", {
+      const user = await client.post("/Users/login", {
         email,
         password,
       });

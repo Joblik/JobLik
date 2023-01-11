@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Text, FlatList } from 'react-native';
-import axios from 'axios';
+import client from "../../api/client";
 
 const Chat = () => {
   const [sender, setSender] = useState('');
@@ -10,7 +10,7 @@ const Chat = () => {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const res = await axios.get(`http://192.168.1.175:8080/Chats/fetchMessages/${sender}/${receiver}`);
+      const res = await client.get(`/Chats/fetchMessages/${sender}/${receiver}`);
       setMessages(res.data.messages);
     };
     fetchMessages();
@@ -18,9 +18,9 @@ const Chat = () => {
 
   const sendMessage = async () => {
     try {
-      await axios.post('http://192.168.1.175:8080/Chats/sendMessage', { sender, receiver, message });
+      await client.post('/Chats/sendMessage', { sender, receiver, message });
       setMessage('');
-      const res = await axios.get(`http://192.168.1.175:8080/Chats/fetchMessages/${sender}/${receiver}`);
+      const res = await client.get(`/Chats/fetchMessages/${sender}/${receiver}`);
       setMessages(res.data.messages);
     } catch (error) {
       console.error(error);
