@@ -7,19 +7,26 @@ import Ionic from "react-native-vector-icons/Ionicons";
 import client from "../../api/client";
 
 const EditProfile = ({ navigation, route }) => {
-  const [user, setUser] = useState(form.username);
-  const [image, setImage] = useState(form.image);
-  const [email, setEmail] = useState(form.email);
-  const [phone, setPhone] = useState(form.phone);
-  const [job, setJob] = useState(form.job);
-  const [domain, setDomain] = useState(form.domain);
+  const [user, setUser] = useState("");
+  const [image, setImage] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [job, setJob] = useState("");
+  const [domain, setDomain] = useState("");
   const { form } = route.params;
-  console.log("🚀 ~ file: EditProfile.js:10 ~ EditProfile ~ form", form);
-
-  useEffect(() => {});
+  console.log("🚀 ~ file: EditProfile.js:10 ~ EditProfile ~ form=============>>", form);
+const data  = {
+  user,
+  image,
+  email,
+  phone,
+  job,
+  domain,
+}
+   useEffect(() => {});
   const handleSubmit = async () => {
     try {
-      const response = await client.put(`/Users/UpdateOneUser/${userId}`, data);
+      const response = await client.put(`/Users/UpdateOneUser/${form._id}`,data );
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -63,7 +70,7 @@ const EditProfile = ({ navigation, route }) => {
         </View>
         <View style={{ padding: 20, alignItems: "center" }}>
           <Image
-            defaultSource={image}
+            // defaultSource={image}
             style={{ width: 80, height: 80, borderRadius: 100 }}
           />
           <Text
@@ -85,7 +92,7 @@ const EditProfile = ({ navigation, route }) => {
             </Text>
             <TextInput
               placeholder="Username"
-              defaultValue={user}
+              defaultValue={form.username}
               onChangeText={(newText) => setUser(newText)}
               style={{
                 fontSize: 16,
@@ -104,7 +111,7 @@ const EditProfile = ({ navigation, route }) => {
             </Text>
             <TextInput
               placeholder="Email"
-              defaultValue={email}
+              defaultValue={form.email}
               onChangeText={(newText) => setEmail(newText)}
               style={{
                 fontSize: 16,
@@ -123,7 +130,7 @@ const EditProfile = ({ navigation, route }) => {
             </Text>
             <TextInput
               placeholder="Job"
-              defaultValue={job}
+              defaultValue={form.job}
               onChangeText={(newText) => setJob(newText)}
               style={{
                 fontSize: 16,
@@ -142,7 +149,7 @@ const EditProfile = ({ navigation, route }) => {
             </Text>
             <TextInput
               placeholder="Phone"
-              defaultValue={phone}
+              defaultValue={form.phone}
               onChangeText={(newText) => setPhone(newText)}
               style={{
                 fontSize: 16,
@@ -162,7 +169,7 @@ const EditProfile = ({ navigation, route }) => {
             <TextInput
               placeholder="speciality"
               onChangeText={(newText) => setDomain(newText)}
-              defaultValue={domain}
+              defaultValue={form.domain}
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,

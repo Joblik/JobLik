@@ -31,8 +31,7 @@ const Profile = ({ navigation }) => {
       const response = await client.get(`/Users/${userId}`);
 
       const user = response.data;
-      console.log("🚀 ~ file: UserProfile.js:42 ~ fetchUser ~ user", user);
-
+  
       setForm(user);
     }
 
@@ -48,7 +47,9 @@ const Profile = ({ navigation }) => {
             <Icon
               name="long-arrow-left"
               size={20}
-              onPress={() => navigation.navigate("home")}
+              onPress={() => {
+                navigation.goBack();
+              }}
             />
           </TouchableOpacity>
         </View>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View,Dimensions,Text,TextInput,ScrollView } from "react-native";
 import {Card} from "react-native-elements"
-import axios from "axios";
+import client from "../../api/client";
 // import { useRefresh } from 'react-native-refresh-control';
 
 
@@ -13,7 +13,7 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await axios.get("http://192.168.103.7:8080/Posts/getAllPosts");
+      const response = await client.get("/Posts/getAllPosts");
       setPosts(response.data);  
       setFilteredPosts(response.data)
     }
@@ -51,7 +51,7 @@ const Home = ({navigation}) => {
            }}>
         
       <Text style={styles.text}>{post.title}</Text>
-       <Text style={styles.text}>{post.description.slice(0,30)+'...'}</Text>
+       <Text style={styles.text}>{post.description}</Text>
        <Text style={styles.text}>{post.adress}</Text>
        <Text style={styles.text}>{post.userId}</Text>
      </Card>
