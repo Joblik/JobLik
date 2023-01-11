@@ -1,5 +1,5 @@
 const { Posts } = require("../db");
-
+const User = require("../users/models");
 // Getting All Posts
 const getAllPosts = (req, res) => {
   console.log("==============> done");
@@ -38,69 +38,94 @@ const deletePost = (req, res) => {
     })
     .catch((err) => console.log(err));
 };
-const addLike = async (postId, userId) => {
+const addLike = async (req, res) => {
+  const postId = req.body.postId;
+  const userId = req.body.userId;
   try {
-      const Posts = await Post.findById(postId);
+      const post = await Posts.findById(postId);
       const user = await User.findById(userId);
 
-      if (!Posts || !user) {
-          throw new Error('Post or user not found');
+      if (!post || !user) {
+          res.status(404).json({ message: 'Post or user not found' });
+          return;
       }
 
-      if(Posts.likes.includes(userId)){
-          throw new Error('User already liked this Posts');
+      if(post.likes.includes(userId)){
+          res.status(409).json({ message: 'User already liked this post' });
+          return;
       }
-      Posts.likes.push(userId);
-      await Posts.save();
-      return Posts;
+      post.likes.push(userId);
+      await post.save();
+      res.status(201).json(post);
   } catch (err) {
-      throw new Error(err.message);
+      res.status(500).json({ message: err.message });
   }
 }
 
-const removeLike = async (postId, userId) => {
+const removeLike = async (req, res) => {
+  const postId = req.body.postId;
+  const userId = req.body.userId;
   try {
-      const Posts = await Post.findById(postId);
-      if (!Posts) {
-          throw new Error('Post not found');
+      const post = await Posts.findById(postId);
+
+      if (!post) {
+          res.status(404).json({ message: 'Post not found' });
+          return;
       }
-      Posts.likes = Posts.likes.filter(likeId => likeId.toString() !== userId.toString());
-      await Posts.save();
-      return Posts;
+      post.likes = post.likes.filter(likeId => likeId.toString() !== userId.toString());
+      await post.save();
+      res.status(200).json(post);
   } catch (err) {
-      throw new Error(err.message);
+      res.status(500).json({ message: err.message });
   }
-} 
-const addComment = async (postId, comment) => {
+}
+const addComment = async (req, res) => {
   try {
+    const postId = req.body.postId;
+    const comment = req.body.comment;
+
+    if (!postId || !comment) {
+      res.status(400).json({ message: 'Missing required fields' });
+      return;
+    }
     const result = await db
       .collection('posts')
       .updateOne({ _id: postId }, { $push: { comments: comment } });
     console.log(`Added comment to post ${postId}`);
-    return result;
+    res.status(201).json(result);
   } catch (error) {
     console.log(`Error adding comment to post ${postId}`);
-    throw error;
+    res.status(500).json({ message: error.message });
   }
 };
 
+
 // Retrieve comments for a post
-const getComments = async postId => {
+const getComments = async (req, res) => {
   try {
+    const postId = req.body.postId;
+
+    if (!postId) {
+      res.status(400).json({ message: 'Missing required fields' });
+      return;
+    }
     const post = await db.collection('posts').findOne({ _id: postId });
     if (!post) {
-      throw new Error(`Post ${postId} not found`);
+      res.status(404).json({ message: `Post ${postId} not found` });
+      return;
     }
-    return post.comments;
+    res.status(200).json(post.comments);
   } catch (error) {
     console.log(`Error retrieving comments for post ${postId}`);
-    throw error;
+    res.status(500).json({ message: error.message });
   }
 };
+
 module.exports = {
   updatePost,
   getAllPosts,
   addPost,
   deletePost,
   getOnePost,
+  addComment,
 };

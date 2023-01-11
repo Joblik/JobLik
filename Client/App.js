@@ -4,11 +4,12 @@ import LoginScreen from "./screens/Login/LoginScreen";
 import Register from "./screens/register/register";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ForgotPassWord from "./screens/forgotPassword/forgotPassword";
+import ForgotPassword from "../Client/screens/forgotPassword/forgotPassword";
 import OTP from "./screens/otpScreen/otpScreen";
 import TabNav from "../Client/navigation/TabNav"
-import Chat from "./screens/Chat/Chat"
-import Map from "./screens/Map/Map";
+import AllChat from "../Client/screens/allChats/AllChats"
+import Search from "./screens/Search";
+
 
 
 export default function App() {
@@ -17,16 +18,17 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Chat"
+        initialRouteName="UserProfile"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="register" component={Register} />
         <Stack.Screen name="Map" component={Map} />
         <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="login" component={LoginScreen} />
-        <Stack.Screen name="forgotPassword" component={ForgotPassWord} />
+        <Stack.Screen name="forgotPassword" component={ForgotPassword} />
         <Stack.Screen name="otp" component={OTP} />
         <Stack.Screen name="home" component={TabNav} />
+        <Stack.Screen name="Search" component={TabNav} />
         <Stack.Screen name="createPost" component={TabNav} />
         <Stack.Screen name="UserProfile" component={TabNav} />
       </Stack.Navigator>
