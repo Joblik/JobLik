@@ -23,10 +23,13 @@ const UserSchema = new mongoose.Schema({
       "https://res.cloudinary.com/dqmhtibfm/image/upload/v1672229902/icon-5359553_960_720_owjtc1.webp",
   },
   phone:{
-    type: String
+    type: Number,
+    // default: false,
+    
 },
 job:{
-    type: String
+    type: String,
+    // require: true,
 },
 
 

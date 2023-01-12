@@ -10,7 +10,7 @@ const Chat = () => {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const res = await axios.get('http://192.168.104.16:8080/Msg/getAllMessage');
+      const res = await client.get('/Msg/getAllMessage');
       setMessages(res.data.Msg);
       console.log(res.data.Msg);
     };
@@ -20,8 +20,8 @@ const Chat = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://192.168.104.16:8080/Msg/addMessage",
+      const response = await client.post(
+        "/Msg/addMessage",
         {
           msg,
           sender: sender,

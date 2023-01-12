@@ -13,13 +13,13 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await client.get("/Posts/getAllPosts");
+      const response = await client.get("/post/getAllPosts");
       setPosts(response.data);  
       setFilteredPosts(response.data)
     }
     fetchPosts(); 
   }, []);
-  console.log('posts:'+posts);
+  // console.log('posts:'+posts);
   const screenHeight = Dimensions.get('window').height;
 
   

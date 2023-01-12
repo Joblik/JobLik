@@ -11,8 +11,8 @@ import {
   SafeAreaView,
   Dimensions,
 } from "react-native";
+import client from "../../api/client";
 
-import axios from "axios";
 
 const OTP = ({ navigation }) => {
   const { height } = Dimensions.get("window");
@@ -26,8 +26,8 @@ const OTP = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
-      const response = await axios.post(
-        "http://192.168.104.19:8080/Users/otp",
+      const response = await client.post(
+        "/user/otp",
         {
           email,
           otp,

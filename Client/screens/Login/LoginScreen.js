@@ -27,7 +27,7 @@ const LoginScreen = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
-      const user = await client.post("/Users/login", {
+      const user = await client.post("/user/login", {
         email,
         password,
       });

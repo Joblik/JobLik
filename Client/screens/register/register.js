@@ -33,7 +33,7 @@ const Register = ({ navigation }) => {
   async function handleSubmit() {
     try {
       const response = await client.post(
-        "/Users/register",
+        "/user/register",
         {
           name,
           email,
