@@ -8,13 +8,11 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import Theme from "../../utils/Theme.styles";
+import Theme from "../../utils/Theme.style";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { TextInput } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
-import EditProfile from "./EditProfile";
-// import {   Image } from "react-native-elements";
+import client from "../../api/client";
 
 const cover = { uri: "https://wallpaper.dog/large/5477484.jpg" };
 
@@ -30,13 +28,10 @@ const Profile = ({ navigation }) => {
     }
     getUserId();
     async function fetchUser() {
-      const response = await axios.get(
-        `http://192.168.104.30:8080/Users/${userId}`
-      );
+      const response = await client.get(`/Users/${userId}`);
 
       const user = response.data;
-      console.log("🚀 ~ file: UserProfile.js:42 ~ fetchUser ~ user", user);
-
+  
       setForm(user);
     }
 
@@ -52,7 +47,9 @@ const Profile = ({ navigation }) => {
             <Icon
               name="long-arrow-left"
               size={20}
-              onPress={() => navigation.navigate("home")}
+              onPress={() => {
+                navigation.goBack();
+              }}
             />
           </TouchableOpacity>
         </View>

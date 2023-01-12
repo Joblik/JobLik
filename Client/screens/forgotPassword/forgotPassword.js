@@ -1,25 +1,21 @@
 import React, {useState} from "react";
-import Logo from "../../components/img/logo.png";
-import Login from "../../screens/Login/LoginScreen"
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   ImageBackground,
   Button,
   TextInput,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-// import { navigate } from "react-navigation";
-import axios from "axios";
+import client from "../../api/client";
 
 const ForgotPassword = ({navigation}) => {
   const [email, setEmail] = useState("");
 
   const handleSubmit = () => {
-    axios
-      .post("http://192.168.104.28:8080/Users/forget-pasword", { email })
+    client
+      .post("/Users/forget-pasword", { email })
       .then((res) => {
         alert(
           "An email with a link to reset your password has been sent to your email address" 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Text, FlatList } from 'react-native';
-import axios from 'axios';
+import client from "../../api/client";
 
 const Chat = () => {
   const [sender, setSender] = useState('');
