@@ -7,6 +7,7 @@ const otpEmail = require("../emailTemp/otpTemp");
 const verifTemp = require("../emailTemp/verifiedTemp");
 const forgetPasswordTemp = require("../emailTemp/forgetPasswordTemp");
 
+
 const GetAllUser = async (req, res) => {
   try {
     await User.find({}).then((result) => {
@@ -20,7 +21,7 @@ const GetOneUser = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await User.findById(id);
-    res.json(user);
+    res.status(201).send(user);
   } catch (err) {
     return res.json(err);
   }
@@ -50,13 +51,15 @@ const DeleteOneUser = async (req, res) => {
 };
 
 const UpdateOneUser = async (req, res) => {
+  console.log("🚀 ~ file: controller.js:53 ~ UpdateOneUser ~ req", req.body);
+  console.log("🚀 ~ file: controller.js:53 ~ UpdateOneUser ~ req", req.params);
+  
+  
   try {
-    await User.updateOne(
-      { Pname: req.body.Pname },
-      { $set: { Pquantity: req.body.Pquantity } }
-    ).then((result) => {
-      res.json(result);
-    });
+    await User.updateOne()
+    _id = req.params.id
+    User.findByIdAndUpdate(_id,req.body,{new:true})
+    res.status(201).send({message:"updated successfully"})
   } catch (err) {
     return res.json(err);
   }

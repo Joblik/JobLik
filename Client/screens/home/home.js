@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View,Dimensions,Text,TextInput,ScrollView } from "react-native";
 import {Card} from "react-native-elements"
-import axios from "axios";
+import client from "../../api/client";
 // import { useRefresh } from 'react-native-refresh-control';
 
 
@@ -13,13 +13,13 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await axios.get("http://192.168.104.10:3000/post/getAllPosts");
+      const response = await client.get("/post/getAllPosts");
       setPosts(response.data);  
       setFilteredPosts(response.data)
     }
     fetchPosts(); 
   }, []);
-  console.log('posts:'+posts);
+  // console.log('posts:'+posts);
   const screenHeight = Dimensions.get('window').height;
 
   
@@ -51,7 +51,7 @@ const Home = ({navigation}) => {
            }}>
         
       <Text style={styles.text}>{post.title}</Text>
-       <Text style={styles.text}>{post.description.slice(0,30)+'...'}</Text>
+       <Text style={styles.text}>{post.description}</Text>
        <Text style={styles.text}>{post.adress}</Text>
        <Text style={styles.text}>{post.userId}</Text>
      </Card>

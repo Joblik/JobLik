@@ -12,9 +12,7 @@ import Theme from "../../utils/Theme";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { TextInput } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
-import EditProfile from "./EditProfile";
-// import {   Image } from "react-native-elements";
+import client from "../../api/client";
 
 const cover = { uri: "https://wallpaper.dog/large/5477484.jpg" };
 
@@ -22,6 +20,7 @@ const Profile = ({ navigation }) => {
   //SELECTORS
   const [userId, setUserId] = useState(null);
   const [form, setForm] = useState("");
+  
 
   useEffect(() => {
     async function getUserId() {
@@ -30,16 +29,13 @@ const Profile = ({ navigation }) => {
     }
     getUserId();
     async function fetchUser() {
-      const response = await axios.get(
-        `http://192.168.104.10:3000/user/${userId}`
-      );
+      const response = await client.get(`/user/${userId}`);
 
       const user = response.data;
-      console.log("🚀 ~ file: UserProfile.js:42 ~ fetchUser ~ user", user);
-
+      
       setForm(user);
     }
-
+    
     fetchUser();
   }, [userId]);
   // console.log("🚀 ~ file: UserProfile.js:49 ~ Profile ~ userId", userId)
@@ -52,7 +48,9 @@ const Profile = ({ navigation }) => {
             <Icon
               name="long-arrow-left"
               size={20}
-              onPress={() => navigation.navigate("home")}
+              onPress={() => {
+                navigation.goBack();
+              }}
             />
           </TouchableOpacity>
         </View>
@@ -120,18 +118,26 @@ const Profile = ({ navigation }) => {
                   Theme.alignItemsCenter,
                 ]}
               >
-                <Text style={[Theme.fontBold, Theme.linkedInFontColor]}>
-                  1590 Followers
-                </Text>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("following")}
+                >
+                  <Text style={[Theme.fontBold, Theme.linkedInFontColor]}>
+                    Followers
+                  </Text>
+                </TouchableOpacity>
                 <Icon
                   color={"#596275"}
                   style={[style.mr4, style.ml4]}
                   name="circle"
                   size={3}
                 />
-                <Text style={[Theme.fontBold, Theme.linkedInFontColor]}>
-                  500+ connections
-                </Text>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("following")}
+                >
+                  <Text style={[Theme.fontBold, Theme.linkedInFontColor]}>
+                    Following
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
             <View style={[Theme.flxDirectionRow]}>

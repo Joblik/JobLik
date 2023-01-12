@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Text, FlatList } from 'react-native';
-import axios from 'axios';
+import client from "../../api/client";
 
 const Chat = () => {
   const [sender, setSender] = useState('');
@@ -10,7 +10,7 @@ const Chat = () => {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const res = await axios.get('http://192.168.104.16:3000/msg/getAllMessage');
+      const res = await client.get('/Msg/getAllMessage');
       setMessages(res.data.Msg);
       console.log(res.data.Msg);
     };
@@ -20,8 +20,8 @@ const Chat = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://192.168.104.16:3000/msg/addMessage",
+      const response = await client.post(
+        "/Msg/addMessage",
         {
           msg,
           sender: sender,

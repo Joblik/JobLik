@@ -1,7 +1,5 @@
 import React from 'react'
 import { View , Text , Image , StyleSheet , ImageBackground, Button} from 'react-native'
-import Logo from '../../components/img/logo.png'
-import Input from '../../components/Input'
 import Footer from '../Footer'
 
 

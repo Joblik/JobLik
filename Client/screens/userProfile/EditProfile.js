@@ -4,23 +4,31 @@ import { Image } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 import { TextInput } from "react-native-paper";
 import Ionic from "react-native-vector-icons/Ionicons";
+import client from "../../api/client";
 
 const EditProfile = ({ navigation, route }) => {
   const { form } = route.params;
-  console.log("🚀 ~ file: EditProfile.js:10 ~ EditProfile ~ form", form);
-  // const handleChange = (event) => {
-  //   setForm({
-  //     ...data,
-  //     [event.target.name]: event.target.value,
-  //   });
-  // };
+  const [user, setUser] = useState("");
+  const [image, setImage] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [job, setJob] = useState("");
+  const [domain, setDomain] = useState("");
+  console.log("🚀 ~ file: EditProfile.js:10 ~ EditProfile ~ form=============>>", form);
+const data  = {
+  user,
+  image,
+  email,
+  phone,
+  job,
+  domain,
+}
+   useEffect(() => {});
   const handleSubmit = async () => {
     try {
-      const response = await axios.put(
-        `http://192.168.104.10:3000/user/UpdateOneUser/${userId}`,
-        data
-      );
+      const response = await client.put(`/user/UpdateOneUser/${form._id}`,data );
       console.log(response.data);
+      console.log("🚀 ~ file: EditProfile.js:31 ~ handleSubmit ~ data ================>>>>" , data)
     } catch (error) {
       console.log(error);
     }
@@ -57,13 +65,15 @@ const EditProfile = ({ navigation, route }) => {
             <Ionic
               name="checkmark"
               style={{ fontSize: 35, color: "#3493D9" }}
-              onPress={handleSubmit}
+              onPress={()=>{handleSubmit();
+              navigation.navigate("UserProfile");}}
+
             />
           </TouchableOpacity>
         </View>
         <View style={{ padding: 20, alignItems: "center" }}>
           <Image
-            defaultSource={form.image}
+            // defaultSource={image}
             style={{ width: 80, height: 80, borderRadius: 100 }}
           />
           <Text
@@ -86,7 +96,7 @@ const EditProfile = ({ navigation, route }) => {
             <TextInput
               placeholder="Username"
               defaultValue={form.username}
-              onChange={handleChange}
+              onChangeText={(newText) => setUser(newText)}
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
@@ -105,7 +115,7 @@ const EditProfile = ({ navigation, route }) => {
             <TextInput
               placeholder="Email"
               defaultValue={form.email}
-              onChange={handleChange}
+              onChangeText={(newText) => setEmail(newText)}
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
@@ -124,7 +134,7 @@ const EditProfile = ({ navigation, route }) => {
             <TextInput
               placeholder="Job"
               defaultValue={form.job}
-              onChange={handleChange}
+              onChangeText={(newText) => setJob(newText)}
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
@@ -143,7 +153,7 @@ const EditProfile = ({ navigation, route }) => {
             <TextInput
               placeholder="Phone"
               defaultValue={form.phone}
-              onChange={handleChange}
+              onChangeText={(newText) => setPhone(newText)}
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
@@ -161,7 +171,7 @@ const EditProfile = ({ navigation, route }) => {
             </Text>
             <TextInput
               placeholder="speciality"
-              onChange={handleChange}
+              onChangeText={(newText) => setDomain(newText)}
               defaultValue={form.domain}
               style={{
                 fontSize: 16,
