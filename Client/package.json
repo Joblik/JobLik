@@ -21,6 +21,7 @@
     "@react-navigation/native-stack": "^6.9.7",
     "@react-navigation/routers": "^6.1.0",
     "@react-navigation/stack": "^6.2.1",
+    "@vx/pattern": "^0.0.199",
     "axios": "^1.2.2",
     "expo": "^47.0.9",
     "expo-auth-session": "^3.8.0",
@@ -42,7 +43,8 @@
     "react-native-refresh-control": "^2.1.0",
     "react-native-safe-area-context": "4.4.1",
     "react-native-screens": "~3.18.0",
-    "react-router-native": "^6.6.1"
+    "react-router-native": "^6.6.1",
+    "react-simple-maps": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

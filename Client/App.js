@@ -22,7 +22,8 @@ export default function App() {
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="register" component={Register} />
-        <Stack.Screen name="allChat" component={AllChat} />
+        <Stack.Screen name="Map" component={Map} />
+        <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="forgotPassword" component={ForgotPassword} />
         <Stack.Screen name="otp" component={OTP} />
