@@ -10,6 +10,10 @@ const {
   forgetPassword,
   changePassword,
   GetOneUser,
+  addFollower,
+  removeFollowing, 
+  getFollowers, 
+  getFollowing,
 } = require("./controller");
 
     
@@ -23,5 +27,8 @@ router.route("/register").post(register);
 router.route("/otp").post(otp);
 router.route('/forget-pasword').post(forgetPassword)
 router.route('/forget-pasword/:token').post(changePassword)
-
+router.route('/getFollowers').get(getFollowers)
+router.route('/getFollowing').get(getFollowing)
+router.route("/removeFollowing").post(removeFollowing);
+router.route("/addFollower").post(addFollower);
 module.exports = router;
