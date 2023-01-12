@@ -27,7 +27,7 @@ const OTP = ({ navigation }) => {
   async function handleSubmit() {
     try {
       const response = await axios.post(
-        "http://192.168.104.19:8080/Users/otp",
+        "http://192.168.104.10:3000/user/otp",
         {
           email,
           otp,

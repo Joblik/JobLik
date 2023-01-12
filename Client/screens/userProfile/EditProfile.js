@@ -17,7 +17,7 @@ const EditProfile = ({ navigation, route }) => {
   const handleSubmit = async () => {
     try {
       const response = await axios.put(
-        `http://192.168.104.30:8080/Users/UpdateOneUser/${userId}`,
+        `http://192.168.104.10:3000/user/UpdateOneUser/${userId}`,
         data
       );
       console.log(response.data);

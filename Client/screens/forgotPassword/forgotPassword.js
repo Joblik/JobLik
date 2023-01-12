@@ -19,7 +19,7 @@ const ForgotPassword = ({navigation}) => {
 
   const handleSubmit = () => {
     axios
-      .post("http://192.168.104.28:8080/Users/forget-pasword", { email })
+      .post("http://192.168.104.10:3000/user/forget-pasword", { email })
       .then((res) => {
         alert(
           "An email with a link to reset your password has been sent to your email address" 

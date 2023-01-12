@@ -8,6 +8,7 @@ const commentRoutes = require("./comments/routes")
 const followingRoutes = require("./following/routes")
 const followersRoutes= require("./followers/routes")
 const reclamationRoutes=require("./reclamation/routes")
+const msgRoutes = require("./msg/routes")
 app.use(express.json());
 app.use(cors());
 app.use("/post",postsRoutes);
@@ -16,6 +17,7 @@ app.use("/comment",commentRoutes);
 app.use("/following",followingRoutes);
 app.use("/followers",followersRoutes);
 app.use("/reclamation",reclamationRoutes);
+app.use("/msg",msgRoutes)
 
 
 const db= "mongodb+srv://root:root@cluster0.anvgobs.mongodb.net/?retryWrites=true&w=majority"; 

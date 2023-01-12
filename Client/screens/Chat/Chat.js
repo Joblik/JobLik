@@ -10,7 +10,7 @@ const Chat = () => {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const res = await axios.get('http://192.168.104.16:8080/Msg/getAllMessage');
+      const res = await axios.get('http://192.168.104.16:3000/msg/getAllMessage');
       setMessages(res.data.Msg);
       console.log(res.data.Msg);
     };
@@ -21,7 +21,7 @@ const Chat = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://192.168.104.16:8080/Msg/addMessage",
+        "http://192.168.104.16:3000/msg/addMessage",
         {
           msg,
           sender: sender,
@@ -37,24 +37,7 @@ const Chat = () => {
 
   return (
     <View>
-      <View>
-      <Text>hhhhhhhhhhhhhhhhhhhhh</Text>
-      </View>
-      <View>
-      <Text>hhhhhhhhhhhhhhhhhhhhh</Text>
-      </View>
-      <View>
-      <Text>hhhhhhhhhhhhhhhhhhhhh</Text>
-      </View>
-      <View>
-      <Text>hhhhhhhhhhhhhhhhhhhhh</Text>
-      </View>
-      <View>
-      <Text>hhhhhhhhhhhhhhhhhhhhh</Text>
-      </View>
-      <View>
-      <Text>hhhhhhhhhhhhhhhhhhhhh</Text>
-      </View>
+     
       <TextInput
         value={sender}
         onChangeText={text => setSender(text)}

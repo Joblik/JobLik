@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import Theme from "../../utils/Theme.styles";
+import Theme from "../../utils/Theme";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { TextInput } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -31,7 +31,7 @@ const Profile = ({ navigation }) => {
     getUserId();
     async function fetchUser() {
       const response = await axios.get(
-        `http://192.168.104.30:8080/Users/${userId}`
+        `http://192.168.104.10:3000/user/${userId}`
       );
 
       const user = response.data;

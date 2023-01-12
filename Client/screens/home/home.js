@@ -13,7 +13,7 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await axios.get("http://192.168.103.7:8080/Posts/getAllPosts");
+      const response = await axios.get("http://192.168.104.10:3000/post/getAllPosts");
       setPosts(response.data);  
       setFilteredPosts(response.data)
     }

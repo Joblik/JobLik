@@ -34,7 +34,7 @@ const CreatePost = ({ navigation }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://192.168.103.7:8080/Posts/addPost",
+        "http://192.168.104.16:3000/post/addPost",
         {
           description: description,
           adress: adress,
