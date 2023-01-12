@@ -7,13 +7,13 @@ import Ionic from "react-native-vector-icons/Ionicons";
 import client from "../../api/client";
 
 const EditProfile = ({ navigation, route }) => {
+  const { form } = route.params;
   const [user, setUser] = useState("");
   const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [job, setJob] = useState("");
   const [domain, setDomain] = useState("");
-  const { form } = route.params;
   console.log("🚀 ~ file: EditProfile.js:10 ~ EditProfile ~ form=============>>", form);
 const data  = {
   user,
@@ -26,8 +26,9 @@ const data  = {
    useEffect(() => {});
   const handleSubmit = async () => {
     try {
-      const response = await client.put(`/Users/UpdateOneUser/${form._id}`,data );
+      const response = await client.put(`/user/UpdateOneUser/${form._id}`,data );
       console.log(response.data);
+      console.log("🚀 ~ file: EditProfile.js:31 ~ handleSubmit ~ data ================>>>>" , data)
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +65,9 @@ const data  = {
             <Ionic
               name="checkmark"
               style={{ fontSize: 35, color: "#3493D9" }}
-              onPress={handleSubmit}
+              onPress={()=>{handleSubmit();
+              navigation.navigate("UserProfile");}}
+
             />
           </TouchableOpacity>
         </View>

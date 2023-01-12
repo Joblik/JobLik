@@ -6,7 +6,7 @@ const transporter = require("../services/mailHandler");
 const otpEmail = require("../emailTemp/otpTemp");
 const verifTemp = require("../emailTemp/verifiedTemp");
 const forgetPasswordTemp = require("../emailTemp/forgetPasswordTemp");
-const { findByIdAndUpdate } = require("../chats/models");
+
 
 const GetAllUser = async (req, res) => {
   try {
