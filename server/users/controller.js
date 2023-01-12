@@ -283,62 +283,42 @@ const changePassword = async (req, res) => {
   }
 }; 
 
-const addFollower = async (userId, followerId) => {
+const addFollower = async(req, res) => {
   try {
-      const user = await User.findById(userId);
-      const follower = await User.findById(followerId);
-
-      if (!user || !follower) {
-          throw new Error('User or follower not found');
-      }
-
-      if(user.followers.includes(followerId)){
-          throw new Error('User is already a follower');
-      }
-      user.followers.push(followerId);
-      follower.following.push(userId);
-      await user.save();
-      await follower.save();
-      return user;
+    const userId = req.body.userId;
+    const followerId = req.body.followerId;
+    const user = await addFollower(userId, followerId);
+    res.status(200).json({ user });
   } catch (err) {
-      throw new Error(err.message);
+    res.status(500).json({ message: err.message });
   }
 }; 
-const removeFollower = async (userId, unfollowerId) => {
+const removeFollowing = async(req, res) => {
   try {
-      const user = await User.findById(userId);
-      const unfollower = await User.findById(unfollowerId);
-
-      if (!user || !unfollower) {
-          throw new Error('User or unfollower not found');
-      }
-
-      if(!user.followers.includes(unfollowerId)){
-          throw new Error('User is not a follower');
-      }
-      user.followers = user.followers.filter(followerId => followerId.toString() !== unfollowerId.toString());
-      unfollower.following = unfollower.following.filter(followingId => followingId.toString() !== userId.toString());
-      await user.save();
-      await unfollower.save();
-      return user;
+    const userId = req.body.userId;
+    const followingId = req.body.followingId;
+    const user = await removeFollowing(userId, followingId);
+    res.status(200).json({ user });
   } catch (err) {
-      throw new Error(err.message);
+    res.status(500).json({ message: err.message });
   }
 }; 
-const getFollowers = async (userId) => {
+const getFollowers = async(req, res) => {
   try {
-      const user = await User.findById(userId).populate('followers');
-      return { followers: user.followers };
+    const userId = req.params.userId;
+    const followers = await getFollowers(userId);
+    res.status(200).json({ followers });
   } catch (err) {
-      throw new Error(err.message);
+    res.status(500).json({ message: err.message });
   }
 }; 
-const getFollowing = async (userId) => {
+const getFollowing = async(req, res) => {
   try {
-      const user = await User.findById(userId).populate('following');
-      return { following: user.following };
+    const userId = req.body.userId;
+    const following = await getFollowing(userId);
+    res.status(200).json({ following });
   } catch (err) {
-      throw new Error(err.message);
+    res.status(500).json({ message: err.message });
   }
 }; 
 module.exports = {
@@ -352,4 +332,9 @@ module.exports = {
   forgetPassword,
   changePassword,
   GetOneUser,
+  addFollower,
+  removeFollowing, 
+  getFollowers, 
+  getFollowing,
+
 };

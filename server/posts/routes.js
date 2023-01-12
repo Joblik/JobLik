@@ -1,18 +1,13 @@
 const router = require("express").Router();
-const {
-  updatePost,
-  getAllPosts,
-  addPost,
-  deletePost,
-  getOnePost,
-  addComment,
+
+const  {getAllPosts ,
+       addPost , 
+       addLike, 
+       deletePostById,
 } = require("./controller");
 
-router.route("/getAllPosts").get(getAllPosts);
-router.route("/addPost").post(addPost);
-router.route("/addComment").post(addComment);
-router.route("/:id").get(getOnePost);
-router.route("/:id").put(updatePost);
-router.route("/:id").delete(deletePost);
-
+router.route('/getAllPosts').get(getAllPosts);
+router.route('/addPost').post(addPost);
+router.route('/addLike').post(addLike);
+router.route("/deletePost/:id").delete(deletePostById);
 module.exports = router;

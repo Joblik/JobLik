@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const { Schema} = mongoose;
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -28,24 +28,7 @@ const UserSchema = new mongoose.Schema({
 job:{
     type: String
 },
-domain:{ 
-  type: String
-},
-following: [
-  {
-      "userId": ObjectId()
-  },
-  {
-      "userId": ObjectId()
-  }
-],
-follower: [
-  {
-      "userId": ObjectId()
-  },
-  {
-      "userId": ObjectId()
-  }
-]
+
+
 });
 module.exports = mongoose.model("User", UserSchema);
