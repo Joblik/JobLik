@@ -13,7 +13,7 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await axios.get("http://192.168.103.7:8080/Posts/getAllPosts");
+      const response = await axios.get("http://192.168.103.18:8080/Posts/getAllPosts");
       setPosts(response.data);  
       setFilteredPosts(response.data)
     }
@@ -50,9 +50,9 @@ const Home = ({navigation}) => {
              marginBottom: 15,
            }}>
         
-      <Text style={styles.text}>{post.title}</Text>
-       <Text style={styles.text}>{post.description.slice(0,30)+'...'}</Text>
-       <Text style={styles.text}>{post.adress}</Text>
+      <Text style={styles.text}>{post.title?post.title:'No title'}</Text>
+       <Text style={styles.text}>{post.description?post.description.slice(0,30)+'...':'No description'}</Text>
+       <Text style={styles.text}>{post.adress?post.adress:'No Address'}</Text>
        <Text style={styles.text}>{post.userId}</Text>
      </Card>
           ))}
@@ -64,7 +64,7 @@ const Home = ({navigation}) => {
             placeholder="Search.."
             placeholderTextColor="#003f5c"
             onChangeText={(e) => {
-              setFilteredPosts(posts.filter(p => p.description.toLowerCase().includes(e.toLowerCase()) || p.title.toLowerCase().includes(e.toLowerCase()) || p.adress.toLowerCase().includes(e.toLowerCase())))
+              setFilteredPosts(posts.filter(p => p.description && p.description.toLowerCase().includes(e.toLowerCase()) || p.title && p.title.toLowerCase().includes(e.toLowerCase()) || p.adress && p.adress.toLowerCase().includes(e.toLowerCase())))
               console.log('filtered:'+filteredPosts +'/'+posts)
             }}
             

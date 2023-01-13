@@ -5,48 +5,54 @@ import Theme from '../../components/theme.css'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';
+import { Button } from 'react-native-elements';
 
 
 
 
 const Post = ({ navigation }) => {
     const [userId, setUserId] = useState(null);  // create a state variable for the user's _id
+    const [username, setUsername] = useState('');  // create a state variable for the username
 
     useEffect(() => {
-      async function getUserId() {
+      async function getUserInfos() {
         const id = await AsyncStorage.getItem("id");  // retrieve the user's _id from AsyncStorage
         setUserId(JSON.parse(id));  // update the state variable with the user's _id
+        const name = await AsyncStorage.getItem("name");  
+        setUsername(JSON.parse(name));  
       }
-      getUserId();
-      console.log("hyhy");
+      getUserInfos();
     }, []);
   
     const [description, setDescription] = useState("");
-    const [adress, setAdress] = useState("");
+    const adress  = {
+        lgt : AsyncStorage.getItem('lgt'),
+        lat : AsyncStorage.getItem('lat')
+    }
     const [title, setTitle] = useState("");
-    const [img, setImg] = useState("");
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      try {
-        const response = await axios.post(
-          "http://192.168.103.7:8080/Posts/addPost",
-          {
-            description: description,
-            adress: adress,
-            userId: userId, // use the userId state variable here
-            title: title,
-            img: img,
+      if(description || title || adress){
+        try {
+            const response = await axios.post(
+              "http://192.168.103.18:8080/Posts/addPost",
+              {
+                description: description,
+                adress: adress,
+                userId: userId, // use the userId state variable here
+                title: title,
+                img: undefined
+              }
+            );
+            console.log(response.data);
+            navigation.navigate('home')
+          } catch (error) {
+            console.log(error);
           }
-        );
-        console.log(response.data);
-        navigation.navigate("home");
-      } catch (error) {
-        console.log(error);
       }
+      
     };
-  
-    
 
     return (
         <View style={[Theme.mainScreen, Theme.whiteBack, Theme.p20]}>
@@ -82,6 +88,7 @@ const Post = ({ navigation }) => {
             </View>
             <View style={[Theme.flex8]}>
                 <View style={[Theme.flex8]}>
+                    <Text style={[Theme.f35,Theme.mb20,Theme.ml20]}>New Job Offer</Text>
                 <ScrollView style={[Theme.p10,]}>
                         <TextInput
                             onChangeText={e => setTitle(e)}
@@ -93,14 +100,12 @@ const Post = ({ navigation }) => {
                             multiline style={[Theme.f15, Theme.flex4, Theme.pb20]} placeholder={"Write down your description here..."} />
                     </ScrollView>
                     <ScrollView style={[Theme.p10, Theme.pt20,]}>
-                        <TextInput
-                            onChangeText={e => setAdress(e)}
-                            multiline style={[Theme.f15, Theme.flex5, Theme.pb20]} placeholder={"Write down your address here..."} />
-                    </ScrollView>
-                    <ScrollView style={[Theme.p10, Theme.pt20,]}>
-                        <TextInput
-                            onChangeText={e => setImg(e)}
-                            multiline style={[Theme.f15, Theme.flex5, Theme.pb20]} placeholder={"Image Link, if you want to add one"} />
+                        <Button
+                        title={'Select Location'} 
+                        onPress={
+                            navigation.navigate('map')
+                        }/>
+                        <Text>Your Coords : {adress.lat+':'+adress.lgt}</Text>
                     </ScrollView>
                 </View>
                 <View style={[Theme.flex3]}>
