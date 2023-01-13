@@ -8,7 +8,8 @@ import OTP from "./screens/otpScreen/otpScreen";
 import TabNav from "../Client/navigation/TabNav";
 import EditProfile from "./screens/userProfile/EditProfile";
 import following from "./screens/followings/Followings"
-import followers from "./screens/followings/Followings"
+import followers from "./screens/followings/Followings";
+import Map from "./screens/map/Map";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
