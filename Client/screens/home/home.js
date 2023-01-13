@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View,Dimensions,Text,TextInput,ScrollView } from "react-native";
 import {Card} from "react-native-elements"
-import axios from "axios";
+import client from "../../api/client";
 // import { useRefresh } from 'react-native-refresh-control';
 
 
@@ -13,13 +13,17 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     async function fetchPosts() {
+<<<<<<< HEAD
       const response = await axios.get("http://192.168.103.18:8080/Posts/getAllPosts");
+=======
+      const response = await client.get("/post/getAllPosts");
+>>>>>>> e0aad5efeba51881e15c168735cc65427deffd81
       setPosts(response.data);  
       setFilteredPosts(response.data)
     }
     fetchPosts(); 
   }, []);
-  console.log('posts:'+posts);
+  // console.log('posts:'+posts);
   const screenHeight = Dimensions.get('window').height;
 
   
@@ -50,9 +54,15 @@ const Home = ({navigation}) => {
              marginBottom: 15,
            }}>
         
+<<<<<<< HEAD
       <Text style={styles.text}>{post.title?post.title:'No title'}</Text>
        <Text style={styles.text}>{post.description?post.description.slice(0,30)+'...':'No description'}</Text>
        <Text style={styles.text}>{post.adress?post.adress:'No Address'}</Text>
+=======
+      <Text style={styles.text}>{post.title}</Text>
+       <Text style={styles.text}>{post.description}</Text>
+       <Text style={styles.text}>{post.adress}</Text>
+>>>>>>> e0aad5efeba51881e15c168735cc65427deffd81
        <Text style={styles.text}>{post.userId}</Text>
      </Card>
           ))}

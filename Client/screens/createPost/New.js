@@ -4,24 +4,20 @@ import { TouchableOpacity } from 'react-native'
 import Theme from '../../components/theme.css'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from 'axios';
-import { Button } from 'react-native-elements';
-
+import client from "../../api/client"
 
 
 
 const Post = ({ navigation }) => {
-    const [userId, setUserId] = useState(null);  // create a state variable for the user's _id
-    const [username, setUsername] = useState('');  // create a state variable for the username
+    const [userId, setUserId] = useState(null);  
 
     useEffect(() => {
-      async function getUserInfos() {
-        const id = await AsyncStorage.getItem("id");  // retrieve the user's _id from AsyncStorage
-        setUserId(JSON.parse(id));  // update the state variable with the user's _id
-        const name = await AsyncStorage.getItem("name");  
-        setUsername(JSON.parse(name));  
+      async function getUserId() {
+        const id = await AsyncStorage.getItem("id"); 
+        setUserId(JSON.parse(id));  
       }
-      getUserInfos();
+      getUserId();
+      
     }, []);
   
     const [description, setDescription] = useState("");
@@ -33,25 +29,22 @@ const Post = ({ navigation }) => {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      if(description || title || adress){
-        try {
-            const response = await axios.post(
-              "http://192.168.103.18:8080/Posts/addPost",
-              {
-                description: description,
-                adress: adress,
-                userId: userId, // use the userId state variable here
-                title: title,
-                img: undefined
-              }
-            );
-            console.log(response.data);
-            navigation.navigate('home')
-          } catch (error) {
-            console.log(error);
+      try {
+        const response = await client.post(
+          "/Posts/addPost",
+          {
+            description: description,
+            adress: adress,
+            userId: userId, // use the userId state variable here
+            title: title,
+            img: img,
           }
+        );
+        console.log(response.data);
+        navigation.navigate("home");
+      } catch (error) {
+        console.log(error);
       }
-      
     };
 
     return (

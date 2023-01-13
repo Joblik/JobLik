@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const { Schema} = mongoose;
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -23,13 +23,15 @@ const UserSchema = new mongoose.Schema({
       "https://res.cloudinary.com/dqmhtibfm/image/upload/v1672229902/icon-5359553_960_720_owjtc1.webp",
   },
   phone:{
-    type: String
+    type: Number,
+    // default: false,
+    
 },
 job:{
-    type: String
+    type: String,
+    // require: true,
 },
-domain:{ 
-  type: String
-},
+
+
 });
 module.exports = mongoose.model("User", UserSchema);

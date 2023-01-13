@@ -14,12 +14,11 @@ import axios from "axios";
 
    
 const CreatePost = ({ navigation }) => {
-  const [userId, setUserId] = useState(null);  // create a state variable for the user's _id
-
+  const [userId, setUserId] = useState(null);  
   useEffect(() => {
     async function getUserId() {
-      const id = await AsyncStorage.getItem("id");  // retrieve the user's _id from AsyncStorage
-      setUserId(JSON.parse(id));  // update the state variable with the user's _id
+      const id = await AsyncStorage.getItem("id"); 
+      setUserId(JSON.parse(id)); 
     }
     getUserId();
     console.log("hyhy");
@@ -34,7 +33,11 @@ const CreatePost = ({ navigation }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
+<<<<<<< HEAD
+        "http://192.168.104.26:8080/Posts/addPost",
+=======
         "http://192.168.103.7:8080/Posts/addPost",
+>>>>>>> 1f485fb7b843a2b54881cbe2a2ba005258be5b69
         {
           description: description,
           adress: adress,
