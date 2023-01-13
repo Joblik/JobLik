@@ -6,10 +6,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import OTP from "./screens/otpScreen/otpScreen";
 import EditProfile from "./screens/userProfile/EditProfile";
-// import following from "./screens/followings/Followings"
-import followers from "./screens/followings/Followings"
-import Chat from "./screens/Chat/Chat";
-import TabNav from "../Client/navigation/TabNav"
+import following from "./screens/followings/Followings"
+import followers from "./screens/followings/Followings";
+import Map from "./screens/map/Map";
+
 export default function App() {
   const Stack = createNativeStackNavigator();
 

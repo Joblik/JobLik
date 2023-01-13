@@ -21,9 +21,11 @@ const Post = ({ navigation }) => {
     }, []);
   
     const [description, setDescription] = useState("");
-    const [adress, setAdress] = useState("");
+    const adress  = {
+        lgt : AsyncStorage.getItem('lgt'),
+        lat : AsyncStorage.getItem('lat')
+    }
     const [title, setTitle] = useState("");
-    const [img, setImg] = useState("");
   
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -44,8 +46,6 @@ const Post = ({ navigation }) => {
         console.log(error);
       }
     };
-  
-    
 
     return (
         <View style={[Theme.mainScreen, Theme.whiteBack, Theme.p20]}>
@@ -81,6 +81,7 @@ const Post = ({ navigation }) => {
             </View>
             <View style={[Theme.flex8]}>
                 <View style={[Theme.flex8]}>
+                    <Text style={[Theme.f35,Theme.mb20,Theme.ml20]}>New Job Offer</Text>
                 <ScrollView style={[Theme.p10,]}>
                         <TextInput
                             onChangeText={e => setTitle(e)}
@@ -92,14 +93,12 @@ const Post = ({ navigation }) => {
                             multiline style={[Theme.f15, Theme.flex4, Theme.pb20]} placeholder={"Write down your description here..."} />
                     </ScrollView>
                     <ScrollView style={[Theme.p10, Theme.pt20,]}>
-                        <TextInput
-                            onChangeText={e => setAdress(e)}
-                            multiline style={[Theme.f15, Theme.flex5, Theme.pb20]} placeholder={"Write down your address here..."} />
-                    </ScrollView>
-                    <ScrollView style={[Theme.p10, Theme.pt20,]}>
-                        <TextInput
-                            onChangeText={e => setImg(e)}
-                            multiline style={[Theme.f15, Theme.flex5, Theme.pb20]} placeholder={"Image Link, if you want to add one"} />
+                        <Button
+                        title={'Select Location'} 
+                        onPress={
+                            navigation.navigate('map')
+                        }/>
+                        <Text>Your Coords : {adress.lat+':'+adress.lgt}</Text>
                     </ScrollView>
                 </View>
                 <View style={[Theme.flex3]}>

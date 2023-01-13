@@ -27,7 +27,11 @@ const LoginScreen = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
+<<<<<<< HEAD
+      const user = await axios.post("http://192.168.103.18:8080/Users/login", {
+=======
       const user = await client.post("/user/login", {
+>>>>>>> e0aad5efeba51881e15c168735cc65427deffd81
         email,
         password,
       });
@@ -48,7 +52,7 @@ const LoginScreen = ({ navigation }) => {
   <KeyboardAvoidingView behavior="position" style={styles.ScrollView}>
     <ScrollView contentContainerStyle={styles.contentContainer} >
       <SafeAreaView style={styles.container}>
-        <Image source={Logo} style={[styles.logo ,{height:height * 0.50}]} />
+        <Image source={Logo} style={[styles.logo ,{height:height * 0.45}]} />
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}
