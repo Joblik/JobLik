@@ -79,7 +79,7 @@ const OTP = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#003f5c",
+    // backgroundColor: "#003f5c",
     alignItems: "center",
     justifyContent: "center",
     padding: 80,
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: "80%",
-    backgroundColor: "#fb5b5a",
+    backgroundColor: "#003f5c",
     borderRadius: 25,
     height: 50,
     alignItems: "center",

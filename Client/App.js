@@ -6,7 +6,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import OTP from "./screens/otpScreen/otpScreen";
 import TabNav from "../Client/navigation/TabNav"
-import Map from "./screens/map/Map"
 import OnePost from "./screens/onePost/postScreen"
 
 import EditProfile from "./screens/userProfile/EditProfile";
@@ -20,7 +19,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="home"
+        initialRouteName="register"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="register" component={Register} />
