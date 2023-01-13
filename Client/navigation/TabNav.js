@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Colorss from "../components/Colorss";
 import Home from "../screens/home/home";
 import UserProfile from "../screens/userProfile/UserProfile";
-import CreatePost from "../screens/createPost/CreatePost";
-import New from "../screens/createPost/New"
+import New from "../screens/createPost/New";
 import Search from "../screens/Search";
 
 const Tab = createBottomTabNavigator();
 export default function TabNavigation() {
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
   return (
     <Tab.Navigator
       screenOptions={{
@@ -21,7 +21,7 @@ export default function TabNavigation() {
     >
       <Tab.Screen
         name="Home"
-        component={Home}
+        children={() => <Home isSearchVisible={isSearchVisible} />}
         options={{
           tabBarIcon: ({ size, focused }) => (
             <MaterialCommunityIcons
@@ -32,19 +32,25 @@ export default function TabNavigation() {
           ),
         }}
       />
-       <Tab.Screen
+      {/* <Tab.Screen
         name="Search"
-        component={Search}
+        children={() => (
+          <Search
+            isSearchVisible={isSearchVisible}
+            toggleSearch={() => setIsSearchVisible(!isSearchVisible)}
+          />
+        )}
         options={{
           tabBarIcon: ({ size, focused }) => (
             <MaterialCommunityIcons
               name="card-search"
               size={size}
               color={focused ? "#0274b3" : "gray"}
+              onPress={() => setIsSearchVisible(!isSearchVisible)}
             />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Post"
         component={New}
@@ -68,12 +74,9 @@ export default function TabNavigation() {
               size={size}
               color={focused ? "#0274b3" : "gray"}
             />
-            
           ),
         }}
       />
-      
     </Tab.Navigator>
-    
   );
 }

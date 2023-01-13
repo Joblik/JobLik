@@ -30,7 +30,7 @@ const Post = ({ navigation }) => {
       e.preventDefault();
       try {
         const response = await axios.post(
-          "http://192.168.103.7:8080/Posts/addPost",
+          "http://192.168.104.8:8080/Posts/addPost",
           {
             description: description,
             adress: adress,
@@ -53,9 +53,10 @@ const Post = ({ navigation }) => {
             <View style={[Theme.flex1, Theme.flxDirectionRow, style.bottomBorder]}>
                 <View style={[Theme.justifyCenter, Theme.pl10]}>
                     <TouchableOpacity
-                        onPressOut={()=>navigation.navigate("home")}
+                        onPress={()=>navigation.goBack() }
+                        
                     >
-                        <Icon name="close" color="#2c3e50" size={27} />
+                        <Icon name="close" color="#0274b3" size={27} />
                     </TouchableOpacity>
                 </View>
                 <View style={[Theme.justifyCenter, Theme.pl10]}>
@@ -68,7 +69,7 @@ const Post = ({ navigation }) => {
                     }
                        
                     >
-                        <Text style={[Theme.f17, Theme.fontBold, { color: "red" }]}>Post</Text>
+                        <Text style={[Theme.f17, Theme.fontBold, { color: "#0274b3" }]}>Post</Text>
                     </TouchableOpacity>
                 </View>
             </View>

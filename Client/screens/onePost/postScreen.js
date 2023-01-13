@@ -1,54 +1,180 @@
-import React from 'react'
-import { View , Text , Image , StyleSheet , ImageBackground, Button} from 'react-native'
-import Logo from '../../components/img/logo.png'
-import Input from '../../components/Input'
-import Footer from '../Footer'
-
-
-const PostScreen = (props) => {
-    console.log(props)
-    return (
-        <View>
-            <ImageBackground
-        source={{
-          uri: 
-'https://res.cloudinary.com/dqmhtibfm/image/upload/v1672263786/JobLik_xxx8ao.png',
+import * as React from "react";
+import { useState,useEffect} from "react";
+import { Text, StyleSheet, Image, View } from "react-native";
+import { Card } from "react-native-elements";
+const PostScreen = ({route}) => {
+    const post = route.params.post;
+  return (
+    <View style={styles.onePost}>
+  <Text style={[styles.somewhereInThe, styles.titleTypo, styles.titleTypo1, styles.dinarsTypo]}>
+  {post.address}
+  </Text>
+  <Text style={[styles.title, styles.iconPosition, styles.titleTypo, styles.titleTypo1]}>{post.title}</Text>
+  <Image
+    style={[styles.image17Icon, styles.iconPosition]}
+    resizeMode="cover"
+  />
+  <Image
+    style={[styles.onePostChild, styles.oneLayout]}
+    resizeMode="cover"
+  />
+  <Text style={[styles.comment, styles.likeTypo]}>Comment</Text>
+  <Image
+    style={[styles.onePostItem, styles.onePostItemPosition, styles.oneLayout]}
+    resizeMode="cover"
+  />
+  <Text style={[styles.like, styles.likeTypo]}>Like</Text>
+  <Text
+        style={{
+          color: "#B0B0B0",
+          marginTop: 40,
+          // fontFamily: "Bold",
+          fontWeight: "bold",
+          fontSize: 20,
         }}
-        style={styles.img}>
-            <Text style={styles.title}>{props.data.title}</Text>
-            <Text style={styles.desc}>{props.data.desc}</Text>
-            <Text style={styles.base}>Located : {props.data.loc}</Text>
-            <Text style={styles.base}>Reward : {props.data.reward}</Text>
-            <Text style={styles.base}>Recruiter : {props.data.recruiter}</Text>
-            <Button color="#000000" title='Apply'></Button>
-        </ImageBackground>
-            
-            <Footer /> 
-        </View>
-    )
-}
+      >
+        JobLik
+      </Text>
+  <View style={[styles.onePostInner, styles.onePostInnerLayout]} />
+  <Text style={[styles.loremIpsumDolorContainer, styles.onePostInnerLayout, styles.titleTypo, styles.titleTypo1, styles.dinarsTypo]}>
+    <Text style={styles.loremIpsumDolor}>{post.description}</Text>
+  </Text>
+  <Image
+    style={[styles.ellipseIcon, styles.onePostItemPosition]}
+    resizeMode="cover"
+    source={require("../../components/images/2.jpg")}
+  />
+  <Text style={[styles.username, styles.titleTypo, styles.titleTypo1]}>UserName</Text>
+</View>
+  );
+};
 
 const styles = StyleSheet.create({
-  
-    title: { 
-      fontSize: 40,
-      color: 'white'
-    },
-    desc: {
-        fontSize: 10,
-        color: 'white'
-    },
-    img: {
-     width: 290,
-    height: 250,
-    alignItems : 'center'
-    },
-    inbtn: {
-        color: 'black'
-    },
-    base:{
-        color: '#ffffff'
-    }
-  })
+  titleTypo: {
+    textAlign: "left",
+    fontFamily: "Inter",
+  },
+  titleTypo1: {
+    color: "#000",
+    textAlign: "left",
+    fontFamily: "Inter",
+  },
+  dinarsTypo: {
+    fontSize: 20,
+    color: "#000",
+  },
+  iconPosition: {
+    left: 37,
+    position: "absolute",
+  },
+  oneLayout: {
+    height: 62,
+    width: 173,
+    borderRadius: 15,
+  },
+  likeTypo: {
+    color: "#fff",
+    fontSize: 25,
+    top: 825,
+    textAlign: "left",
+    fontFamily: "Inter",
+    position: "absolute",
+  },
+  onePostItemPosition: {
+    left: 44,
+    position: "absolute",
+  },
+  onePostInnerLayout: {
+    height: 366,
+    position: "absolute",
+  },
+  somewhereInThe: {
+    top: 624,
+    left: 100,
+    position: "absolute",
+  },
+  title: {
+    top: 187,
+    fontSize: 45,
+  },
+  image17Icon: {
+    top: 616,
+    width: 34,
+    height: 41,
+  },
+  image18Icon: {
+    top: 679,
+    width: 33,
+    height: 33,
+  },
+  dinars: {
+    top: 683,
+    left: 108,
+    position: "absolute",
+  },
+  onePostChild: {
+    top: 809,
+    left: 213,
+    position: "absolute",
+  },
+  comment: {
+    left: 242,
+  },
+  onePostItem: {
+    top: 810,
+  },
+  like: {
+    left: 107,
+  },
+  joblik: {
+    top: 14,
+    left: 13,
+    fontSize: 32,
+    letterSpacing: 3.2,
+    color: "#1a3e4f",
+    textAlign: "left",
+    fontFamily: "Inter",
+    position: "absolute",
+  },
+  onePostInner: {
+    top: 241,
+    left: 26,
+    borderRadius: 10,
+    backgroundColor: "#d9d9d9",
+    width: 373,
+  },
+  loremIpsumDolor: {
+    marginBlockStart: 0,
+    marginBlockEnd: 0,
+  },
+  exEaCommodo: {
+    margin: 0,
+  },
+  loremIpsumDolorContainer: {
+    top: 258,
+    left: 39,
+    width: 351,
+  },
+  ellipseIcon: {
+    top: 107,
+    width: 56,
+    height: 63,
+  },
+  username: {
+    top: 130,
+    left: 137,
+    fontSize: 24,
+    width: 163,
+    height: 28,
+    position: "absolute",
+  },
+  onePost: {
+    backgroundColor: "#fffafa",
+    flex: 1,
+    width: "100%",
+    height: 932,
+    overflow: "hidden",
+  },
+});
 
 export default PostScreen;
