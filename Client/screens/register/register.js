@@ -32,19 +32,18 @@ const Register = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
-      const response = await client.post(
-        "/user/register",
+      const result = await axios.post("/user/register",
         {
           name,
           email,
           password,
         }
       );
-      alert(response.data.message);
+      alert(result.data.message);
       navigation.navigate("otp");
     } catch (error) {
       console.log(error);
-      alert(error.response.data.message);
+      alert(error.result.data.message);
     }
   }
   return (

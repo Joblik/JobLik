@@ -1,8 +1,8 @@
 const msgSchema = require("./models")
 
 const getAllMessage = (req, res) => {
-    console.log("==============> done");
-    msgSchema.find()
+    console.log("==============>");
+    msgSchema.find({})
       .then((response) => res.status(200).send(response))
       .catch((err) => res.status(400).send(err));
   };
@@ -21,7 +21,10 @@ const getAllMessage = (req, res) => {
       .then((response) => res.status(200).send(response))
       .catch((err) => res.status(400).send(err));
   };
+ 
+
   module.exports = {
     getAllMessage,
     addMessage,
+    getOnemsg
   };

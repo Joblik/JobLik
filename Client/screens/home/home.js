@@ -5,7 +5,7 @@ import client from "../../api/client";
 // import { useRefresh } from 'react-native-refresh-control';
 
 
-const Home = ({navigation}) => {
+const Home = () => {
   // const { refresh } = useRefresh();
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([])
