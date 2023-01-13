@@ -9,7 +9,6 @@ import TabNav from "../Client/navigation/TabNav"
 import Map from "./screens/map/Map"
 import OnePost from "./screens/onePost/postScreen"
 
-import TabNav from "../Client/navigation/TabNav";
 import EditProfile from "./screens/userProfile/EditProfile";
 import following from "./screens/followings/Followings"
 import followers from "./screens/followings/Followings"
