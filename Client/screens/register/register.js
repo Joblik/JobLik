@@ -11,9 +11,8 @@ import {
   Dimensions,
   KeyboardAvoidingView
 } from "react-native";
-
 import Logo from "../../components/img/logo.png";
-import axios from "axios";
+import client from "../../api/client";
 
 const Register = ({ navigation }) => {
   const { height } = Dimensions.get("window");
@@ -33,8 +32,8 @@ const Register = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
-      const response = await axios.post(
-        "http://192.168.1.175:8080/Users/register",
+      const response = await client.post(
+        "/user/register",
         {
           name,
           email,

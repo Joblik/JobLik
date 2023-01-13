@@ -4,8 +4,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Colorss from "../components/Colorss";
 import Home from "../screens/home/home";
 import UserProfile from "../screens/userProfile/UserProfile";
-import New from "../screens/createPost/New";
-import Search from "../screens/Search";
+import New from "../screens/createPost/New"
+
+
 
 const Tab = createBottomTabNavigator();
 export default function TabNavigation() {
@@ -32,7 +33,11 @@ export default function TabNavigation() {
           ),
         }}
       />
-      {/* <Tab.Screen
+
+       {/* <Tab.Screen
+
+  
+
         name="Search"
         children={() => (
           <Search
@@ -50,7 +55,12 @@ export default function TabNavigation() {
             />
           ),
         }}
+
       /> */}
+        
+
+      
+
       <Tab.Screen
         name="Post"
         component={New}

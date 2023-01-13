@@ -4,21 +4,20 @@ import { TouchableOpacity } from 'react-native'
 import Theme from '../../components/theme.css'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from 'axios';
-
+import client from "../../api/client"
 
 
 
 const Post = ({ navigation }) => {
-    const [userId, setUserId] = useState(null);  // create a state variable for the user's _id
+    const [userId, setUserId] = useState(null);  
 
     useEffect(() => {
       async function getUserId() {
-        const id = await AsyncStorage.getItem("id");  // retrieve the user's _id from AsyncStorage
-        setUserId(JSON.parse(id));  // update the state variable with the user's _id
+        const id = await AsyncStorage.getItem("id"); 
+        setUserId(JSON.parse(id));  
       }
       getUserId();
-      console.log("hyhy");
+      
     }, []);
   
     const [description, setDescription] = useState("");
@@ -29,8 +28,8 @@ const Post = ({ navigation }) => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const response = await axios.post(
-          "http://192.168.104.8:8080/Posts/addPost",
+        const response = await client.post(
+          "/Posts/addPost",
           {
             description: description,
             adress: adress,

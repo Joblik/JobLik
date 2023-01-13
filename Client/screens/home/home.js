@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {
-  StyleSheet,
+ 
   View,
-  Dimensions,
+ 
   Text,
   TextInput,
   ScrollView,
@@ -10,7 +10,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Card } from "react-native-elements";
-import axios from "axios";
+
+
+
+import client from "../../api/client";
 // import { useRefresh } from 'react-native-refresh-control';
 import { useNavigation } from '@react-navigation/native';
 const Home = () => {
@@ -21,11 +24,9 @@ const Home = () => {
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await axios.get(
-        "http://192.168.104.8:8080/Posts/getAllPosts"
-      );
-      setPosts(response.data);
-      setFilteredPosts(response.data);
+      const response = await client.get("/post/getAllPosts");
+      setPosts(response.data);  
+      setFilteredPosts(response.data)
     }
     fetchPosts();
   }, []);

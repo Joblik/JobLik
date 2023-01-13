@@ -7,6 +7,7 @@ const otpEmail = require("../emailTemp/otpTemp");
 const verifTemp = require("../emailTemp/verifiedTemp");
 const forgetPasswordTemp = require("../emailTemp/forgetPasswordTemp");
 
+
 const GetAllUser = async (req, res) => {
   try {
     await User.find({}).then((result) => {
@@ -20,7 +21,7 @@ const GetOneUser = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await User.findById(id);
-    res.json(user);
+    res.status(201).send(user);
   } catch (err) {
     return res.json(err);
   }
@@ -50,13 +51,15 @@ const DeleteOneUser = async (req, res) => {
 };
 
 const UpdateOneUser = async (req, res) => {
+  console.log("🚀 ~ file: controller.js:53 ~ UpdateOneUser ~ req", req.body);
+  console.log("🚀 ~ file: controller.js:53 ~ UpdateOneUser ~ req", req.params);
+  
+  
   try {
-    await User.updateOne(
-      { Pname: req.body.Pname },
-      { $set: { Pquantity: req.body.Pquantity } }
-    ).then((result) => {
-      res.json(result);
-    });
+    await User.updateOne()
+    _id = req.params.id
+    User.findByIdAndUpdate(_id,req.body,{new:true})
+    res.status(201).send({message:"updated successfully"})
   } catch (err) {
     return res.json(err);
   }
@@ -277,11 +280,50 @@ const changePassword = async (req, res) => {
 
     return res
       .status(200)
-      .json({ message: "Your password has been changed", Nuser });
+      .json({ message: "Your password has been changed", user });
   } catch (e) {
     return res.status(500).send(e);
   }
-};
+}; 
+
+const addFollower = async(req, res) => {
+  try {
+    const userId = req.body.userId;
+    const followerId = req.body.followerId;
+    const user = await addFollower(userId, followerId);
+    res.status(200).json({ user });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}; 
+const removeFollowing = async(req, res) => {
+  try {
+    const userId = req.body.userId;
+    const followingId = req.body.followingId;
+    const user = await removeFollowing(userId, followingId);
+    res.status(200).json({ user });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}; 
+const getFollowers = async(req, res) => {
+  try {
+    const userId = req.params.userId;
+    const followers = await getFollowers(userId);
+    res.status(200).json({ followers });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}; 
+const getFollowing = async(req, res) => {
+  try {
+    const userId = req.body.userId;
+    const following = await getFollowing(userId);
+    res.status(200).json({ following });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}; 
 module.exports = {
   UpdateOneUser,
   GetAllUser,
@@ -293,4 +335,9 @@ module.exports = {
   forgetPassword,
   changePassword,
   GetOneUser,
+  addFollower,
+  removeFollowing, 
+  getFollowers, 
+  getFollowing,
+
 };

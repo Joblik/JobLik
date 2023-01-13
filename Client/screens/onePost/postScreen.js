@@ -1,7 +1,5 @@
 import * as React from "react";
-import { useState,useEffect} from "react";
 import { Text, StyleSheet, Image, View } from "react-native";
-import { Card } from "react-native-elements";
 const PostScreen = ({route}) => {
     const post = route.params.post;
   return (
