@@ -1,120 +1,241 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View,Dimensions,Text,TextInput,ScrollView } from "react-native";
-import {Card} from "react-native-elements"
+import {
+ 
+  View,
+ 
+  Text,
+  TextInput,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import { Card } from "react-native-elements";
+
+
+
 import client from "../../api/client";
 // import { useRefresh } from 'react-native-refresh-control';
-
-
+import { useNavigation } from '@react-navigation/native';
 const Home = () => {
+  const navigation = useNavigation();
   // const { refresh } = useRefresh();
   const [posts, setPosts] = useState([]);
-  const [filteredPosts, setFilteredPosts] = useState([])
-
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
   useEffect(() => {
     async function fetchPosts() {
-<<<<<<< HEAD
-      const response = await axios.get("http://192.168.103.18:8080/Posts/getAllPosts");
-=======
       const response = await client.get("/post/getAllPosts");
->>>>>>> e0aad5efeba51881e15c168735cc65427deffd81
       setPosts(response.data);  
       setFilteredPosts(response.data)
     }
-    fetchPosts(); 
+    fetchPosts();
   }, []);
-  // console.log('posts:'+posts);
-  const screenHeight = Dimensions.get('window').height;
+  // // console.log('posts:'+posts);
 
-  
-  const cardHeight = screenHeight * 0.15;
-  
   return (
-    
-    <View style={styles.container}>
-      <View style={styles.scrollableContainer}>
+    <ScrollView
+      style={{
+        backgroundColor: "#F8F8F8",
+        paddingHorizontal: 20,
+      }}
+    >
+      <Text
+        style={{
+          color: "#B0B0B0",
+          marginTop: 40,
+          // fontFamily: "Bold",
+          fontWeight: "bold",
+          fontSize: 20,
+        }}
+      >
+        JobLik
+      </Text>
 
-        <Text style={{fontSize: 28}}>Welcome !</Text>
+      <Text
+        style={{
+          // fontFamily: "ExtraBold",
+          fontSize: 18,
+          marginTop: 13,
+          color: "rgb(14,49,65)",
+        }}
+      >
+        Find your best jobs
+      </Text>
 
-        <ScrollView 
-        //  refreshControl={
-        //   <RefreshControl
-        //     refreshing={refreshing}
-        //     onRefresh={refresh}
-        //   />
-        // }
+      <View
+        style={{
+          backgroundColor: "#FFF",
+          borderRadius: 5,
+          padding: 5,
+          flexDirection: "row",
+          alignItems: "center",
+          marginTop: 20,
+        }}
+      >
+        <TextInput
+          placeholder="What are you looking for?"
+          placeholderTextColor="#B0B0B0"
+          style={{
+            // fontFamily: "Medium",
+            paddingHorizontal: 20,
+          }}
+          onChangeText={(e) => {
+            setFilteredPosts(
+              posts.filter(
+                (filteredPosts) =>
+                  filteredPosts.description
+                    .toLowerCase()
+                    .includes(e.toLowerCase()) ||
+                  filteredPosts.title.toLowerCase().includes(e.toLowerCase()) ||
+                  filteredPosts.adress.toLowerCase().includes(e.toLowerCase())
+              )
+            );
+            // console.log('filtered:'+filteredfilteredPostsosts +'/'+filteredPostsosts)
+          }}
+        />
+        <View
+          style={{
+            backgroundColor: "rgb(14,49,65)",
+            width: 30,
+            height: 30,
+            borderRadius: 8,
+            marginLeft: 80,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
-          {
-          filteredPosts.map((post) => (
-           <Card key={post._id}
-           containerStyle={{
-             borderRadius: 20,
-             width: "90%",
-             height: cardHeight,
-             marginBottom: 15,
-           }}>
-        
-<<<<<<< HEAD
-      <Text style={styles.text}>{post.title?post.title:'No title'}</Text>
-       <Text style={styles.text}>{post.description?post.description.slice(0,30)+'...':'No description'}</Text>
-       <Text style={styles.text}>{post.adress?post.adress:'No Address'}</Text>
-=======
-      <Text style={styles.text}>{post.title}</Text>
-       <Text style={styles.text}>{post.description}</Text>
-       <Text style={styles.text}>{post.adress}</Text>
->>>>>>> e0aad5efeba51881e15c168735cc65427deffd81
-       <Text style={styles.text}>{post.userId}</Text>
-     </Card>
-          ))}
-        </ScrollView>
-      </View>
-      <View style={styles.inputView}>
-          <TextInput
-            style={styles.inputText}
-            placeholder="Search.."
-            placeholderTextColor="#003f5c"
-            onChangeText={(e) => {
-              setFilteredPosts(posts.filter(p => p.description && p.description.toLowerCase().includes(e.toLowerCase()) || p.title && p.title.toLowerCase().includes(e.toLowerCase()) || p.adress && p.adress.toLowerCase().includes(e.toLowerCase())))
-              console.log('filtered:'+filteredPosts +'/'+posts)
-            }}
-            
-          />
+          <Image source={require("../../components/images/searc.png")} />
         </View>
-    </View>
-  );
-}
-const styles = StyleSheet.create({
-  container: {
-    // backgroundColor: "#003f5c",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 85,
-  },
-  scrollableContainer: {
-    flexGrow: 1,
-    width:"160%"
-  },
-  text: {
-    fontSize: 16,
-    color: "#003f5c",
-  },
+      </View>
+      <Text
+        style={{
+          // fontFamily: "ExtraBold",
+          marginTop: 20,
+          fontSize: 15,
+        }}
+      >
+        Full time job offer
+      </Text>
 
-  inputView: {
-    width: "130%",
-    backgroundColor: "#FFFFF0",
-    borderRadius: 10,
-    height: 40,
-    justifyContent: "center",
-    padding: 10
-  },
-  inputText: {
-    height: 20,
-    textAlign: 'center',
-    color: "black",
-    marginBottom: 5,
-  },
-  
-  })
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <Card>
+          <View>
+            <Image
+              source={require("../../components/images/fair.jpg")}
+              style={{ width: 200, height: 200 }}
+            />
+          </View>
+        </Card>
+        <Card>
+          <View>
+            <Image
+              source={require("../../components/images/job.jpg")}
+              style={{ width: 200, height: 200 }}
+            />
+          </View>
+        </Card>
+        <Card>
+          <View>
+            <Image
+              source={require("../../components/images/empl.jpeg")}
+              style={{ width: 200, height: 200 }}
+            />
+          </View>
+        </Card>
+      </ScrollView>
+      <Text
+        style={{
+          // fontFamily: "ExtraBold",
+          marginVertical: 20,
+          fontSize: 15,
+          color: "rgb(14,49,65)",
+        }}
+      >
+        Your Today Job
+      </Text>
+
+      {filteredPosts.map((post) => (
+        <TouchableOpacity onPress={() => navigation.navigate("OnePost",{ post: post })}>
+          <View
+          key={post.UserId}
+            style={{
+              backgroundColor: post.status === "active" ? "#FFF" : "#DFDFDF",
+              marginTop: 10,
+              flexDirection: "row",
+              borderRadius: 10,
+              height: 130,
+              alignItems: "center",
+              paddingHorizontal: 20,
+            }}
+          >
+            <View
+              style={{
+                backgroundColor: "#DFDFDF",
+                borderRadius: 5,
+                height: 40,
+                width: 40,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                source={require("../../components/img/logo.png")}
+                style={{ width: 100, height: 100 }}
+              />
+            </View>
+
+            <View
+              style={{
+                paddingHorizontal: 20,
+              }}
+            >
+              <Text
+                style={{
+                  // fontFamily: "ExtraBold",
+                  fontSize: 13,
+                  marginTop: 20,
+                }}
+              >
+                {post.title}
+              </Text>
+
+              <View
+                style={{
+                  backgroundColor:
+                    post.status === "active" ? "#DFDFDF" : "#FFF",
+                  borderRadius: 5,
+                  width: 250,
+                  alignItems: "center",
+                  marginVertical: 5,
+                }}
+              >
+                <Text
+                  style={{
+                    // fontFamily: "Medium"
+                    fontSize: 15,
+                  }}
+                >
+                  {post.description.length > 60
+                    ? `${post.description.substring(0, 60)}...`
+                    : post.description}
+                </Text>
+              </View>
+            </View>
+            <Text
+              style={{
+                // fontFamily: "ExtraBold",
+                fontSize: 10,
+                marginLeft: 90,
+                marginBottom: 100,
+              }}
+            >
+              {post.adress}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      ))}
+    </ScrollView>
+  );
+};
 
 export default Home;
-

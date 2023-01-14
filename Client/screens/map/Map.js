@@ -18,6 +18,7 @@ export default function Map({ navigation }) {
     AsyncStorage.setItem('lgt',pin.longitude);
     AsyncStorage.setItem('lat',pin.latitude)
     console.log('confirmed coords: '+pin)
+    navigation.goBack()
   }
   useEffect(() => {
     (async () => {
