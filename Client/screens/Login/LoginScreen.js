@@ -48,7 +48,7 @@ const LoginScreen = ({ navigation }) => {
   <KeyboardAvoidingView behavior="position" style={styles.ScrollView}>
     <ScrollView contentContainerStyle={styles.contentContainer} >
       <SafeAreaView style={styles.container}>
-        <Image source={Logo} style={[styles.logo ,{height:height * 0.50}]} />
+        <Image source={Logo} style={[styles.logo ,{height:height * 0.45}]} />
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}

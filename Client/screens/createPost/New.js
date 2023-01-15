@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, Image, TextInput, ScrollView, ImageBackground } from 'react-native'
+import { View, Text, StyleSheet, Image, TextInput, ScrollView, ImageBackground,Button } from 'react-native'
 import { TouchableOpacity } from 'react-native'
 import Theme from '../../components/theme.css'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -8,9 +8,9 @@ import client from "../../api/client"
 
 
 
-const Post = ({ navigation }) => {
+const Post = ({navigation}) => {
     const [userId, setUserId] = useState(null);  
-
+   
     useEffect(() => {
       async function getUserId() {
         const id = await AsyncStorage.getItem("id"); 
@@ -21,21 +21,24 @@ const Post = ({ navigation }) => {
     }, []);
   
     const [description, setDescription] = useState("");
-    const [adress, setAdress] = useState("");
+    const adress  = {
+        lgt : AsyncStorage.getItem('lgt'),
+        lat : AsyncStorage.getItem('lat')
+    }
     const [title, setTitle] = useState("");
-    const [img, setImg] = useState("");
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+      console.log(JSON.stringify(adress));
       try {
         const response = await client.post(
-          "/Posts/addPost",
+          "/post/addPost",
           {
             description: description,
-            adress: adress,
+            adress: JSON.stringify(adress),
             userId: userId, // use the userId state variable here
             title: title,
-            img: img,
+        
           }
         );
         console.log(response.data);
@@ -44,17 +47,16 @@ const Post = ({ navigation }) => {
         console.log(error);
       }
     };
-  
-    
 
     return (
         <View style={[Theme.mainScreen, Theme.whiteBack, Theme.p20]}>
             <View style={[Theme.flex1, Theme.flxDirectionRow, style.bottomBorder]}>
                 <View style={[Theme.justifyCenter, Theme.pl10]}>
                     <TouchableOpacity
-                        onPressOut={()=>navigation.navigate("home")}
+                        onPress={()=>navigation.navigate("home") }
+                        
                     >
-                        <Icon name="close" color="#2c3e50" size={27} />
+                        <Icon name="close" color="#0274b3" size={27} />
                     </TouchableOpacity>
                 </View>
                 <View style={[Theme.justifyCenter, Theme.pl10]}>
@@ -67,7 +69,7 @@ const Post = ({ navigation }) => {
                     }
                        
                     >
-                        <Text style={[Theme.f17, Theme.fontBold, { color: "red" }]}>Post</Text>
+                        <Text style={[Theme.f17, Theme.fontBold, { color: "#0274b3" }]}>Post</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -81,6 +83,7 @@ const Post = ({ navigation }) => {
             </View>
             <View style={[Theme.flex8]}>
                 <View style={[Theme.flex8]}>
+                    <Text style={[Theme.f35,Theme.mb20,Theme.ml20]}>New Job Offer</Text>
                 <ScrollView style={[Theme.p10,]}>
                         <TextInput
                             onChangeText={e => setTitle(e)}
@@ -92,14 +95,14 @@ const Post = ({ navigation }) => {
                             multiline style={[Theme.f15, Theme.flex4, Theme.pb20]} placeholder={"Write down your description here..."} />
                     </ScrollView>
                     <ScrollView style={[Theme.p10, Theme.pt20,]}>
-                        <TextInput
-                            onChangeText={e => setAdress(e)}
-                            multiline style={[Theme.f15, Theme.flex5, Theme.pb20]} placeholder={"Write down your address here..."} />
-                    </ScrollView>
-                    <ScrollView style={[Theme.p10, Theme.pt20,]}>
-                        <TextInput
-                            onChangeText={e => setImg(e)}
-                            multiline style={[Theme.f15, Theme.flex5, Theme.pb20]} placeholder={"Image Link, if you want to add one"} />
+                        <Button
+                        title={'Select Location'} 
+                        onPress={
+                        
+                            ()=> navigation.navigate('Map')
+                            
+                        }/>
+                        <Text>Your Coords : {adress.lat+':'+adress.lgt}</Text>
                     </ScrollView>
                 </View>
                 <View style={[Theme.flex3]}>
