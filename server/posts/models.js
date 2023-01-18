@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Schema} = mongoose;
+const { Types} = mongoose.Schema;
 const PostsSchema = new mongoose.Schema({
   description: {
     type: String,
@@ -18,14 +18,14 @@ const PostsSchema = new mongoose.Schema({
     require: false,
   },
   userId: {
-    type: Schema.Types.ObjectId,
-    ref: "users",
+    type: Types.ObjectId,
+    ref: "User",
+    
     required: false,
   },
   likes: [
     {
-       type: Schema.Types.ObjectId, ref: 'User'
-
+       type: Types.ObjectId, ref: 'User'
     }
       ],
       
