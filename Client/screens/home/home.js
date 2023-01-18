@@ -20,6 +20,7 @@ const Home = () => {
   useEffect(() => {
     async function fetchPosts() {
       const response = await client.get("/post/getAllPosts");
+      console.log(response)
       setPosts(response.data);
       setFilteredPosts(response.data);
     }
@@ -208,6 +209,15 @@ const Home = () => {
               }}
             >
               {post.title}
+            </Text>
+            <Text
+              style={{
+                // fontFamily: "ExtraBold",
+                fontSize: 13,
+                marginTop: 20,
+              }}
+            >
+              {post.userId?.username || "User"}
             </Text>
 
             <View

@@ -3,13 +3,13 @@ const { Schema} = mongoose;
 const followersSchema = new mongoose.Schema({
   followersId: {
     type: Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
     required: false,
     unique: true,
   },
   userId: {
     type: Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
     required: false,
     unique: true,
   },

@@ -16,5 +16,6 @@ const msgSchema = new mongoose.Schema({
   createdAt: Date
 });
 
+
 const Msg = mongoose.model("Msg", msgSchema);
 module.exports = { Msg }; 
