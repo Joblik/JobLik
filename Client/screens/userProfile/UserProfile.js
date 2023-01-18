@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
+import{
   View,
   TouchableOpacity,
   ScrollView,
@@ -118,26 +118,7 @@ const Profile = ({ navigation }) => {
                   Theme.alignItemsCenter,
                 ]}
               >
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("following")}
-                >
-                  <Text style={[Theme.fontBold, Theme.linkedInFontColor]}>
-                    Followers
-                  </Text>
-                </TouchableOpacity>
-                <Icon
-                  color={"#596275"}
-                  style={[style.mr4, style.ml4]}
-                  name="circle"
-                  size={3}
-                />
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("following")}
-                >
-                  <Text style={[Theme.fontBold, Theme.linkedInFontColor]}>
-                    Following
-                  </Text>
-                </TouchableOpacity>
+              
               </View>
             </View>
             <View style={[Theme.flxDirectionRow]}>
@@ -153,9 +134,18 @@ const Profile = ({ navigation }) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={[Theme.btnM20, Theme.mr10, Theme.bgSilver]}
+                onPress={() =>  navigation.navigate("posts")}
               >
                 <Text style={[Theme.f15, Theme.whiteFont, Theme.fontBold]}>
                   Posts
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[Theme.btnM20, Theme.mr10, Theme.bgSilver]}
+                onPress={() =>  navigation.navigate("reclamation")}
+              >
+                <Text style={[Theme.f15, Theme.whiteFont, Theme.fontBold]}>
+                  Reclamation
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity

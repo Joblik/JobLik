@@ -33,7 +33,7 @@ const LoginScreen = ({ navigation }) => {
       });
 
       if (user) {
-        navigation.navigate("following");
+        navigation.navigate("UserProfile");
         console.log(user.data.id);
         AsyncStorage.setItem("token", JSON.stringify(user.data.token));
         AsyncStorage.setItem("id", JSON.stringify(user.data.id));

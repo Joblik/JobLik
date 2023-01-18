@@ -6,9 +6,11 @@ const postsRoutes = require("./posts/routes")
 const userRoutes = require("./users/routes")
 const commentRoutes = require("./comments/routes")
 const reclamationRoutes=require("./reclamation/routes")
+const msgRoutes = require("./msg/routes")
 
 app.use(express.json());
 app.use(cors());
+app.use("/msg",msgRoutes);
 app.use("/post",postsRoutes);
 app.use("/user",userRoutes);
 app.use("/comment",commentRoutes);

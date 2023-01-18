@@ -45,13 +45,7 @@ const Posts = ({navigation}) => {
     <View style={styles.container}>
        <View style={styles.root}>
        <TouchableOpacity onPress={() =>  navigation.navigate("posts")}>
-  <Text style={{fontSize:20, color:'black'}}>posts</Text>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => navigation.navigate("following")}>
-  <Text style={{fontSize:20, color:'black'}}>Following</Text>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => navigation.navigate("followers")}>
-  <Text style={{fontSize:20, color:'black'}}>Followers</Text>
+  <Text style={{fontSize:20, color:'black',marginLeft:50}}>posts</Text>
 </TouchableOpacity>
       </View>
     <View >
