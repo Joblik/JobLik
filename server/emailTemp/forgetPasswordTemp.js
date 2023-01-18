@@ -27,7 +27,7 @@ const ForgetPasswordEmail = ( LINK, TOKEN) => {
                         <td style="text-align:center;">
                           <a href="https://rakeshmandal.com" title="logo" target="_blank">
  
-                            <img width="60" src="https://i.ibb.co/KwBBFsZ/Job-Lik-1.png" alt="Job-Lik-1" title="logo" alt="logo">
+                            <img width="60" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/325558901_678133787328590_6883233010077711339_n.png?_nc_cat=110&ccb=1-7&_nc_sid=aee45a&_nc_ohc=Fde4sciell4AX_o3KWn&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdTM6nL-dZozAkeHZZNitcE4htJnMVsLGqNyvjCPiYWeHw&oe=63EBF71B" alt="Job-Lik-1" title="logo" alt="logo">
                           </a>
                         </td>
                     </tr>

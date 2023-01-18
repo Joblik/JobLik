@@ -4,7 +4,9 @@ import { TouchableOpacity } from 'react-native'
 import Theme from '../../components/theme.css'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import client from "../../api/client"
+import client from "../../api/client";
+import { Card } from "react-native-elements";
+
 
 
 
@@ -56,7 +58,7 @@ const Post = ({navigation}) => {
                         onPress={()=>navigation.navigate("home") }
                         
                     >
-                        <Icon name="close" color="#0274b3" size={27} />
+                        <Icon name="close" color="#0084ff" size={27} />
                     </TouchableOpacity>
                 </View>
                 <View style={[Theme.justifyCenter, Theme.pl10]}>
@@ -69,7 +71,7 @@ const Post = ({navigation}) => {
                     }
                        
                     >
-                        <Text style={[Theme.f17, Theme.fontBold, { color: "#0274b3" }]}>Post</Text>
+                        <Text style={[Theme.f17, Theme.fontBold, { color: "#0084ff" }]}>Post</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -84,6 +86,7 @@ const Post = ({navigation}) => {
             <View style={[Theme.flex8]}>
                 <View style={[Theme.flex8]}>
                     <Text style={[Theme.f35,Theme.mb20,Theme.ml20]}>New Job Offer</Text>
+                    <Card>
                 <ScrollView style={[Theme.p10,]}>
                         <TextInput
                             onChangeText={e => setTitle(e)}
@@ -95,7 +98,8 @@ const Post = ({navigation}) => {
                             multiline style={[Theme.f15, Theme.flex4, Theme.pb20]} placeholder={"Write down your description here..."} />
                     </ScrollView>
                     <ScrollView style={[Theme.p10, Theme.pt20,]}>
-                        <Button
+                        <Button 
+                        backgroundColor = {"#0084ff"}
                         title={'Select Location'} 
                         onPress={
                         
@@ -104,6 +108,7 @@ const Post = ({navigation}) => {
                         }/>
                         <Text>Your Coords : {adress.lat+':'+adress.lgt}</Text>
                     </ScrollView>
+                    </Card>
                 </View>
                 <View style={[Theme.flex3]}>
                     <ScrollView style={[Theme.p10, Theme.pt20, Theme.flex5]}>
@@ -122,11 +127,11 @@ const Post = ({navigation}) => {
 
 const style = StyleSheet.create({
     bottomBorder: {
-        borderBottomColor: "#bdc3c7",
+        borderBottomColor: "#0084ff",
         borderBottomWidth: 1
     },
     shareBtn: {
-        borderColor: "#bdc3c7",
+        borderColor: "#0084ff",
         borderWidth: 1,
         padding: 5
     },
