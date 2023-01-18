@@ -26,7 +26,7 @@ mongoose .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 })
 .catch((err) => console.log(err));
 
-const PORT = 3000;
+const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}...`);
 });

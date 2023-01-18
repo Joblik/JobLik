@@ -7,7 +7,7 @@ const otpEmail = require("../emailTemp/otpTemp");
 const verifTemp = require("../emailTemp/verifiedTemp");
 const forgetPasswordTemp = require("../emailTemp/forgetPasswordTemp");
 
-
+// function to get all Users
 const GetAllUser = async (req, res) => {
   try {
     await User.find({}).then((result) => {
@@ -17,6 +17,8 @@ const GetAllUser = async (req, res) => {
     return res.json(err);
   }
 };
+
+// function to get one User
 const GetOneUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -40,6 +42,7 @@ const addUser = async (req, res) => {
   }
 };
 
+// function to delete a User
 const DeleteOneUser = async (req, res) => {
   try {
     await User.deleteOne({ Pname: req.body.Pname }).then((result) => {
@@ -50,6 +53,8 @@ const DeleteOneUser = async (req, res) => {
   }
 };
 
+
+//function to update User
 const UpdateOneUser = async (req, res) => {
   console.log("🚀 ~ file: controller.js:53 ~ UpdateOneUser ~ req", req.body);
   console.log("🚀 ~ file: controller.js:53 ~ UpdateOneUser ~ req", req.params);
@@ -65,6 +70,8 @@ const UpdateOneUser = async (req, res) => {
   }
 };
 
+
+//Login function
 async function login(req, res) {
   try {
     const {
@@ -102,6 +109,8 @@ async function login(req, res) {
   }
 }
 
+
+//Register function 
 const register = async (req, res) => {
   try {
     const {
@@ -154,6 +163,8 @@ const register = async (req, res) => {
   }
 };
 
+
+//OTP function
 const otp = async (req, res) => {
   try {
     const {
@@ -208,6 +219,8 @@ const otp = async (req, res) => {
   }
 };
 
+
+//Forget password function 
 const forgetPassword = async (req, res) => {
   try {
     const {
@@ -245,6 +258,8 @@ const forgetPassword = async (req, res) => {
   }
 };
 
+
+//Change password function 
 const changePassword = async (req, res) => {
   try {
     const {
@@ -286,6 +301,8 @@ const changePassword = async (req, res) => {
   }
 }; 
 
+
+//Function to add a Follower
 const addFollower = async(req, res) => {
   try {
     const userId = req.body.userId;
@@ -296,6 +313,8 @@ const addFollower = async(req, res) => {
     res.status(500).json({ message: err.message });
   }
 }; 
+
+//Remove the Follower
 const removeFollowing = async(req, res) => {
   try {
     const userId = req.body.userId;
@@ -306,6 +325,8 @@ const removeFollowing = async(req, res) => {
     res.status(500).json({ message: err.message });
   }
 }; 
+
+// Get all the Followers
 const getFollowers = async(req, res) => {
   try {
     const userId = req.params.userId;
