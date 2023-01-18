@@ -52,7 +52,7 @@ export default function TabNavigation() {
 
       <Tab.Screen
         name="Profile"
-        component={Profile}
+        component={UserProfile}
         options={{
           tabBarIcon: ({ size, focused }) => (
             <MaterialCommunityIcons
@@ -65,8 +65,10 @@ export default function TabNavigation() {
       />
 
       <Tab.Screen
+
         name="Chat"
         component={AllChat}
+
         options={{
           tabBarIcon: ({ size, focused }) => (
             <MaterialCommunityIcons
