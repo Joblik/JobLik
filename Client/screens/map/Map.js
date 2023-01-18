@@ -70,6 +70,8 @@ export default function Map({ navigation }) {
   );
 }
 
+
+//ADD
 const styles = StyleSheet.create({
   container: {
     flex: 1,
