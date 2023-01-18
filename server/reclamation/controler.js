@@ -19,7 +19,7 @@ const addOneReclamation=(req, res) => {
         if (error) {
             res.status(500).send(error);
         } else {
-            res.send(newreclamation);
+            res.send(new reclamation);
         }
     });
 } 

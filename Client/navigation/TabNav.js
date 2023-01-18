@@ -3,9 +3,16 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Colorss from "../components/Colorss";
 import Home from "../screens/home/home";
+
 import UserProfile from "../screens/userProfile/UserProfile";
 import New from "../screens/createPost/New";
 import AllChat from "../screens/Chat/AllChat";
+
+import Profile from "../screens/userProfile/UserProfile";
+import New from "../screens/createPost/New"
+
+
+
 
 const Tab = createBottomTabNavigator();
 export default function TabNavigation() {
@@ -62,8 +69,10 @@ export default function TabNavigation() {
       />
 
       <Tab.Screen
+
         name="Chat"
         component={AllChat}
+
         options={{
           tabBarIcon: ({ size, focused }) => (
             <MaterialCommunityIcons

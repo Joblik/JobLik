@@ -1,59 +1,76 @@
 import React from 'react';
-import { View, Text, Button, FlatList, StyleSheet, Image } from 'react-native';
-import axios from 'axios';
+import { TouchableOpacity,View, Text, FlatList, StyleSheet, Image} from 'react-native';
+import { Card } from "react-native-elements";
+const users = ["user1","user2","user646","user4551","user36232","user6411","user6161","user494841","user656213","user9562","user65659","user652626","user956526","user595962","user965652","user595236"];
 
-async function getFollowers() {
-  try {
-    const response = await axios.get('https://localhost:8080/users/1');
-
-    const followers = response.data.followers;
-
-    console.log(followers);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-getFollowers();
-
-const Followers = () => {
+const Followers = ({navigation}) => {
   return (
     <View>
-      <Text style={{ fontSize: 22, fontWeight: 'bold', padding: 35, fontFamily: 'Roboto', textAlign: 'center' }}>User51115 have {users.length} followers</Text>
-      <Button title="Go Back" color='gray'/>
+      <View style={styles.root}>
+      <TouchableOpacity onPress={() =>  navigation.navigate("posts")}>
+  <Text style={{fontSize:20, color:'black'}}>posts</Text>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => navigation.navigate("following")}>
+  <Text style={{fontSize:20, color:'black'}}>Following</Text>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => navigation.navigate("followers")}>
+  <Text style={{fontSize:20, color:'black'}}>Followers</Text>
+</TouchableOpacity>
+      </View>
       <FlatList
-        style={styles.listContainer}
-        data={users}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <Image
-              source={{ uri: 'https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png' }}
-              style={{ width: 50, height: 50 }}
-            />
-            <Text>{item}</Text>
-            <Button title="..." color='gray'/>
-          </View>
-        )}
-        keyExtractor={item => item}
-      />
+    style={styles.listContainer}
+    data={users}
+    renderItem={({ item }) => (
+        <Card containerStyle={styles.listItem}>
+            <View style={styles.cardContent}>
+                <Image
+                    source={{ uri: 'https://res.cloudinary.com/dqmhtibfm/image/upload/v1670924296/samples/people/smiling-man.jpg' }}
+                    style={{ width: 50, height: 50, borderRadius: 25 }} 
+                />
+                <Text>{item}</Text>
+                <TouchableOpacity onPress={() => alert('your follow add !')}>
+  <Text style={{fontSize:20, color:'blue'}}>Delete</Text>
+</TouchableOpacity>
+            </View>
+        </Card>
+    )}
+    keyExtractor={item => item}
+/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   listContainer: {
-    marginBottom: 230,
-    backgroundColor: '#F5F5F5',
-    marginTop: 30
+      marginBottom: 230,
+      marginTop: 30
   },
   listItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#CCC'
-  }
+      borderRadius: 10,
+      padding: 30,
+      margin:10,
+      shadowColor: "#000",
+      shadowOffset: {
+          width: 0,
+          height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+  },
+  cardContent: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+  },
+  root: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      width: 400,
+      height: 80,
+      marginLeft:20,
+  },
 });
 
 export default Followers;
