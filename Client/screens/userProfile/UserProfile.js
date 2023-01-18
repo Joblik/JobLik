@@ -38,7 +38,7 @@ const Profile = ({ navigation }) => {
     
     fetchUser();
   }, [userId]);
-  // console.log("🚀 ~ file: UserProfile.js:49 ~ Profile ~ userId", userId)
+  console.log("🚀 ~ file: UserProfile.js:49 ~ Profile ~ userId", userId)
 
   return (
     <View style={[Theme.mainScreen, Theme.whiteBack, { marginTop: 30 }]}>
