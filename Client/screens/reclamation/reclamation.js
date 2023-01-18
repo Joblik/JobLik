@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react';
-import { View, TextInput, Button, Text, ActivityIndicator,Image} from 'react-native';
+import { View, TextInput, Button, Text, ActivityIndicator,Image,SafeAreaView} from 'react-native';
 import axios from 'axios';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const AddReclamation = ({navigation}) => {
@@ -20,7 +20,7 @@ const AddReclamation = ({navigation}) => {
         setIsLoading(true);
 
         try {
-            await axios.post("http://10.255.255.112:3000/reclamation/addOnereclamation", { reclamation, userId });
+            await axios.post("http://192.168.68.187:3000/reclamation/addOnereclamation", { reclamation, userId });
             setIsLoading(false);
         } catch (err) {
             setError(err);
@@ -29,19 +29,33 @@ const AddReclamation = ({navigation}) => {
     };
 
     return (
-        <View style={{ flexDirection: 'column', alignItems: 'center' , marginTop:500 }}>
-        <TextInput
+        <SafeAreaView style={{  padding: 50,  flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Image
+          style={[      {    padding: 100,    borderColor: "black",        borderWidth: 2,        borderRadius: 50,        height: 300,        width: 300,        marginBottom: -70,        alignItems: 'center' ,        flexDirection: 'column',      },    ]}
+          source={{
+            uri: "https://res.cloudinary.com/dqmhtibfm/image/upload/v1674077903/shutterstock_1039453264_s7y1rt.webp",
+          }}
+          size={120}
+        />
+        <View style={{  borderColor: "red",flex: 1, alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+        <View style={{  borderWidth: 2,        borderRadius: 50, borderColor: "black",backgroundColor: 'white', padding: 20, borderRadius: 10, width: '80%' }}>
+  <Text>Enter your reclamation and we will make sure it gets to the right person!</Text>
+</View>
+
+          <TextInput
             value={reclamation}
             onChangeText={text => setReclamation(text)}
             placeholder="Enter reclamation"
-        />
-        {isLoading ? (
+            style={{ width: '100%', padding: 10, margin: 10 }}
+          />
+          {isLoading ? (
             <ActivityIndicator size="small" color="#0000ff" />
-        ) : (
+          ) : (
             <Button title="Add Reclamation" onPress={handleAddReclamation} />
-        )}
-    </View>
-    
+          )}
+        </View>
+      </SafeAreaView>
+      
     );
 };
 export default AddReclamation;
