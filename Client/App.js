@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import OTP from "./screens/otpScreen/otpScreen";
 import TabNav from "../Client/navigation/TabNav"
 import OnePost from "./screens/onePost/postScreen"
-
+import Welcome from "./screens/welcome/welcome"
 import EditProfile from "./screens/userProfile/EditProfile";
 import following from "./screens/followings/Followings"
 import followers from "./screens/followings/Followings";
@@ -23,6 +23,7 @@ export default function App() {
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="register" component={Register} />
+        <Stack.Screen name="welcome" component={Welcome} />
         <Stack.Screen name="OnePost" component={OnePost}  />
         <Stack.Screen name="Map" component={Map} />
         <Stack.Screen name="login" component={LoginScreen} />

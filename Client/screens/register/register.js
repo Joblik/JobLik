@@ -104,6 +104,9 @@ const Register = ({ navigation }) => {
             Register Now
           </Text>
         </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.loginText}   onPress={()=>navigation.navigate("login") }>Login</Text>
+        </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
     </KeyboardAvoidingView >
@@ -148,7 +151,7 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: "80%",
-    backgroundColor: "#003f5c",
+    backgroundColor: "#0084ff",
     borderRadius: 25,
     height: 50,
     alignItems: "center",
