@@ -6,6 +6,9 @@ import Home from "../screens/home/home";
 import UserProfile from "../screens/userProfile/UserProfile";
 import New from "../screens/createPost/New";
 import AllChat from "../screens/Chat/AllChat";
+import Profile from "../screens/userProfile/UserProfile";
+
+
 
 const Tab = createBottomTabNavigator();
 export default function TabNavigation() {
@@ -49,7 +52,7 @@ export default function TabNavigation() {
 
       <Tab.Screen
         name="Profile"
-        component={UserProfile}
+        component={Profile}
         options={{
           tabBarIcon: ({ size, focused }) => (
             <MaterialCommunityIcons

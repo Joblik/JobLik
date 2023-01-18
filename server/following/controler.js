@@ -1,4 +1,4 @@
-const  following= require("./models")
+const  {following}= require("./models")
 
 const getAllFoloowing= (req, res) => {
     following.find({}, (error, followings) => {

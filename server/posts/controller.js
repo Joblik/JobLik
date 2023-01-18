@@ -1,5 +1,7 @@
 const {Post} = require("./models")
 const User = require("../users/models");
+
+//function to Create a Post
 const addPost = async (req, res) => {
     try {
       const posts = await Post.create(req.body);
@@ -8,6 +10,8 @@ const addPost = async (req, res) => {
       res.status(400).send(err);
     }
   };
+
+  //function to get all the Posts
   const getAllPosts = async (req, res) => {
     try {
       const posts = await Post.find({}).populate("userId","email username image");
@@ -30,6 +34,8 @@ const addPost = async (req, res) => {
       res.status(500).send(err);
     }
   };
+
+  //function to update the Post 
   const updatePostById = async (req, res) => {
     try {
       const post = await Post.findByIdAndUpdate(req.params.id, req.body, {
@@ -43,6 +49,8 @@ const addPost = async (req, res) => {
       res.status(500).send(err);
     }
   };
+
+  //function to Delete the Post 
   const deletePostById = async (req, res) => {
     try {
       const post = await Post.findByIdAndDelete(req.params.id);
