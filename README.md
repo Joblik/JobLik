@@ -13,3 +13,10 @@
 
 
 
+# In This Project :
+
+-Server Side : Express , Nodejs, Mongodb , Cors
+
+-Client Side : React native 
+
+-Admin Side : Nextjs , Chakra UI
