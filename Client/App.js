@@ -9,7 +9,10 @@ import User from "./screens/user/user";
 import EditProfile from "./screens/userProfile/EditProfile"
 import TabNav from "../Client/navigation/TabNav"
 import OnePost from "./screens/onePost/postScreen"
-import Posts from "./screens/posts/posts";
+import Welcome from "./screens/welcome/welcome"
+import EditProfile from "./screens/userProfile/EditProfile";
+import following from "./screens/followings/Followings"
+import followers from "./screens/followings/Followings";
 import Map from "./screens/map/Map";
 
 export default function App() {
@@ -23,6 +26,7 @@ export default function App() {
       >
          <Stack.Screen name="posts" component={Posts} />
         <Stack.Screen name="register" component={Register} />
+        <Stack.Screen name="welcome" component={Welcome} />
         <Stack.Screen name="OnePost" component={OnePost}  />
         <Stack.Screen name="Map" component={Map} /> 
         <Stack.Screen name="login" component={LoginScreen} />

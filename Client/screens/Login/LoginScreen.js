@@ -83,7 +83,7 @@ const LoginScreen = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={styles.loginText}>Signup</Text>
+          <Text style={styles.loginText}   onPress={()=>navigation.navigate("register") }>Signup</Text>
         </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: "80%",
-    backgroundColor: "#003f5c",
+    backgroundColor: "#0084ff",
     borderRadius: 25,
     height: 50,
     alignItems: "center",
