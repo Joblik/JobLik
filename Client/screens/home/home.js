@@ -81,8 +81,7 @@ const Home = () => {
                   filteredPosts.description
                     .toLowerCase()
                     .includes(e.toLowerCase()) ||
-                  filteredPosts.title.toLowerCase().includes(e.toLowerCase()) ||
-                  filteredPosts.adress.toLowerCase().includes(e.toLowerCase())
+                  filteredPosts.title.toLowerCase().includes(e.toLowerCase()) 
               )
             );
             // console.log('filtered:'+filteredfilteredPostsosts +'/'+filteredPostsosts)
