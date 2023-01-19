@@ -16,7 +16,7 @@ const Posts = ({navigation}) => {
       
       const fetchUser = async () => {
         try {
-          const response = await axios.get("http:/10.255.255.112:3000/post/getAllPosts");
+          const response = await axios.get("http:/192.168.104.6:5000/post/getAllPosts");
           const posts = response.data;
           setPosts(posts);
           const postList = posts.map(post => post);
@@ -44,8 +44,14 @@ const Posts = ({navigation}) => {
   return (
     <View style={styles.container}>
        <View style={styles.root}>
-       <TouchableOpacity onPress={() =>  navigation.navigate("posts")}>
-  <Text style={{fontSize:20, color:'black',marginLeft:50}}>posts</Text>
+      <TouchableOpacity onPress={() =>  navigation.navigate("posts")}>
+  <Text style={{fontSize:20, color:'black'}}>posts</Text>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => navigation.navigate("followings")}>
+  <Text style={{fontSize:20, color:'black'}}>Following</Text>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => navigation.navigate("followers")}>
+  <Text style={{fontSize:20, color:'black'}}>Followers</Text>
 </TouchableOpacity>
       </View>
     <View >

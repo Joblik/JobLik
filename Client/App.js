@@ -6,16 +6,18 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import OTP from "./screens/otpScreen/otpScreen";
 import User from "./screens/user/user";
-// import EditProfile from "./screens/userProfile/EditProfile"
-// import TabNav from "../Client/navigation/TabNav"
+import EditProfile from "./screens/userProfile/EditProfile"
+import TabNav from "./navigation/TabNav"
 import OnePost from "./screens/onePost/postScreen"
 import Welcome from "./screens/welcome/welcome"
 // import EditProfile from "./screens/userProfile/EditProfile";
 import Map from "./screens/map/Map";
 import Posts from "./screens/posts/posts"
-import Home from "./screens/home/home"
-import Profile from "./screens/userProfile/UserProfile"
+// import Home from "./screens/home/home"
+// import Profile from "./screens/userProfile/UserProfile"
 import AddReclamation from "./screens/reclamation/reclamation";
+import Followings from "./screens/followings/Followings"
+import Followers from "./screens/followers/Followers"
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -27,6 +29,8 @@ export default function App() {
 
         screenOptions={{ headerShown: false }}
       >
+         <Stack.Screen name="followers" component={Followers} />
+         <Stack.Screen name="followings" component={Followings} />
          <Stack.Screen name="posts" component={Posts} />
         <Stack.Screen name="register" component={Register} />
         <Stack.Screen name="welcome" component={Welcome} />
@@ -35,13 +39,10 @@ export default function App() {
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="otp" component={OTP} />
         <Stack.Screen name="user" component={User} />
-        <Stack.Screen name="home" component={Home}/>
+        <Stack.Screen name="home" component={TabNav}/>
         <Stack.Screen name="reclamation" component={AddReclamation}/>
-        <Stack.Screen name="UserProfile" component={Profile} />
-        {/* 
         <Stack.Screen name="UserProfile" component={TabNav} />
-        <Stack.Screen name="Search" component={TabNav} /> */}
-        {/* <Stack.Screen name="editProfile" component={EditProfile} />  */}
+        <Stack.Screen name="editProfile" component={EditProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -20,7 +20,7 @@ const AddReclamation = ({navigation}) => {
         setIsLoading(true);
 
         try {
-            await axios.post("http://192.168.68.187:3000/reclamation/addOnereclamation", { reclamation, userId });
+            await axios.post("http://192.168.104.6:5000/reclamation/addOnereclamation", { reclamation, userId });
             setIsLoading(false);
         } catch (err) {
             setError(err);
@@ -37,8 +37,8 @@ const AddReclamation = ({navigation}) => {
           }}
           size={120}
         />
-        <View style={{  borderColor: "red",flex: 1, alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-        <View style={{  borderWidth: 2,        borderRadius: 50, borderColor: "black",backgroundColor: 'white', padding: 20, borderRadius: 10, width: '80%' }}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+        <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10, width: '80%' }}>
   <Text>Enter your reclamation and we will make sure it gets to the right person!</Text>
 </View>
 

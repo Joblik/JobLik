@@ -20,7 +20,7 @@ const Followings = ({navigation}) => {
       
       const fetchUser = async () => {
         try {
-          const response = await axios.get("http://192.168.68.187:3000/following/getAllFoloowing");
+          const response = await axios.get("http://192.168.104.6:5000/followings/getAllFoloowing");
           const Followings = response.data;
           setFollowings(Followings);
           const FollowingsList = Followings.map(followings => followings);
@@ -50,7 +50,7 @@ const Followings = ({navigation}) => {
       <TouchableOpacity onPress={() =>  navigation.navigate("posts")}>
   <Text style={{fontSize:20, color:'black'}}>posts</Text>
 </TouchableOpacity>
-<TouchableOpacity onPress={() => navigation.navigate("following")}>
+<TouchableOpacity onPress={() => navigation.navigate("followings")}>
   <Text style={{fontSize:20, color:'black'}}>Following</Text>
 </TouchableOpacity>
 <TouchableOpacity onPress={() => navigation.navigate("followers")}>
