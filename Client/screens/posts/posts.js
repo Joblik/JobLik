@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Text, FlatList, StyleSheet ,TouchableOpacity,Image} from 'react-native';
-import axios from 'axios';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import client from '../../api/client'
 const Posts = ({navigation}) => {
   const [userId, setUserId] = useState(null);
     const [posts, setPosts] = useState([]);
@@ -16,7 +16,7 @@ const Posts = ({navigation}) => {
       
       const fetchUser = async () => {
         try {
-          const response = await axios.get("http:/192.168.104.6:5000/post/getAllPosts");
+          const response = await client.get("/post/getAllPosts");
           const posts = response.data;
           setPosts(posts);
           const postList = posts.map(post => post);
@@ -30,8 +30,8 @@ const Posts = ({navigation}) => {
     },[]);
     
     useEffect(() => {
-      if(userId){
-        const filteredPosts = PostList.filter(post => post.userId.includes(userId));
+      if(userId && PostList.length){
+        const filteredPosts = PostList.filter(post => post.userId === userId);
         setUserPosts(filteredPosts);
         console.log(UserPosts,"ggggggggg")
       }

@@ -1,5 +1,4 @@
 const {Msg} = require("./models")
-
 const getAllMessage = (req, res) => {
     console.log("==============> done");
     Msg.find()
@@ -14,14 +13,12 @@ const getAllMessage = (req, res) => {
         receiver: req.body.receiver,
         createdAt: new Date()
       });
-
       await newMessage.save();
       res.status(201).json({ message: "Message added successfully" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
   };
-
   const getOnemsg = (req, res) => {
     Msg.findOne({ _id: req.params.id })
       .then((response) => res.status(200).send(response))

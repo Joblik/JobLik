@@ -11,11 +11,12 @@ import TabNav from "./navigation/TabNav"
 import OnePost from "./screens/onePost/postScreen"
 import Welcome from "./screens/welcome/welcome"
 // import EditProfile from "./screens/userProfile/EditProfile";
-import Map from "./screens/map/Map";
 import Posts from "./screens/posts/posts"
 // import Home from "./screens/home/home"
 // import Profile from "./screens/userProfile/UserProfile"
 import AddReclamation from "./screens/reclamation/reclamation";
+import AllChat from "./screens/Chat/AllChat"
+import OneChat from "./screens/Chat/OneChat"
 import Followings from "./screens/followings/Followings"
 import Followers from "./screens/followers/Followers"
 export default function App() {
@@ -24,18 +25,17 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-
-        initialRouteName="home"
-
+        initialRouteName="OneChat"
         screenOptions={{ headerShown: false }}
       >
          <Stack.Screen name="followers" component={Followers} />
          <Stack.Screen name="followings" component={Followings} />
          <Stack.Screen name="posts" component={Posts} />
+         <Stack.Screen name="AllChat" component={AllChat} />
+         <Stack.Screen name="OneChat" component={OneChat} />
         <Stack.Screen name="register" component={Register} />
         <Stack.Screen name="welcome" component={Welcome} />
         <Stack.Screen name="OnePost" component={OnePost}  />
-        <Stack.Screen name="Map" component={Map} /> 
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="otp" component={OTP} />
         <Stack.Screen name="user" component={User} />

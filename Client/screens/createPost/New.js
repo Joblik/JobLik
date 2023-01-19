@@ -12,7 +12,9 @@ import { Card } from "react-native-elements";
 
 const Post = ({navigation}) => {
     const [userId, setUserId] = useState(null);  
-   
+    const [description, setDescription] = useState("");
+    const [title, setTitle] = useState("");
+   const [adress, setAddress] = useState("");
     useEffect(() => {
       async function getUserId() {
         const id = await AsyncStorage.getItem("id"); 
@@ -22,22 +24,17 @@ const Post = ({navigation}) => {
       
     }, []);
   
-    const [description, setDescription] = useState("");
-    const adress  = {
-        lgt : AsyncStorage.getItem('lgt'),
-        lat : AsyncStorage.getItem('lat')
-    }
-    const [title, setTitle] = useState("");
+    
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(JSON.stringify(adress));
+     
       try {
         const response = await client.post(
           "/post/addPost",
           {
             description: description,
-            adress: JSON.stringify(adress),
+            adress: adress,
             userId: userId, // use the userId state variable here
             title: title,
         
@@ -67,7 +64,7 @@ const Post = ({navigation}) => {
                 <View style={[Theme.flex1, Theme.justifyCenter, Theme.alignEnd, Theme.pr30]}>
                     <TouchableOpacity
                        onPress={
-                        handleSubmit
+                        handleSubmit 
                     }
                        
                     >
@@ -98,15 +95,9 @@ const Post = ({navigation}) => {
                             multiline style={[Theme.f15, Theme.flex4, Theme.pb20]} placeholder={"Write down your description here..."} />
                     </ScrollView>
                     <ScrollView style={[Theme.p10, Theme.pt20,]}>
-                        <Button 
-                        backgroundColor = {"#0084ff"}
-                        title={'Select Location'} 
-                        onPress={
-                        
-                            ()=> navigation.navigate('Map')
-                            
-                        }/>
-                        <Text>Your Coords : {adress.lat+':'+adress.lgt}</Text>
+                    <TextInput
+                            onChangeText={e => setAddress(e)}
+                            multiline style={[Theme.f15, Theme.flex4, Theme.pb20]} placeholder={"Write down your Adress here..."} />
                     </ScrollView>
                     </Card>
                 </View>

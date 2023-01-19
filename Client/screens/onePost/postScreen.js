@@ -76,7 +76,7 @@ const PostScreen = ({route , navigation}) => {
     resizeMode="cover"
     source={require("../../components/images/2.jpg")}
   />
-  <Text style={[styles.username, styles.titleTypo, styles.titleTypo1]}>UserName</Text>
+  <Text style={[styles.username, styles.titleTypo, styles.titleTypo1]}>{post.userId?.username || "Username"} </Text>
   <TouchableOpacity style={{
                 // fontFamily: "ExtraBold",
                 fontSize: 13,

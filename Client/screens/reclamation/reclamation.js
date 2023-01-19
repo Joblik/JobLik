@@ -1,7 +1,8 @@
 import { useState,useEffect } from 'react';
 import { View, TextInput, Button, Text, ActivityIndicator,Image,SafeAreaView} from 'react-native';
-import axios from 'axios';
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import client from "../../api/client"
 const AddReclamation = ({navigation}) => {
     const [reclamation, setReclamation] = useState('');
     const [userId, setUserId] = useState('');
@@ -20,7 +21,7 @@ const AddReclamation = ({navigation}) => {
         setIsLoading(true);
 
         try {
-            await axios.post("http://192.168.104.6:5000/reclamation/addOnereclamation", { reclamation, userId });
+            await client.post("/reclamation/addOnereclamation", { reclamation, userId });
             setIsLoading(false);
         } catch (err) {
             setError(err);

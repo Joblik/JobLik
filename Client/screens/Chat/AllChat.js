@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Image, StyleSheet, Text, View,Dimensions } from "react-native";
 import client from "../../api/client"
+import { useNavigation } from "@react-navigation/native";
 const AllChat = () => {
+  const navigation = useNavigation();
     const [messages, setMessages] = useState([]);
     const screenWidth = Dimensions.get('window').width;
     const screenHeight = Dimensions.get('window').height;
@@ -29,16 +31,18 @@ const AllChat = () => {
                 </Text>
             </View>
             {messages.map(message => (
-                <MessageItem message={message} key={message._id} />
+                <MessageItem message={message} key={message._id} navigation={navigation} />
             ))}
         </View>
     );
 };
 
-const MessageItem = ({ message }) => {
+const MessageItem = ({ message , navigation }) => {
     return (
         <View style={[styles.monadaParent, styles.allChatBg,{marginLeft:15}]}>
-            <Text style={[styles.monada, styles.textFlexBox, styles.monadaTypo,{marginTop:22}]}>
+            <Text style={[styles.monada, styles.textFlexBox, styles.monadaTypo,{marginTop:22}]}
+             onPress={()=>navigation.navigate("OneChat") }
+            >
                 {message.receiver}
             </Text>
             <Image
