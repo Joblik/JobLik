@@ -50,7 +50,7 @@ function Dashboard() {
           color="bcPrimary.sea"
           fontWeight="medium"
         >
-          JobLik Visitors Estimation
+          JobLik Visitors
         </Heading>
         <DoubleColumnChart />
       </Box>

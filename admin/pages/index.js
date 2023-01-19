@@ -54,7 +54,7 @@ const Login = () => {
           alignItems="center"
         >
           <Img
-            src="./images/jbl.png"
+            src="./images/jbl.jpeg"
             alt="BC Hydro Symbol"
             boxSize="250px"
             objectFit="cover"
@@ -96,7 +96,9 @@ const Login = () => {
                   </FormHelperText>
                 </FormControl>
                 <NextLink href="/dashboard">
-                  <CustomButton width="100%">Log In</CustomButton>
+                  <CustomButton width="100%" backgroundColor="#00BFFF">
+                    Log In
+                  </CustomButton>
                 </NextLink>
               </Stack>
             </form>
