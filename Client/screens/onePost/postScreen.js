@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import client from "../../api/client";
-import { Text, StyleSheet, Image, View,TouchableOpacity } from "react-native";
+import { Text, StyleSheet, Image, View,TouchableOpacity,Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const PostScreen = ({route , navigation}) => {
@@ -33,6 +33,9 @@ const PostScreen = ({route , navigation}) => {
   }
     const post = route.params.post;
     const user = route.params.user;
+    const userPost = post.userId._id;
+console.log(userPost); 
+
   return (
     <View style={styles.onePost}>
   <Text style={[styles.somewhereInThe, styles.titleTypo, styles.titleTypo1, styles.dinarsTypo]}>
@@ -76,7 +79,7 @@ const PostScreen = ({route , navigation}) => {
     resizeMode="cover"
     source={require("../../components/images/2.jpg")}
   />
-  <Text style={[styles.username, styles.titleTypo, styles.titleTypo1]}>{post.userId?.username || "Username"} </Text>
+  <Text style={[styles.username, styles.titleTypo, styles.titleTypo1]}>UserName</Text>
   <TouchableOpacity style={{
                 // fontFamily: "ExtraBold",
                 fontSize: 13,
@@ -92,6 +95,10 @@ const PostScreen = ({route , navigation}) => {
       }}>
   <Text style={{marginRight:5}}>Like</Text>
   <Image source={require("../../components/welcome/likes.png")} style={{width: 20, height: 20}} />
+  <Button
+      title="Go to Child Component"
+      onPress={() => navigation.navigate('user', { userPost })}
+    />
 </TouchableOpacity>
 </View>
 
