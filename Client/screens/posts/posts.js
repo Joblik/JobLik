@@ -44,8 +44,14 @@ const Posts = ({navigation}) => {
   return (
     <View style={styles.container}>
        <View style={styles.root}>
-       <TouchableOpacity onPress={() =>  navigation.navigate("posts")}>
-  <Text style={{fontSize:20, color:'black',marginLeft:50}}>posts</Text>
+      <TouchableOpacity onPress={() =>  navigation.navigate("posts")}>
+  <Text style={{fontSize:20, color:'black'}}>posts</Text>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => navigation.navigate("followings")}>
+  <Text style={{fontSize:20, color:'black'}}>Following</Text>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => navigation.navigate("followers")}>
+  <Text style={{fontSize:20, color:'black'}}>Followers</Text>
 </TouchableOpacity>
       </View>
     <View >

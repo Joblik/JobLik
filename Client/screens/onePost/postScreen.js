@@ -15,8 +15,8 @@ const PostScreen = ({route , navigation}) => {
   }, []);
   const handleLike = async (postId) => {
     try {
-      const id = await AsyncStorage.getItem("id");
-      const userId = JSON.parse(id);
+      // const id = await AsyncStorage.getItem("id");
+      // const userId = JSON.parse(id);
       const response = await client.post('/post/addLike', 
       { 
         postId:postId,

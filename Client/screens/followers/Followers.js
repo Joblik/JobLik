@@ -10,7 +10,7 @@ const Followers = ({navigation}) => {
       <TouchableOpacity onPress={() =>  navigation.navigate("posts")}>
   <Text style={{fontSize:20, color:'black'}}>posts</Text>
 </TouchableOpacity>
-<TouchableOpacity onPress={() => navigation.navigate("following")}>
+<TouchableOpacity onPress={() => navigation.navigate("followings")}>
   <Text style={{fontSize:20, color:'black'}}>Following</Text>
 </TouchableOpacity>
 <TouchableOpacity onPress={() => navigation.navigate("followers")}>

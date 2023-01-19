@@ -38,8 +38,8 @@ const AddReclamation = ({navigation}) => {
           }}
           size={120}
         />
-        <View style={{  borderColor: "red",flex: 1, alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-        <View style={{  borderWidth: 2,        borderRadius: 50, borderColor: "black",backgroundColor: 'white', padding: 20, borderRadius: 10, width: '80%' }}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+        <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10, width: '80%' }}>
   <Text>Enter your reclamation and we will make sure it gets to the right person!</Text>
 </View>
 
