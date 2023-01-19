@@ -7,6 +7,7 @@ const userRoutes = require("./users/routes")
 const commentRoutes = require("./comments/routes")
 const reclamationRoutes=require("./reclamation/routes")
 const msgRoutes = require("./msg/routes")
+const followingsRoutes=require("./following/routes")
 
 app.use(express.json());
 app.use(cors());
@@ -15,6 +16,7 @@ app.use("/post",postsRoutes);
 app.use("/user",userRoutes);
 app.use("/comment",commentRoutes);
 app.use("/reclamation",reclamationRoutes);
+app.use("/followings",followingsRoutes)
 
 const db= "mongodb+srv://root:root@cluster0.anvgobs.mongodb.net/?retryWrites=true&w=majority"; 
 mongoose.set('strictQuery',true) 

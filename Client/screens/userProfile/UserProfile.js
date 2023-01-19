@@ -121,6 +121,21 @@ const Profile = ({ navigation }) => {
               
               </View>
             </View>
+            <TouchableOpacity
+                      
+                      onPress={() => navigation.navigate('posts')}>
+                      <Text>Posts</Text>
+                  </TouchableOpacity>
+            <TouchableOpacity
+                      
+                        onPress={() => navigation.navigate('Followers')}>
+                        <Text>Followers</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+
+                        onPress={() => navigation.navigate('followings')}>
+                        <Text >Following</Text>
+                    </TouchableOpacity>
             <View style={[Theme.flxDirectionRow]}>
               <TouchableOpacity
                 style={[Theme.btnM50, Theme.mr10, Theme.linkedinBack]}
@@ -130,14 +145,6 @@ const Profile = ({ navigation }) => {
               >
                 <Text style={[Theme.whiteFont, Theme.fontBold, Theme.f15]}>
                   Edit Profile
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[Theme.btnM20, Theme.mr10, Theme.bgSilver]}
-                onPress={() =>  navigation.navigate("posts")}
-              >
-                <Text style={[Theme.f15, Theme.whiteFont, Theme.fontBold]}>
-                  Posts
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -271,6 +278,7 @@ const Profile = ({ navigation }) => {
                     </Text>
                   </View>
                 </View>
+               
               </View>
             </View>
           </View>
@@ -312,6 +320,15 @@ const style = StyleSheet.create({
     borderBottomWidth: 1,
     borderStyle: "dotted",
   },
+  statsButtonText:{
+    color : "blue"
+},
+statsButton: {
+  padding: 10,
+  borderWidth: 1,
+  borderColor: '#ddd',
+  marginHorizontal: 10,
+},
 });
 
 export default Profile;
