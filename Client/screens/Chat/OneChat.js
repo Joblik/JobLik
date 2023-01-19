@@ -1,13 +1,15 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Image, ImageBackground } from "react-native";
-// import { Border, Color, FontFamily, FontSize } from "../GlobalStyles";
+import { StyleSheet, View, Text, Image, ImageBackground,Dimensions } from "react-native";
 
 const OneChatIcon = () => {
+  const screenWidth = Dimensions.get('window').width;
+  const screenHeight = Dimensions.get('window').height;
   return (
     <ImageBackground
-      style={styles.oneChatIcon}
+      style={[styles.oneChatIcon, {width: screenWidth, height: screenHeight}]}
+      
       resizeMode="cover"
-      source={require("../assets/onechat.png")}
+      source={require("../../components/images/griis.jpg")}
     >
       <View style={[styles.oneChatChild, styles.oneLayout]} />
       <Text style={[styles.salut, styles.salutTypo]}>salut</Text>
@@ -18,15 +20,15 @@ const OneChatIcon = () => {
           <Text style={styles.text}>{` `}</Text>
         </Text>
       </Text>
-      <View style={styles.component1}>
+      <View style={[styles.component1,{width: screenWidth}]}>
         <View style={[styles.allChatWrapper, styles.allChatWrapperPosition]}>
-          <Text style={[styles.allChat, styles.allTypo]}>Monada</Text>
+        
         </View>
         <Text style={[styles.allChat1, styles.allTypo]}>Monada</Text>
         <Image
-          style={styles.unsplash1onzhgu751aIcon}
+          style={[styles.unsplash1onzhgu751aIcon]}
           resizeMode="cover"
-          source={require("../assets/unsplash1onzhgu751a.png")}
+          source={require("../../components/images/griis.jpg")}
         />
       </View>
       <View style={styles.component2}>
@@ -48,10 +50,10 @@ const styles = StyleSheet.create({
     ],
     height: 48,
     width: 178,
-    borderBottomLeftRadius: Border.br_sm,
-    borderBottomRightRadius: Border.br_sm,
-    borderTopRightRadius: Border.br_sm,
-    backgroundColor: Color.white,
+    borderBottomLeftRadius: 6,
+    borderBottomRightRadius: 6,
+    borderTopRightRadius: 6,
+    backgroundColor: "#fff",
     position: "absolute",
   },
   salutTypo: {
@@ -60,9 +62,9 @@ const styles = StyleSheet.create({
     textAlign: "right",
     alignItems: "center",
     display: "flex",
-    color: Color.black,
-    fontFamily: FontFamily.nice,
-    fontSize: FontSize.size_sm,
+    color: "#000",
+    fontFamily: "Roboto",
+    fontSize: 13,
     position: "absolute",
   },
   hoyPosition: {
@@ -88,30 +90,30 @@ const styles = StyleSheet.create({
       height: 4,
     },
     textShadowColor: "rgba(0, 0, 0, 0.25)",
-    color: Color.white,
+    color: "#fff",
     fontWeight: "700",
-    fontSize: FontSize.nice_size,
+    fontSize: 24,
     textAlign: "left",
     alignItems: "center",
-    fontFamily: FontFamily.nice,
+    fontFamily: "Roboto",
     position: "absolute",
   },
   oneChatChild: {
     top: 126,
-    left: 353,
+    left: 220,
   },
   salut: {
     top: 127,
     left: 190,
   },
   oneChatItem: {
-    backgroundColor: Color.gray_100,
+    backgroundColor: "#c4c4c4",
   },
   hoy1: {
     color: "#e5e5e5",
   },
   text: {
-    color: Color.black,
+    color: "#000",
   },
   hoyTxt: {
     lineBreak: "anywhere",
@@ -120,8 +122,8 @@ const styles = StyleSheet.create({
   hoy: {
     textAlign: "center",
     alignItems: "center",
-    fontFamily: FontFamily.nice,
-    fontSize: FontSize.size_sm,
+    fontFamily: "Roboto",
+    fontSize: 13,
     width: 66,
     left: 154,
     top: 96,
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
     height: 45,
   },
   allChatWrapper: {
-    backgroundColor: Color.blue2,
+    backgroundColor: "#2d9cdb",
     overflow: "hidden",
   },
   allChat1: {
@@ -150,9 +152,9 @@ const styles = StyleSheet.create({
       height: 4,
     },
     textShadowColor: "rgba(0, 0, 0, 0.25)",
-    color: Color.white,
+    color: "#fff",
     fontWeight: "700",
-    fontSize: FontSize.nice_size,
+    fontSize: 24,
   },
   unsplash1onzhgu751aIcon: {
     height: "63.95%",
@@ -174,8 +176,8 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   component2Child: {
-    borderRadius: Border.br_md,
-    backgroundColor: Color.white,
+    borderRadius: 20,
+    backgroundColor: "#fff",
     left: "0%",
     bottom: "0%",
     right: "0%",
@@ -188,11 +190,11 @@ const styles = StyleSheet.create({
     top: "7.5%",
     left: "4.51%",
     fontSize: 14,
-    color: Color.gray_100,
+    color: "#c4c4c4",
     textAlign: "left",
     alignItems: "center",
     display: "flex",
-    fontFamily: FontFamily.nice,
+    fontFamily: "Roboto",
     position: "absolute",
   },
   component2: {
@@ -204,7 +206,7 @@ const styles = StyleSheet.create({
   },
   oneChatInner: {
     top: 184,
-    left: 191,
+    left: 15,
   },
   hello: {
     top: 186,

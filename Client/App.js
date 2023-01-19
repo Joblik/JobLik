@@ -7,35 +7,37 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import OTP from "./screens/otpScreen/otpScreen";
 import User from "./screens/user/user";
 // import EditProfile from "./screens/userProfile/EditProfile"
-// import TabNav from "../Client/navigation/TabNav"
+import TabNav from "../Client/navigation/TabNav"
 import OnePost from "./screens/onePost/postScreen"
 import Welcome from "./screens/welcome/welcome"
 // import EditProfile from "./screens/userProfile/EditProfile";
-import Map from "./screens/map/Map";
 import Posts from "./screens/posts/posts"
 import Home from "./screens/home/home"
 import Profile from "./screens/userProfile/UserProfile"
 import AddReclamation from "./screens/reclamation/reclamation";
+import AllChat from "./screens/Chat/AllChat"
+import OneChat from "./screens/Chat/OneChat"
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="home"
+        initialRouteName="OneChat"
         screenOptions={{ headerShown: false }}
       >
          <Stack.Screen name="posts" component={Posts} />
+         <Stack.Screen name="AllChat" component={AllChat} />
+         <Stack.Screen name="OneChat" component={OneChat} />
         <Stack.Screen name="register" component={Register} />
         <Stack.Screen name="welcome" component={Welcome} />
         <Stack.Screen name="OnePost" component={OnePost}  />
-        <Stack.Screen name="Map" component={Map} /> 
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="otp" component={OTP} />
         <Stack.Screen name="user" component={User} />
-        <Stack.Screen name="home" component={Home}/>
+        <Stack.Screen name="home" component={TabNav}/>
         <Stack.Screen name="reclamation" component={AddReclamation}/>
-        <Stack.Screen name="UserProfile" component={Profile} />
+        <Stack.Screen name="UserProfile" component={TabNav} />
         {/* 
         <Stack.Screen name="UserProfile" component={TabNav} />
         <Stack.Screen name="Search" component={TabNav} /> */}

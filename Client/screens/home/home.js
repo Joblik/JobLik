@@ -217,7 +217,7 @@ const Home = () => {
                 marginTop: 20,
               }}
             >
-              {post.userId?.username || "User"}
+              {post.userId?.username}
             </Text>
 
             <View
