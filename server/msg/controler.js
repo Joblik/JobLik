@@ -14,7 +14,7 @@ const getAllMessage = (req, res) => {
         receiver: req.body.receiver,
         createdAt: new Date()
       });
-  
+
       await newMessage.save();
       res.status(201).json({ message: "Message added successfully" });
     } catch (error) {

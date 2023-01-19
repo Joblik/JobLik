@@ -14,9 +14,12 @@ const addPost = async (req, res) => {
   //function to get all the Posts
   const getAllPosts = async (req, res) => {
     try {
-      const posts = await Post.find();
+      const posts = await Post.find({}).populate("userId","email username image");
+      console.log(posts);
       res.status(200).send(posts);
     } catch (err) {
+      console.log(err);
+
       res.status(500).send(err);
     }
   }; 
@@ -63,9 +66,9 @@ const addPost = async (req, res) => {
       const postId = req.body.postId;
       const userId = req.body.userId;
       try {
-          const post = await Post.findById(postId);
+          const post = await Post.findById(postId)
           const user = await User.findById(userId);
-    
+  console.log(post);
           if (!post ) {
               res.status(404).json({ message: 'Post or user not found' });
               return;

@@ -4,12 +4,12 @@ const followingSchema = new mongoose.Schema({
    
   followingId: {
     type: Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
     required: false,
   },
   userId: {
     type: Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
     required: false,
   },
 });

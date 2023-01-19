@@ -17,6 +17,7 @@ app.use("/user",userRoutes);
 app.use("/comment",commentRoutes);
 app.use("/reclamation",reclamationRoutes);
 app.use("/followings",followingsRoutes)
+app.use("/chat",msgRoutes)
 
 const db= "mongodb+srv://root:root@cluster0.anvgobs.mongodb.net/?retryWrites=true&w=majority"; 
 mongoose.set('strictQuery',true) 
