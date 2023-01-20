@@ -15,8 +15,8 @@ const PostScreen = ({route , navigation}) => {
   }, []);
   const handleLike = async (postId) => {
     try {
-      // const id = await AsyncStorage.getItem("id");
-      // const userId = JSON.parse(id);
+      const id = await AsyncStorage.getItem("id");
+      const userId = JSON.parse(id);
       const response = await client.post('/post/addLike', 
       { 
         postId:postId,
@@ -79,7 +79,10 @@ console.log(userPost);
     resizeMode="cover"
     source={require("../../components/images/2.jpg")}
   />
-  <Text style={[styles.username, styles.titleTypo, styles.titleTypo1]}>UserName</Text>
+  <TouchableOpacity 
+   onPress={() => navigation.navigate('user', { userPost })}>
+  <Text style={[styles.username, styles.titleTypo, styles.titleTypo1]}>{post.username}</Text>
+  </TouchableOpacity>
   <TouchableOpacity style={{
                 // fontFamily: "ExtraBold",
                 fontSize: 13,
@@ -95,10 +98,6 @@ console.log(userPost);
       }}>
   <Text style={{marginRight:5}}>Like</Text>
   <Image source={require("../../components/welcome/likes.png")} style={{width: 20, height: 20}} />
-  <Button
-      title="Go to Child Component"
-      onPress={() => navigation.navigate('user', { userPost })}
-    />
 </TouchableOpacity>
 </View>
 

@@ -85,6 +85,14 @@ const addPost = async (req, res) => {
           res.status(500).json({ message: err.message });
       }
     }; 
+    const getAllLikes =async (req, res) => {
+      try {
+          const posts = await Post.find().populate("likes");
+          res.json(posts);
+      } catch (err) {
+          res.status(500).json({ message: err.message });
+      }
+  }
     
    
-  module.exports = {addPost,getAllPosts,addLike,deletePostById}
+  module.exports = {addPost,getAllPosts,addLike,deletePostById,getAllLikes}
