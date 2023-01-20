@@ -30,8 +30,8 @@ export default function Sidebar() {
             src="./images/jbl.jpeg"
             className="logo"
             alt="BC Hydro Logo"
-            minW="6rem"
-            w="10rem"
+            minW="16rem"
+            w="5rem"
           />
         </Show>
         <Hide above="md">
@@ -39,7 +39,7 @@ export default function Sidebar() {
             src="./images/jbl.jpeg"
             className="logo"
             alt="BC Hydro Logo"
-            minW="3rem"
+            minW="13rem"
             w="3.5rem"
           />
           <IconButton

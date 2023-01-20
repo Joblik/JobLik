@@ -96,7 +96,7 @@ const Login = () => {
                   </FormHelperText>
                 </FormControl>
                 <NextLink href="/dashboard">
-                  <CustomButton width="100%" backgroundColor="#00BFFF">
+                  <CustomButton width="100%" backgroundColor="#2774AE">
                     Log In
                   </CustomButton>
                 </NextLink>
