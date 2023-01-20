@@ -210,15 +210,7 @@ const Home = () => {
             >
               {post.title}
             </Text>
-            <Text
-              style={{
-                // fontFamily: "ExtraBold",
-                fontSize: 13,
-                marginTop: 20,
-              }}
-            >
-              {post.userId?.username}
-            </Text>
+      
 
             <View
               style={{
@@ -227,12 +219,14 @@ const Home = () => {
                 width: 250,
                 alignItems: "center",
                 marginVertical: 5,
+                marginBottom:25
               }}
             >
               <Text
                 style={{
                   // fontFamily: "Medium"
                   fontSize: 15,
+                  
                 }}
               >
                 {post.description.length > 60

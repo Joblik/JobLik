@@ -41,7 +41,7 @@ const MessageItem = ({ message , navigation }) => {
     return (
         <View style={[styles.monadaParent, styles.allChatBg,{marginLeft:15}]}>
             <Text style={[styles.monada, styles.textFlexBox, styles.monadaTypo,{marginTop:22}]}
-             onPress={()=>navigation.navigate("OneChat") }
+             onPress={()=>navigation.navigate("OneChat",{ messageId: message._id }) }
             >
                 {message.receiver}
             </Text>

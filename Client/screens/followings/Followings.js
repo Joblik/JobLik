@@ -2,7 +2,7 @@ import React , {useEffect,useState} from 'react';
 import { TouchableOpacity,View, Text, FlatList, StyleSheet, Image} from 'react-native';
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from 'axios';
+import client from '../../api/client';
 
 
 const Followings = ({navigation}) => {
@@ -20,7 +20,7 @@ const Followings = ({navigation}) => {
       
       const fetchUser = async () => {
         try {
-          const response = await axios.get("http://192.168.104.6:5000/followings/getAllFoloowing");
+          const response = await client.get("/followings/getAllFoloowing");
           const Followings = response.data;
           setFollowings(Followings);
           const FollowingsList = Followings.map(followings => followings);
@@ -35,7 +35,7 @@ const Followings = ({navigation}) => {
     
     useEffect(() => {
       if(userId){
-        const filteredPosts = FollowingsList.filter(followings =>followings.userId.includes(userId));
+        const filteredPosts = FollowingsList.filter(followings =>followings.userId === userId);
         setUserFollowings(filteredPosts);
         console.log(setUserFollowings.followingId,"ggggggggg")
       }
@@ -64,7 +64,7 @@ const Followings = ({navigation}) => {
         source={{ uri: 'https://res.cloudinary.com/dqmhtibfm/image/upload/v1670924296/samples/people/smiling-man.jpg' }}
         style={{ width: 50, height: 50, borderRadius: 25 }} 
       />
-      <Text>{following.followingId}</Text>
+      <Text>{following.userId?.username}</Text>
       <TouchableOpacity onPress={() => alert('your follow add !')}>
         <Text style={{fontSize:20, color:'blue'}}>follow</Text>
       </TouchableOpacity>
@@ -100,13 +100,14 @@ const styles = StyleSheet.create({
       alignItems: 'center',
   },
   root: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      width: 400,
-      height: 80,
-      marginLeft:20,
-  },
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: 380,
+    height: 80,
+    marginLeft:20,
+    marginTop:20
+},
 });
 
 export default Followings;
