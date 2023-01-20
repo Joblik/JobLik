@@ -174,10 +174,10 @@ root: {
   flexDirection: "row",
   justifyContent: "space-between",
   alignItems: "center",
-  width: 400,
+  width: 380,
   height: 80,
   marginLeft:20,
-  marginTop:-550,
+  marginBottom:750,
 },
 });
 export default Posts;

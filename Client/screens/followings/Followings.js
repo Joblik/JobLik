@@ -35,7 +35,7 @@ const Followings = ({navigation}) => {
     
     useEffect(() => {
       if(userId){
-        const filteredPosts = FollowingsList.filter(followings =>followings.userId.includes(userId));
+        const filteredPosts = FollowingsList.filter(followings =>followings.userId === userId);
         setUserFollowings(filteredPosts);
         console.log(setUserFollowings.followingId,"ggggggggg")
       }
@@ -64,7 +64,7 @@ const Followings = ({navigation}) => {
         source={{ uri: 'https://res.cloudinary.com/dqmhtibfm/image/upload/v1670924296/samples/people/smiling-man.jpg' }}
         style={{ width: 50, height: 50, borderRadius: 25 }} 
       />
-      <Text>{following.followingId}</Text>
+      <Text>{following.userId?.username}</Text>
       <TouchableOpacity onPress={() => alert('your follow add !')}>
         <Text style={{fontSize:20, color:'blue'}}>follow</Text>
       </TouchableOpacity>
@@ -100,13 +100,14 @@ const styles = StyleSheet.create({
       alignItems: 'center',
   },
   root: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      width: 400,
-      height: 80,
-      marginLeft:20,
-  },
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: 380,
+    height: 80,
+    marginLeft:20,
+    marginTop:20
+},
 });
 
 export default Followings;

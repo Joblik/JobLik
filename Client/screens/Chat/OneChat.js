@@ -1,9 +1,22 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, Image, ImageBackground,Dimensions } from "react-native";
 
-const OneChatIcon = () => {
+const OneChatIcon = ({navigation , route}) => {
+  
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
+  const { messageId } = route.params;
+  const [message, setMessage] = useState({});
+  
+  useEffect(() => {
+    messages.getOnemsg(messageId)
+      .then((response) => {
+          setMessage(response);
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+  }, []);
   return (
     <ImageBackground
       style={[styles.oneChatIcon, {width: screenWidth, height: screenHeight}]}
@@ -103,7 +116,7 @@ const styles = StyleSheet.create({
     left: 220,
   },
   salut: {
-    top: 127,
+    top: 138,
     left: 190,
   },
   oneChatItem: {
@@ -143,7 +156,7 @@ const styles = StyleSheet.create({
   allChat1: {
     height: "52.33%",
     width: "46.67%",
-    top: "18.6%",
+    top: 35,
     left: "17.6%",
     display: "flex",
     textShadowRadius: 4,
@@ -159,7 +172,7 @@ const styles = StyleSheet.create({
   unsplash1onzhgu751aIcon: {
     height: "63.95%",
     width: "14.67%",
-    top: "13.95%",
+    top: 25,
     right: "84%",
     bottom: "22.09%",
     left: "1.33%",
@@ -172,7 +185,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: -1,
     width: 375,
-    height: 86,
+    height: 100,
     position: "absolute",
   },
   component2Child: {
@@ -198,7 +211,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   component2: {
-    top: 621,
+    bottom: 20,
     left: 13,
     width: 355,
     height: 40,
@@ -209,7 +222,7 @@ const styles = StyleSheet.create({
     left: 15,
   },
   hello: {
-    top: 186,
+    top: 195,
     left: -94,
   },
   oneChatIcon: {
@@ -217,6 +230,7 @@ const styles = StyleSheet.create({
     height: 667,
     overflow: "hidden",
     width: "100%",
+    height:"100%"
   },
 });
 
