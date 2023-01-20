@@ -20,7 +20,7 @@ const Followings = ({navigation}) => {
       
       const fetchUser = async () => {
         try {
-          const response = await client.get("/followings/getAllFoloowing");
+          const response =await client.get("/followings/getAllFoloowing");
           const Followings = response.data;
           setFollowings(Followings);
           const FollowingsList = Followings.map(followings => followings);

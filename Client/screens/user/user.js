@@ -1,13 +1,17 @@
 import React,{useState,useEffect} from 'react';
 import {View, Text, TouchableOpacity,StyleSheet,TextInput,ScrollView,Image} from 'react-native';
-import axios from 'axios';
-const User = ({navigation}) => {
-    const [userId, setUserId] = useState([]);
-    console.log('helllo')
+import client from '../../api/client';
+const User = ({route,navigation}) => {
+const  userPost = route.params;
+const [oneUser, setOneUser]=useState()
+const [userId, setUserId] = useState([]);
     useEffect(() => {
+      const user = userPost.userPost; 
+ setOneUser(user)
+ console.log(oneUser)
       const fetchUser = async () => {
         try {
-          const response = await axios.get("http://192.168.68.145:3000/user/63c16608f9801cdcccbb602a");
+          const response = await client.get(`/user/${oneUser}`);
           const user = response.data;
           setUserId(user);
         } catch (error) {
@@ -81,7 +85,7 @@ const User = ({navigation}) => {
                 </View>
                 <View style={styles.card}>
   <View style={[styles.flxDirectionRow, styles.jstfyBetween]}>
-    <Text style={[styles.fontBold, styles.textDark, styles.mb10, styles.f17]}>Name: {userId.email} </Text>
+    <Text style={[styles.fontBold, styles.textDark, styles.mb10, styles.f17]}>Name: {userId.username} </Text>
   </View>
   
 </View>

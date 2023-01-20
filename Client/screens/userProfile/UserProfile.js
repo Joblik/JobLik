@@ -39,6 +39,15 @@ const Profile = ({ navigation }) => {
     fetchUser();
   }, [userId]);
   console.log("🚀 ~ file: UserProfile.js:49 ~ Profile ~ userId", userId)
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.clear();
+      alert('You have been logged out');
+      navigation.navigate("login")
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View style={[Theme.mainScreen, Theme.whiteBack, { marginTop: 30 }]}>
@@ -157,6 +166,7 @@ const Profile = ({ navigation }) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={[Theme.btnM20, Theme.mr10, Theme.bgDanger]}
+                onPress={() => handleLogout()}
               >
                 <Text style={[Theme.f15, Theme.whiteFont, Theme.fontBold]}>
                   Logout
