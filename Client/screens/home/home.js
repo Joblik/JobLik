@@ -20,6 +20,7 @@ const Home = () => {
   useEffect(() => {
     async function fetchPosts() {
       const response = await client.get("/post/getAllPosts");
+      console.log(response)
       setPosts(response.data);
       setFilteredPosts(response.data);
     }
@@ -81,8 +82,7 @@ const Home = () => {
                   filteredPosts.description
                     .toLowerCase()
                     .includes(e.toLowerCase()) ||
-                  filteredPosts.title.toLowerCase().includes(e.toLowerCase()) ||
-                  filteredPosts.adress.toLowerCase().includes(e.toLowerCase())
+                  filteredPosts.title.toLowerCase().includes(e.toLowerCase()) 
               )
             );
             // console.log('filtered:'+filteredfilteredPostsosts +'/'+filteredPostsosts)
@@ -210,6 +210,7 @@ const Home = () => {
             >
               {post.title}
             </Text>
+      
 
             <View
               style={{
@@ -218,12 +219,14 @@ const Home = () => {
                 width: 250,
                 alignItems: "center",
                 marginVertical: 5,
+                marginBottom:25
               }}
             >
               <Text
                 style={{
                   // fontFamily: "Medium"
                   fontSize: 15,
+                  
                 }}
               >
                 {post.description.length > 60

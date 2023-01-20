@@ -243,7 +243,7 @@ const forgetPassword = async (req, res) => {
         to: email,
         subject: "RESET PASSWORD",
         html: forgetPasswordTemp(
-          "http://192.168.104.28:8080/forget-password/" + token
+          "http://192.168.68.197:3000/forget-password/" + token
         ),
       };
       await transporter.sendMail(mailOptions);
