@@ -2,7 +2,7 @@ import React , {useEffect,useState} from 'react';
 import { TouchableOpacity,View, Text, FlatList, StyleSheet, Image} from 'react-native';
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from 'axios';
+import client from '../../api/client';
 
 
 const Followings = ({navigation}) => {
@@ -20,7 +20,7 @@ const Followings = ({navigation}) => {
       
       const fetchUser = async () => {
         try {
-          const response = await axios.get("http://192.168.104.6:5000/followings/getAllFoloowing");
+          const response =await client.get("/followings/getAllFoloowing");
           const Followings = response.data;
           setFollowings(Followings);
           const FollowingsList = Followings.map(followings => followings);

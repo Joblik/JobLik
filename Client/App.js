@@ -25,7 +25,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="OneChat"
+        initialRouteName="login"
         screenOptions={{ headerShown: false }}
       >
          <Stack.Screen name="followers" component={Followers} />

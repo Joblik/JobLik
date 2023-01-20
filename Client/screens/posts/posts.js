@@ -21,6 +21,7 @@ const Posts = ({navigation}) => {
           setPosts(posts);
           const postList = posts.map(post => post);
           setPostList(postList);
+          console.log(postList)
         } catch (error) {
           console.error(error);
         }
@@ -33,7 +34,7 @@ const Posts = ({navigation}) => {
       if(userId && PostList.length){
         const filteredPosts = PostList.filter(post => post.userId === userId);
         setUserPosts(filteredPosts);
-        console.log(UserPosts,"ggggggggg")
+        console.log(UserPosts,"fffggggggggg");
       }
     },[userId,PostList]);
     
