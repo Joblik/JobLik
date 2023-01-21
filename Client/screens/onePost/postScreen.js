@@ -2,7 +2,6 @@ import React, { useState,useEffect } from "react";
 import client from "../../api/client";
 import { Text, StyleSheet, Image, View,TouchableOpacity,Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 const PostScreen = ({route , navigation}) => {
   const [userId, setUserId] = useState(null);  
   useEffect(() => {
@@ -33,9 +32,8 @@ const PostScreen = ({route , navigation}) => {
   }
     const post = route.params.post;
     const user = route.params.user;
-    const userPost = post.userId._id;
-console.log(userPost); 
-
+    const userPost = post.userId;
+ 
   return (
     <View style={styles.onePost}>
   <Text style={[styles.somewhereInThe, styles.titleTypo, styles.titleTypo1, styles.dinarsTypo]}>
@@ -88,16 +86,18 @@ console.log(userPost);
                 fontSize: 13,
                 marginTop: 500,
                 marginLeft: 50,
-                color: "#0084ff",
+                color: "red",
                 flexDirection: 'row',
                 alignItems: 'center',
                 paddingHorizontal: 5, // align items center
               }}
              onPress={() => { 
-        handleLike(post.id); 
+        handleLike(post._id); 
       }}>
-  <Text style={{marginRight:5}}>Like</Text>
   <Image source={require("../../components/welcome/likes.png")} style={{width: 20, height: 20}} />
+  <View>
+            <Text>{post.likes.length} </Text>
+        </View>
 </TouchableOpacity>
 </View>
 

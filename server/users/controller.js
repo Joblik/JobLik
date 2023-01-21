@@ -55,20 +55,18 @@ const DeleteOneUser = async (req, res) => {
 
 
 //function to update User
-const UpdateOneUser = async (req, res) => {
-  console.log("🚀 ~ file: controller.js:53 ~ UpdateOneUser ~ req", req.body);
-  console.log("🚀 ~ file: controller.js:53 ~ UpdateOneUser ~ req", req.params);
-  
-  
+const UpdateOneUser =async (req, res) => {
   try {
-    await User.updateOne()
-    _id = req.params.id
-    User.findByIdAndUpdate(_id,req.body,{new:true})
-    res.status(201).send({message:"updated successfully"})
-  } catch (err) {
-    return res.json(err);
+    const id = req.params.id;
+    const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+    if (!updatedUser) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+    res.status(200).send({ message: 'User updated successfully', data: updatedUser });
+  } catch (error) {
+    res.status(500).send({ message: error.message });
   }
-};
+}
 
 
 //Login function

@@ -35,6 +35,7 @@ const Profile = ({ navigation }) => {
       
       setForm(user);
     }
+    console.log(form,"gggggg")
     
     fetchUser();
   }, [userId]);
@@ -179,19 +180,7 @@ const Profile = ({ navigation }) => {
               style={[Theme.p10, Theme.mt10, Theme.whiteBack, Theme.radius10]}
             >
               <View>
-                <View style={[Theme.flxDirectionRow, Theme.jstfyBetween]}>
-                  <Text
-                    style={[
-                      Theme.fontBold,
-                      Theme.txtDark,
-                      Theme.mb10,
-                      Theme.f17,
-                    ]}
-                  >
-                    Job
-                  </Text>
-                </View>
-
+              
                 <View
                   style={[
                     Theme.flxDirectionRow,
@@ -209,6 +198,22 @@ const Profile = ({ navigation }) => {
                       size={30}
                     />
                   </View>
+                  <View style={[Theme.flxDirectionRow, Theme.jstfyBetween]}>
+                  <Text
+                    style={[
+                      Theme.fontBold,
+                      Theme.txtSemiDark,
+                      Theme.mb10,
+                      Theme.f17,
+                    ]}
+                  >
+                    Job : 
+                 <Text style={[Theme.txtSemiDark]}> {form.job}</Text>
+
+                  </Text>
+                  
+                </View>
+                
                   <View style={[Theme.flex6, Theme.justifyCenter]}>
                     <Text
                       style={[Theme.txtSemiDark, Theme.fontSemiBold]}
@@ -255,9 +260,9 @@ const Profile = ({ navigation }) => {
                     <Text
                       style={[Theme.f15, Theme.fontBold, Theme.txtSemiDark]}
                     >
-                      Phone
+                      Phone : <Text style={[Theme.fontSemiBold]}>{form.phone}</Text>
                     </Text>
-                    <Text style={[Theme.fontSemiBold]}>{form.phone}</Text>
+                    
                   </View>
                 </View>
                 <View
@@ -281,11 +286,11 @@ const Profile = ({ navigation }) => {
                     <Text
                       style={[Theme.f15, Theme.fontBold, Theme.txtSemiDark]}
                     >
-                      Email
-                    </Text>
-                    <Text style={[Theme.fontSemiBold, { marginBottom: 20 }]}>
+                      Email : <Text style={[Theme.fontSemiBold, { marginBottom: 20 }]}>
                       {form.email}
                     </Text>
+                    </Text>
+                   
                   </View>
                 </View>
                
