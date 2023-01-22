@@ -59,7 +59,7 @@ const Post = ({navigation}) => {
                     </TouchableOpacity>
                 </View>
                 <View style={[Theme.justifyCenter, Theme.pl10]}>
-                    <Text style={[Theme.f20, Theme.fontBold, Theme.txtDark]}>Share Post</Text>
+                    <Text style={[Theme.f20, Theme.fontBold, Theme.txtDark]}>Cancel</Text>
                 </View>
                 <View style={[Theme.flex1, Theme.justifyCenter, Theme.alignEnd, Theme.pr30]}>
                     <TouchableOpacity
