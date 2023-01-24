@@ -27,7 +27,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="home"
+        initialRouteName="welcome"
         screenOptions={{ headerShown: false }}
       >
          <Stack.Screen name="followers" component={Followers} />
