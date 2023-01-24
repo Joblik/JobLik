@@ -45,7 +45,7 @@ const Home = ({route}) => {
           marginTop: 70,
           // fontFamily: "Bold",
           fontWeight: "bold",
-          fontSize: 20,
+          fontSize: 25,
         }}
       >
         JobLik
@@ -54,9 +54,10 @@ const Home = ({route}) => {
       <Text
         style={{
           // fontFamily: "ExtraBold",
-          fontSize: 18,
+          fontSize: 15,
           marginTop: 13,
           color: "rgb(14,49,65)",
+          fontWeight: "bold",
         }}
       >
         Find your best jobs

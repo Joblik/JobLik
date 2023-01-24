@@ -3,15 +3,16 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput, FlatList } 
 
 export default OneChat = () => {
   const [data, setData] = useState([
-    { id: 1, type: 'in', message: 'Hello world' },
-    { id: 2, type: 'out', message: 'Hello' },
-    { id: 3,  type: 'in', message: 'Lorem ipsum dolor sit a met' },
-    { id: 4, type: 'in', message: 'Lorem ipsum dolor sit a met' },
-    { id: 5,  type: 'out', message: 'Hello world' },
-    { id: 6, type: 'out', message: 'test' },
-    { id: 7,  type: 'in', message: 'aa' },
-    { id: 8,  type: 'in', message: 'aa' },
-    { id: 9,  type: 'in', message: 'aa' },
+    { id: 1, type: 'in', message: 'aasslema' },
+    { id: 2, type: 'out', message: 'aasslema' },
+    { id: 3,  type: 'in', message: 'Bllehy lkitek mhabet tlaouej aala dahen ?' },
+    { id: 5,  type: 'out', message: 'eey hachti b dahen en urgence' },
+    { id: 6, type: 'out', message: 'enty dispo ?' },
+    { id: 7,  type: 'in', message: 'eeyih , behy nty hattet mawjoud f laaouina ena mch baaid aalik kolli wakteh theb njiik ?' },
+    { id: 8,  type: 'out', message: 'ghodoua sbeeh ntkablou 9h fl aaouina yssedek ?' },
+    { id: 9,  type: 'in', message: 'Ok mrygll, sbeeh netlakaou fl aaouina o taou nkallmek kbal manjii' },
+    { id: 2, type: 'out', message: 'Mrygll o merci beaucoup' },
+
   ]) 
 
   const [messages, setMessages] = useState(data)
