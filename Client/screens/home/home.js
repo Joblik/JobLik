@@ -6,6 +6,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  
 } from "react-native";
 import { Card } from "react-native-elements";
 import client from "../../api/client";
@@ -40,7 +41,7 @@ const Home = ({route}) => {
       <Text
         style={{
           color: "#0084ff",
-          marginTop: 40,
+          marginTop: 70,
           // fontFamily: "Bold",
           fontWeight: "bold",
           fontSize: 20,
@@ -96,7 +97,7 @@ const Home = ({route}) => {
             width: 30,
             height: 30,
             borderRadius: 8,
-            marginLeft: 80,
+            marginLeft: 120,
             alignItems: "center",
             justifyContent: "center",
           }}
@@ -115,30 +116,47 @@ const Home = ({route}) => {
       </Text>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <Card>
-          <View>
+        
+          <View style={{
+    borderWidth: 1,
+    borderColor: '#0084ff',
+    borderRadius: 10,
+    padding: 0,
+    margin: 15
+}}><Card>
             <Image
               source={require("../../components/images/fair.jpg")}
               style={{ width: 200, height: 200 }}
             />
+             </Card>
           </View>
-        </Card>
-        <Card>
-          <View>
+       
+          <View style={{
+    borderWidth: 1,
+    borderColor: '#0084ff',
+    borderRadius: 10,
+    padding: 0,
+    margin: 15
+}}><Card>
             <Image
               source={require("../../components/images/job.jpg")}
               style={{ width: 200, height: 200 }}
             />
+             </Card>
           </View>
-        </Card>
-        <Card>
-          <View>
+          <View style={{
+    borderWidth: 1,
+    borderColor: '#0084ff',
+    borderRadius: 10,
+    padding: 0,
+    margin: 15
+}}><Card>
             <Image
               source={require("../../components/images/empl.jpeg")}
               style={{ width: 200, height: 200 }}
             />
+             </Card>
           </View>
-        </Card>
       </ScrollView>
       <Text
         style={{

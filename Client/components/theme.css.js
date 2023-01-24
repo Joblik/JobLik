@@ -188,6 +188,7 @@ const Theme = StyleSheet.create({
     //Dimensions
     mainScreen: {
         height: "100%",
+        marginTop:30
     },
 
     w100: {
