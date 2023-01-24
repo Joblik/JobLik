@@ -48,72 +48,88 @@ const Post = ({navigation}) => {
     };
 
     return (
-        <View style={[Theme.mainScreen, Theme.whiteBack, Theme.p20]}>
-            <View style={[Theme.flex1, Theme.flxDirectionRow, style.bottomBorder]}>
-                <View style={[Theme.justifyCenter, Theme.pl10]}>
-                    <TouchableOpacity
-                        onPress={()=>navigation.navigate("home") }
-                        
-                    >
-                        <Icon name="close" color="#0084ff" size={27} />
-                    </TouchableOpacity>
-                </View>
-                <View style={[Theme.justifyCenter, Theme.pl10]}>
-                    <Text style={[Theme.f20, Theme.fontBold, Theme.txtDark]}>Cancel</Text>
-                </View>
-                <View style={[Theme.flex1, Theme.justifyCenter, Theme.alignEnd, Theme.pr30]}>
-                    <TouchableOpacity
-                       onPress={
-                        handleSubmit 
-                    }
-                       
-                    >
-                        <Text style={[Theme.f17, Theme.fontBold, { color: "#0084ff" }]}>Post</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-            <View style={[Theme.flex1, Theme.flxDirectionRow, Theme.p10]}>
-                <View>
-                </View>
-                <View style={[Theme.justifyCenter, Theme.pl10, Theme.justifyEnd]}>
-                    <View>
-                    </View>
-                </View>
-            </View>
-            <View style={[Theme.flex8]}>
-                <View style={[Theme.flex8]}>
-                    <Text style={[Theme.f35,Theme.mb20,Theme.ml20]}>New Job Offer</Text>
-                    <Card>
-                <ScrollView style={[Theme.p10,]}>
-                        <TextInput
-                            onChangeText={e => setTitle(e)}
-                            multiline style={[Theme.f35, Theme.flex4, Theme.p10]} placeholder={"Title"} />
-                    </ScrollView>
-                    <ScrollView style={[Theme.p10, Theme.pt20,]}>
-                        <TextInput
-                            onChangeText={e => setDescription(e)}
-                            multiline style={[Theme.f15, Theme.flex4, Theme.pb20]} placeholder={"Write down your description here..."} />
-                    </ScrollView>
-                    <ScrollView style={[Theme.p10, Theme.pt20,]}>
-                    <TextInput
-                            onChangeText={e => setAddress(e)}
-                            multiline style={[Theme.f15, Theme.flex4, Theme.pb20]} placeholder={"Write down your Adress here..."} />
-                    </ScrollView>
-                    </Card>
-                </View>
-                <View style={[Theme.flex3]}>
-                    <ScrollView style={[Theme.p10, Theme.pt20, Theme.flex5]}>
-                        <ImageBackground
-                            style={[Theme.w100, { height: 400 }]}
-                            
-                        ></ImageBackground>
-                    </ScrollView>
-                </View>
-            </View>
-            <View style={[Theme.flex1, Theme.pl10, Theme.justifyEnd, Theme.pb10]}>
-            </View>
+      <View style={[Theme.mainScreen, Theme.whiteBack, Theme.p20]}>
+        <View style={[Theme.flex1, Theme.flxDirectionRow, style.bottomBorder]}>
+          <View style={[Theme.justifyCenter, Theme.pl10]}>
+            <TouchableOpacity onPress={() => navigation.navigate("home")}>
+              <Icon name="close" color="red" size={27} />
+            </TouchableOpacity>
+          </View>
+          <View style={[Theme.justifyCenter, Theme.pl10]}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Text style={[Theme.f20, Theme.fontBold, Theme.txtDanger]}>
+                Cancel
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={[
+              Theme.flex1,
+              Theme.justifyCenter,
+              Theme.alignEnd,
+              Theme.pr30,
+            ]}
+          >
+            <TouchableOpacity onPress={handleSubmit}>
+              <Text style={[Theme.f17, Theme.fontBold, { color: "#00FF00" }]}>
+                Post
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-    )
+        <View style={[Theme.flex1, Theme.flxDirectionRow, Theme.p10]}>
+          <View></View>
+          <View style={[Theme.justifyCenter, Theme.pl10, Theme.justifyEnd]}>
+            <View></View>
+          </View>
+        </View>
+        <View style={[Theme.flex8]}>
+          <View style={[Theme.flex8]}>
+            <Text
+              style={[Theme.f35, Theme.mb20, Theme.ml60, { color: "#0274b3" }]}
+            >
+              New Job Offer
+            </Text>
+            <Card>
+              <ScrollView style={[Theme.p10]}>
+                <TextInput
+                  onChangeText={(e) => setTitle(e)}
+                  multiline
+                  style={[Theme.f35, Theme.flex4, Theme.p10]}
+                  placeholder={"Title"}
+                />
+              </ScrollView>
+              <ScrollView style={[Theme.p10, Theme.pt20]}>
+                <TextInput
+                  onChangeText={(e) => setDescription(e)}
+                  multiline
+                  style={[Theme.f15, Theme.flex4, Theme.pb20]}
+                  placeholder={"Write down your description here..."}
+                />
+              </ScrollView>
+              <ScrollView style={[Theme.p10, Theme.pt20]}>
+                <TextInput
+                  onChangeText={(e) => setAddress(e)}
+                  multiline
+                  style={[Theme.f15, Theme.flex4, Theme.pb20]}
+                  placeholder={"Write down your Adress here..."}
+                />
+              </ScrollView>
+            </Card>
+          </View>
+          <View style={[Theme.flex3]}>
+            <ScrollView style={[Theme.p10, Theme.pt20, Theme.flex5]}>
+              <ImageBackground
+                style={[Theme.w100, { height: 400 }]}
+              ></ImageBackground>
+            </ScrollView>
+          </View>
+        </View>
+        <View
+          style={[Theme.flex1, Theme.pl10, Theme.justifyEnd, Theme.pb10]}
+        ></View>
+      </View>
+    );
 }
 
 const style = StyleSheet.create({
