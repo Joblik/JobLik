@@ -20,14 +20,9 @@ const AllChat = () => {
 
     return (
         <View style={[styles.allChat, styles.allChatBg]}>
-            <Image
-                style={[styles.image1Icon, styles.image1IconPosition, {width: screenWidth, height: screenHeight}]}
-                resizeMode="cover"
-                source={require("../../components/images/griis.jpg")}
-            />
             <View style={[styles.allChatWrapper, styles.image1IconPosition , {width:screenWidth}]}>
                 <Text style={[styles.allChat1, styles.textFlexBox, styles.monadaTypo]}>
-                    All Chat
+                    All Chats
                 </Text>
             </View>
             {messages.map(message => (
@@ -83,7 +78,7 @@ const styles = StyleSheet.create({
     height: 675,
   },
   allChat1: {
-    top: 17,
+    top: 26,
     left: 12,
     fontWeight: "700",
     color: "#fff",

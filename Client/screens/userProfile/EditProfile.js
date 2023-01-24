@@ -94,7 +94,7 @@ const data  = {
           <Image
             // defaultSource={image}
             source={{
-              uri: "https://scontent.ftun2-2.fna.fbcdn.net/v/t1.6435-9/131895898_3099883176779586_137168566729464076_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=174925&_nc_ohc=2RaMfz1EE2AAX-pOv4R&_nc_ht=scontent.ftun2-2.fna&oh=00_AfCIqBWslRpx7_Vw29LEaUDy5pb7JmVTBWaVYaGV625Q2A&oe=63F21798",
+              uri: image
             }}
             style={{ width: 80, height: 80, borderRadius: 100 }}
           />
