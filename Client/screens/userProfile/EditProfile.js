@@ -5,35 +5,49 @@ import { ScrollView } from "react-native-gesture-handler";
 import { TextInput } from "react-native-paper";
 import Ionic from "react-native-vector-icons/Ionicons";
 import client from "../../api/client";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const EditProfile = ({ navigation, route }) => {
-  const { form } = route.params;
-  const [user, setUser] = useState("");
+  const [userId, setUserId] = useState(null);
+ 
+  
+
+  useEffect(() => {
+    async function getUserId() {
+      const id = await AsyncStorage.getItem("id");
+      setUserId(JSON.parse(id));
+    }
+    getUserId();
+  }, [userId]);
+  const [username, setUserName] = useState("");
   const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [job, setJob] = useState("");
-  const [domain, setDomain] = useState("");
-  console.log("🚀 ~ file: EditProfile.js:10 ~ EditProfile ~ form=============>>", form);
 const data  = {
-  user,
+  username,
   image,
   email,
   phone,
   job,
-  domain,
 }
-   useEffect(() => {});
-  const handleSubmit = async () => {
-    try {
-      const response = await client.put(`/user/UpdateOneUser/${form._id}`,data );
-      console.log(response.data);
-      console.log("🚀 ~ file: EditProfile.js:31 ~ handleSubmit ~ data ================>>>>" , data)
-    } catch (error) {
-      console.log(error);
+  const handleSubmit = async (userId, userData) => {
+    const [response, setResponse] = useState(null);
+    const [error, setError] = useState(null);
+  
+    useEffect(() => {
+      client
+        .put(`/users/UpdateOneUser/${userId}`, data)
+        .then(res => setResponse(res.data))
+        .catch(err => setError(err.message));
+    }, []);
+   
+    if (error) {
+      return { error };
     }
-  };
-
+    if (response) {
+      return { response };
+    }
+  } 
   return (
     <View
       style={{
@@ -95,8 +109,7 @@ const data  = {
             </Text>
             <TextInput
               placeholder="Username"
-              defaultValue={form.username}
-              onChangeText={(newText) => setUser(newText)}
+              onChangeText={(newText) => setUserName(newText)}
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
@@ -114,7 +127,6 @@ const data  = {
             </Text>
             <TextInput
               placeholder="Email"
-              defaultValue={form.email}
               onChangeText={(newText) => setEmail(newText)}
               style={{
                 fontSize: 16,
@@ -133,7 +145,6 @@ const data  = {
             </Text>
             <TextInput
               placeholder="Job"
-              defaultValue={form.job}
               onChangeText={(newText) => setJob(newText)}
               style={{
                 fontSize: 16,
@@ -152,27 +163,7 @@ const data  = {
             </Text>
             <TextInput
               placeholder="Phone"
-              defaultValue={form.phone}
               onChangeText={(newText) => setPhone(newText)}
-              style={{
-                fontSize: 16,
-                borderBottomWidth: 1,
-                borderColor: "#CDCDCD",
-              }}
-            />
-          </View>
-          <View style={{ paddingVertical: 10 }}>
-            <Text
-              style={{
-                opacity: 0.5,
-              }}
-            >
-              speciality
-            </Text>
-            <TextInput
-              placeholder="speciality"
-              onChangeText={(newText) => setDomain(newText)}
-              defaultValue={form.domain}
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,

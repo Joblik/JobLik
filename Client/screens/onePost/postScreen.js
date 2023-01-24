@@ -2,8 +2,29 @@ import React, { useState,useEffect } from "react";
 import client from "../../api/client";
 import { Text, StyleSheet, Image, View,TouchableOpacity,Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Card } from "react-native-elements";
+import { color } from "react-native-elements/dist/helpers";
 const PostScreen = ({route , navigation}) => {
-  const [userId, setUserId] = useState(null);  
+  const post = route.params.post;
+    const user = route.params.user;
+  const userPost = post.userId;
+  const [userposts, setUserposts] = useState(userPost);  
+  
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await client.get(`/user/${userPost}`);
+        const user = response.data;
+        setUserposts(user);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchUser();
+  }, [userPost]);
+  console.log(userposts.username)
   useEffect(() => {
     async function getUserId() {
       const id = await AsyncStorage.getItem("id"); 
@@ -30,32 +51,12 @@ const PostScreen = ({route , navigation}) => {
        console.log(error);
     }  
   }
-    const post = route.params.post;
-    const user = route.params.user;
-    const userPost = post.userId;
- 
+    
+   
   return (
     <View style={styles.onePost}>
-  <Text style={[styles.somewhereInThe, styles.titleTypo, styles.titleTypo1, styles.dinarsTypo]}>
-  {post.adress}
-  </Text>
-  <Text style={[styles.title, styles.iconPosition, styles.titleTypo, styles.titleTypo1]}>{post.title}</Text>
-  <Image
-    style={[styles.image17Icon, styles.iconPosition]}
-    resizeMode="cover"
-  />
-  <Image
-    style={[styles.onePostChild, styles.oneLayout]}
-    resizeMode="cover"
-  />
-  <Text style={[styles.comment, styles.likeTypo]}>Comment</Text>
-  <Image
-    style={[styles.onePostItem, styles.onePostItemPosition, styles.oneLayout]}
-    resizeMode="cover"
-  />
-  
-
-  <Text
+      
+       <Text
         style={{
           color: "#0084ff",
           marginTop: 40,
@@ -68,24 +69,25 @@ const PostScreen = ({route , navigation}) => {
       >
         JobLik
       </Text>
-  <View style={[styles.onePostInner, styles.onePostInnerLayout]} />
-  <Text style={[styles.loremIpsumDolorContainer, styles.onePostInnerLayout, styles.titleTypo, styles.titleTypo1, styles.dinarsTypo]}>
-    <Text style={styles.loremIpsumDolor}>{post.description}</Text>
-  </Text>
-  <Image
+      <TouchableOpacity 
+   onPress={() => navigation.navigate('user', { userPost })}>
+  <Text style={styles.username}>{userposts.username}</Text>
+  </TouchableOpacity>
+      <Image
     style={[styles.ellipseIcon, styles.onePostItemPosition]}
     resizeMode="cover"
     source={require("../../components/images/2.jpg")}
   />
-  <TouchableOpacity 
-   onPress={() => navigation.navigate('user', { userPost })}>
-  <Text style={[styles.username, styles.titleTypo, styles.titleTypo1]}>{post.username}</Text>
-  </TouchableOpacity>
-  <TouchableOpacity style={{
+  <View style={ { borderWidth: 1, borderColor: '#0084ff', marginTop:180,marginLeft: 35,marginRight:35,}}>
+ <Text style={[styles.title]}>{post.title}</Text>
+ <Card>
+ <Text style={styles.oneLayout}> 
+ {post.description} </Text> 
+ <TouchableOpacity style={{
                 // fontFamily: "ExtraBold",
                 fontSize: 13,
-                marginTop: 500,
-                marginLeft: 50,
+                marginTop: -50,
+                marginLeft: 250,
                 color: "red",
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -99,6 +101,13 @@ const PostScreen = ({route , navigation}) => {
             <Text>{post.likes.length} </Text>
         </View>
 </TouchableOpacity>
+ </Card>
+ 
+  
+<Text style={styles.dinarsTypo}>
+<MaterialIcons name="language" size={24} color="#000" /> {post.adress}     
+  </Text>
+ </View>
 </View>
 
   );
@@ -115,8 +124,11 @@ const styles = StyleSheet.create({
     fontWeight: "Inter",
   },
   dinarsTypo: {
-    fontSize: 20,
+    fontSize: 28,
     color: "#000",
+    marginTop:100,
+    marginLeft:50,
+   
   },
   iconPosition: {
     left: 37,
@@ -126,6 +138,8 @@ const styles = StyleSheet.create({
     height: 62,
     width: 173,
     borderRadius: 15,
+    marginTop:50,
+    
   },
   likeTypo: {
     color: "#fff",
@@ -150,8 +164,9 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   title: {
-    top: 187,
+    marginTop:50,
     fontSize: 45,
+    marginLeft:100,
   },
   image17Icon: {
     top: 616,
@@ -217,12 +232,13 @@ const styles = StyleSheet.create({
     height: 63,
   },
   username: {
-    top: 130,
+    top: 50,
     left: 137,
-    fontSize: 24,
+    fontSize:24,
     width: 163,
     height: 28,
     position: "absolute",
+    color:"#0084ff",
   },
   onePost: {
     backgroundColor: "#fffafa",

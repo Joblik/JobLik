@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity,StyleSheet,TextInput,ScrollView,Image,Image
 import client from '../../api/client';
 import Theme from "../../utils/Theme";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { color } from 'react-native-elements/dist/helpers';
 const cover = { uri: "https://wallpaper.dog/large/5477484.jpg" };
 
 const User = ({route,navigation}) => {
@@ -27,7 +28,7 @@ const [userId, setUserId] = useState([]);
       fetchUser();
     }, [userId]);
   
-       
+       console.log(userId.username);
       
     return (
       <View style={[Theme.mainScreen, Theme.whiteBack, { marginTop: 30 }]}>
@@ -84,8 +85,9 @@ const [userId, setUserId] = useState([]);
               }}
               size={120}
             />
-            <View></View>
+           
           </View>
+          
           <View style={[Theme.p10]}>
             <View>
               <Text
@@ -110,6 +112,9 @@ const [userId, setUserId] = useState([]);
               
               </View>
             </View>
+            <View>
+            <Text >{userId.username}</Text>
+            </View>
             <TouchableOpacity
                       
                       onPress={() => navigation.navigate('posts')}>
@@ -130,6 +135,7 @@ const [userId, setUserId] = useState([]);
             <View
               style={[Theme.p10, Theme.mt10, Theme.whiteBack, Theme.radius10]}
             >
+              
               <View>
                 <View style={[Theme.flxDirectionRow, Theme.jstfyBetween]}>
                   <Text
