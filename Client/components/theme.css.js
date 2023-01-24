@@ -430,6 +430,9 @@ const Theme = StyleSheet.create({
     ml50: {
         marginLeft: 50
     },
+    ml60:{
+        marginLeft: 60
+    },
 
     //opacity
     op1: {
