@@ -50,7 +50,7 @@ function SideBarContent({ isOpen }) {
             {!isOpen ? (
               <Hide below="md">
                 <Heading as="h3" size="sm">
-                  JobLike
+                  JobLik
                 </Heading>
                 <Text color="gray">Admin</Text>
               </Hide>

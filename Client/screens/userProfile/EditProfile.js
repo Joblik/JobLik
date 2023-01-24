@@ -83,15 +83,19 @@ const data  = {
             <Ionic
               name="checkmark"
               style={{ fontSize: 35, color: "#3493D9" }}
-              onPress={()=>{handleSubmit();
-              navigation.navigate("UserProfile");}}
-
+              onPress={() => {
+                handleSubmit();
+                navigation.navigate("UserProfile");
+              }}
             />
           </TouchableOpacity>
         </View>
         <View style={{ padding: 20, alignItems: "center" }}>
           <Image
-            source={{uri: image}}
+            // defaultSource={image}
+            source={{
+              uri: "https://scontent.ftun2-2.fna.fbcdn.net/v/t1.6435-9/131895898_3099883176779586_137168566729464076_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=174925&_nc_ohc=2RaMfz1EE2AAX-pOv4R&_nc_ht=scontent.ftun2-2.fna&oh=00_AfCIqBWslRpx7_Vw29LEaUDy5pb7JmVTBWaVYaGV625Q2A&oe=63F21798",
+            }}
             style={{ width: 80, height: 80, borderRadius: 100 }}
           />
           <TouchableOpacity
@@ -123,7 +127,7 @@ const data  = {
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
-                borderColor: "#CDCDCD",
+                borderColor: "#FEFEE2",
               }}
             />
           </View>
@@ -142,7 +146,7 @@ const data  = {
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
-                borderColor: "#CDCDCD",
+                borderColor: "#FEFEE2",
               }}
             />
           </View>
@@ -161,7 +165,7 @@ const data  = {
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
-                borderColor: "#CDCDCD",
+                borderColor: "#FEFEE2",
               }}
             />
           </View>
@@ -180,7 +184,7 @@ const data  = {
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
-                borderColor: "#CDCDCD",
+                borderColor: "#FEFEE2",
               }}
             />
           </View>
@@ -199,7 +203,7 @@ const data  = {
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
-                borderColor: "#CDCDCD",
+                borderColor: "#FEFEE2",
               }}
             />
           </View>

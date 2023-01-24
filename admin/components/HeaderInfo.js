@@ -79,7 +79,7 @@ function HeaderInfo() {
             <PopoverHeader fontWeight="semibold" fontSize="lg">
               Notifications
             </PopoverHeader>
-            <PopoverBody>+1 pending</PopoverBody>
+            <PopoverBody fontWeight="bold">+1 pending</PopoverBody>
           </PopoverContent>
         </Popover>
       </HStack>

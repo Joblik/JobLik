@@ -12,7 +12,13 @@ export default class PieChart extends Component {
           width: 380,
           type: "pie",
         },
-        labels: ["Comercial", "Industrial", "Residential", "Emergencies"],
+        labels: [
+          "Plumber",
+          "Electrician",
+          "Mechanical",
+          "Carpenter",
+          "blacksmith",
+        ],
         responsive: [
           {
             breakpoint: 480,
