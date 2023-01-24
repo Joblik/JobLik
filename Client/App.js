@@ -9,6 +9,9 @@ import User from "./screens/user/user";
 import EditProfile from "./screens/userProfile/EditProfile"
 import TabNav from "./navigation/TabNav"
 import OnePost from "./screens/onePost/postScreen"
+import EditProfile from "./screens/userProfile/EditProfile";
+import following from "./screens/followings/Followings"
+import followers from "./screens/followings/Followings";
 import Welcome from "./screens/welcome/welcome"
 // import EditProfile from "./screens/userProfile/EditProfile";
 import Posts from "./screens/posts/posts"
@@ -20,6 +23,7 @@ import OneChat from "./screens/Chat/OneChat"
 import Followings from "./screens/followings/Followings"
 import Followers from "./screens/followers/Followers"
 import CreatePost from "./screens/createPost/New"
+
 
 export default function App() {
   const Stack = createNativeStackNavigator();
