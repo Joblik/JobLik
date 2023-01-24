@@ -9,9 +9,6 @@ import User from "./screens/user/user";
 import EditProfile from "./screens/userProfile/EditProfile"
 import TabNav from "./navigation/TabNav"
 import OnePost from "./screens/onePost/postScreen"
-import EditProfile from "./screens/userProfile/EditProfile";
-import following from "./screens/followings/Followings"
-import followers from "./screens/followings/Followings";
 import Welcome from "./screens/welcome/welcome"
 // import EditProfile from "./screens/userProfile/EditProfile";
 import Posts from "./screens/posts/posts"
