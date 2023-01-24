@@ -14,24 +14,26 @@ const EditProfile = ({ navigation, route }) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [job, setJob] = useState("");
-  const [domain, setDomain] = useState("");
-  console.log("🚀 ~ file: EditProfile.js:10 ~ EditProfile ~ form=============>>", form);
 const data  = {
-  user,
+  username,
   image,
   email,
   phone,
   job,
-  domain,
 }
-   useEffect(() => {});
-  const handleSubmit = async () => {
-    try {
-      const response = await client.put(`/user/UpdateOneUser/${form._id}`,data );
-      console.log(response.data);
-      console.log("🚀 ~ file: EditProfile.js:31 ~ handleSubmit ~ data ================>>>>" , data)
-    } catch (error) {
-      console.log(error);
+  const handleSubmit = async (userId, userData) => {
+    const [response, setResponse] = useState(null);
+    const [error, setError] = useState(null);
+  
+    useEffect(() => {
+      client
+        .put(`/users/UpdateOneUser/${userId}`, data)
+        .then(res => setResponse(res.data))
+        .catch(err => setError(err.message));
+    }, []);
+   
+    if (error) {
+      return { error };
     }
   };
 
@@ -122,8 +124,7 @@ const data  = {
             </Text>
             <TextInput
               placeholder="Username"
-              defaultValue={form.username}
-              onChangeText={(newText) => setUser(newText)}
+              onChangeText={(newText) => setUserName(newText)}
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
@@ -141,7 +142,6 @@ const data  = {
             </Text>
             <TextInput
               placeholder="Email"
-              defaultValue={form.email}
               onChangeText={(newText) => setEmail(newText)}
               style={{
                 fontSize: 16,
@@ -160,7 +160,6 @@ const data  = {
             </Text>
             <TextInput
               placeholder="Job"
-              defaultValue={form.job}
               onChangeText={(newText) => setJob(newText)}
               style={{
                 fontSize: 16,
@@ -179,7 +178,6 @@ const data  = {
             </Text>
             <TextInput
               placeholder="Phone"
-              defaultValue={form.phone}
               onChangeText={(newText) => setPhone(newText)}
               style={{
                 fontSize: 16,
