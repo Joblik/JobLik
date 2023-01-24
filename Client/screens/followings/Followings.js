@@ -1,45 +1,113 @@
-import React from 'react';
-import { View, Text, Button, FlatList, StyleSheet, Image} from 'react-native';
+import React , {useEffect,useState} from 'react';
+import { TouchableOpacity,View, Text, FlatList, StyleSheet, Image} from 'react-native';
+import { Card } from "react-native-elements";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import client from '../../api/client';
 
-const users = ["user1","user2","user646","user4551","user36232","user6411","user6161","user494841","user656213","user9562","user65659","user652626","user956526","user595962","user965652","user595236"];
 
-const Followings = () => {
+const Followings = ({navigation}) => {
+  const [userId, setUserId] = useState(null);
+    const [Followings, setFollowings] = useState([]);
+    const [UserFollowings, setUserFollowings] = useState([]);
+    const [FollowingsList, setFollowingsList] = useState([]);
+    const [followName,setFollowName] = useState([])
+    useEffect(() => {
+      async function getUserId() {
+        const id = await AsyncStorage.getItem("id");
+        setUserId(JSON.parse(id));  
+      }
+      getUserId();
+      
+      const fetchUser = async () => {
+        try {
+          const response =await client.get("/followings/getAllFoloowing");
+          const Followings = response.data;
+          setFollowings(Followings);
+          const FollowingsList = Followings.map(followings => followings);
+          setFollowingsList(FollowingsList);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      fetchUser();
+      
+    },[]);
+    
+    useEffect(() => {
+      if(userId){
+        const filteredPosts = FollowingsList.filter(followings =>followings.userId === userId);
+        setUserFollowings(filteredPosts);
+        console.log(setUserFollowings.followingId,"ggggggggg")
+      }
+
+      
+    },[userId,FollowingsList]);
+    // 
+    
   return (
     <View>
-      <Text style={{ fontSize: 22, fontWeight: 'bold', padding: 35, fontFamily: 'Roboto', textAlign: 'center' }}>User51115 is following {users.length} users</Text>
-      <Button title="Go Back" color='gray'/>
-      <FlatList
-        style={styles.listContainer}
-        data={users}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-             <Image
-              source={{ uri: 'https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png' }}
-              style={{ width: 50, height: 50 }}/>
-            <Text>{item}</Text>
-            <Button title="..." color='gray'/>
-          </View>
-        )}
-        keyExtractor={item => item}
+      <View style={styles.root}>
+      <TouchableOpacity onPress={() =>  navigation.navigate("posts")}>
+  <Text style={{fontSize:20, color:'black'}}>posts</Text>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => navigation.navigate("followings")}>
+  <Text style={{fontSize:20, color:'black'}}>Following</Text>
+</TouchableOpacity>
+<TouchableOpacity onPress={() => navigation.navigate("followers")}>
+  <Text style={{fontSize:20, color:'black'}}>Followers</Text>
+</TouchableOpacity>
+      </View>
+      {UserFollowings.map((following, index) => (
+  <View key={index} style={styles.cardContainer}>
+    <Card containerStyle={styles.cardContent}>
+      <Image
+        source={{ uri: 'https://res.cloudinary.com/dqmhtibfm/image/upload/v1670924296/samples/people/smiling-man.jpg' }}
+        style={{ width: 50, height: 50, borderRadius: 25 }} 
       />
+      <Text>{following.userId?.username}</Text>
+      <TouchableOpacity onPress={() => alert('your follow add !')}>
+        <Text style={{fontSize:20, color:'blue'}}>follow</Text>
+      </TouchableOpacity>
+    </Card>
+  </View>
+))}
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   listContainer: {
-    marginBottom: 230,
-    backgroundColor: '#F5F5F5',
-    marginTop: 30
+      marginBottom: 230,
+      marginTop: 30
   },
   listItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 30,
-    borderBottomWidth: 1,
-    borderBottomColor: '#CCC'
-  }
+      borderRadius: 10,
+      padding: 30,
+      margin:10,
+      shadowColor: "#000",
+      shadowOffset: {
+          width: 0,
+          height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+  },
+  cardContent: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+  },
+  root: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: 380,
+    height: 80,
+    marginLeft:20,
+    marginTop:20
+},
 });
 
 export default Followings;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
+import{
   View,
   TouchableOpacity,
   ScrollView,
@@ -38,7 +38,16 @@ const Profile = ({ navigation }) => {
     
     fetchUser();
   }, [userId]);
-  // console.log("🚀 ~ file: UserProfile.js:49 ~ Profile ~ userId", userId)
+  console.log("🚀 ~ file: UserProfile.js:49 ~ Profile ~ userId", userId)
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.clear();
+      alert('You have been logged out');
+      navigation.navigate("login")
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View style={[Theme.mainScreen, Theme.whiteBack, { marginTop: 30 }]}>
@@ -111,35 +120,26 @@ const Profile = ({ navigation }) => {
             </View>
 
             <View style={[Theme.flxDirectionRow, Theme.mt20]}>
-              <View
-                style={[
-                  Theme.flex5,
-                  Theme.flxDirectionRow,
-                  Theme.alignItemsCenter,
-                ]}
-              >
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("following")}
-                >
-                  <Text style={[Theme.fontBold, Theme.linkedInFontColor]}>
-                    Followers
-                  </Text>
-                </TouchableOpacity>
-                <Icon
-                  color={"#596275"}
-                  style={[style.mr4, style.ml4]}
-                  name="circle"
-                  size={3}
-                />
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("following")}
-                >
-                  <Text style={[Theme.fontBold, Theme.linkedInFontColor]}>
-                    Following
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+    <View style={[Theme.flex5, Theme.flxDirectionRow, Theme.alignItemsCenter]}>
+        <View style={{ marginRight: 25, fontWeight: "bold"}}>
+            <TouchableOpacity onPress={() => navigation.navigate('posts')}>
+                <Text>Posts</Text>
+            </TouchableOpacity>
+        </View>
+        <View style={{ marginRight: 25,  fontWeight: "bold"}}>
+            <TouchableOpacity onPress={() => navigation.navigate('followers')}>
+                <Text>Followers</Text>
+            </TouchableOpacity>
+        </View>
+        <View style={{ marginRight: 25,  fontWeight: "bold"}}>
+            <TouchableOpacity onPress={() => navigation.navigate('followings')}>
+                <Text >Following</Text>
+            </TouchableOpacity>
+        </View>
+    </View>
+</View>
+
+           
             <View style={[Theme.flxDirectionRow]}>
               <TouchableOpacity
                 style={[Theme.btnM50, Theme.mr10, Theme.linkedinBack]}
@@ -148,18 +148,20 @@ const Profile = ({ navigation }) => {
                 }
               >
                 <Text style={[Theme.whiteFont, Theme.fontBold, Theme.f15]}>
-                  Edit Profile
+                  Edit
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[Theme.btnM20, Theme.mr10, Theme.bgSilver]}
+                onPress={() =>  navigation.navigate("reclamation")}
               >
                 <Text style={[Theme.f15, Theme.whiteFont, Theme.fontBold]}>
-                  Posts
+                  Reclamation
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[Theme.btnM20, Theme.mr10, Theme.bgDanger]}
+                onPress={() => handleLogout()}
               >
                 <Text style={[Theme.f15, Theme.whiteFont, Theme.fontBold]}>
                   Logout
@@ -281,6 +283,7 @@ const Profile = ({ navigation }) => {
                     </Text>
                   </View>
                 </View>
+               
               </View>
             </View>
           </View>
@@ -322,6 +325,15 @@ const style = StyleSheet.create({
     borderBottomWidth: 1,
     borderStyle: "dotted",
   },
+  statsButtonText:{
+    color : "blue"
+},
+statsButton: {
+  padding: 10,
+  borderWidth: 1,
+  borderColor: '#ddd',
+  marginHorizontal: 10,
+},
 });
 
 export default Profile;

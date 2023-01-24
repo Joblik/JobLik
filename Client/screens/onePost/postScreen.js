@@ -1,11 +1,45 @@
-import * as React from "react";
-import { Text, StyleSheet, Image, View } from "react-native";
-const PostScreen = ({route}) => {
+import React, { useState,useEffect } from "react";
+import client from "../../api/client";
+import { Text, StyleSheet, Image, View,TouchableOpacity,Button } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const PostScreen = ({route , navigation}) => {
+  const [userId, setUserId] = useState(null);  
+  useEffect(() => {
+    async function getUserId() {
+      const id = await AsyncStorage.getItem("id"); 
+      setUserId(JSON.parse(id));  
+    }
+    getUserId();
+    
+  }, []);
+  const handleLike = async (postId) => {
+    try {
+      const id = await AsyncStorage.getItem("id");
+      const userId = JSON.parse(id);
+      const response = await client.post('/post/addLike', 
+      { 
+        postId:postId,
+        userId:userId,
+       });
+       if(response.status === 201) {
+         //like added successfully
+       } else {
+         //handle error
+       }
+    } catch (error) {
+       console.log(error);
+    }  
+  }
     const post = route.params.post;
+    const user = route.params.user;
+    const userPost = post.userId._id;
+console.log(userPost); 
+
   return (
     <View style={styles.onePost}>
   <Text style={[styles.somewhereInThe, styles.titleTypo, styles.titleTypo1, styles.dinarsTypo]}>
-  {post.address}
+  {post.adress}
   </Text>
   <Text style={[styles.title, styles.iconPosition, styles.titleTypo, styles.titleTypo1]}>{post.title}</Text>
   <Image
@@ -21,15 +55,18 @@ const PostScreen = ({route}) => {
     style={[styles.onePostItem, styles.onePostItemPosition, styles.oneLayout]}
     resizeMode="cover"
   />
-  <Text style={[styles.like, styles.likeTypo]}>Like</Text>
+  
+
   <Text
         style={{
-          color: "#B0B0B0",
+          color: "#0084ff",
           marginTop: 40,
-          // fontFamily: "Bold",
           fontWeight: "bold",
           fontSize: 20,
+          marginLeft: 20,
+          marginTop:40
         }}
+        onPress={()=>navigation.navigate("home") }
       >
         JobLik
       </Text>
@@ -42,20 +79,40 @@ const PostScreen = ({route}) => {
     resizeMode="cover"
     source={require("../../components/images/2.jpg")}
   />
-  <Text style={[styles.username, styles.titleTypo, styles.titleTypo1]}>UserName</Text>
+  <TouchableOpacity 
+   onPress={() => navigation.navigate('user', { userPost })}>
+  <Text style={[styles.username, styles.titleTypo, styles.titleTypo1]}>{post.username}</Text>
+  </TouchableOpacity>
+  <TouchableOpacity style={{
+                // fontFamily: "ExtraBold",
+                fontSize: 13,
+                marginTop: 500,
+                marginLeft: 50,
+                color: "#0084ff",
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 5, // align items center
+              }}
+             onPress={() => { 
+        handleLike(post.id); 
+      }}>
+  <Text style={{marginRight:5}}>Like</Text>
+  <Image source={require("../../components/welcome/likes.png")} style={{width: 20, height: 20}} />
+</TouchableOpacity>
 </View>
+
   );
 };
 
 const styles = StyleSheet.create({
   titleTypo: {
     textAlign: "left",
-    fontFamily: "Inter",
+    fontWeight: "Inter",
   },
   titleTypo1: {
     color: "#000",
     textAlign: "left",
-    fontFamily: "Inter",
+    fontWeight: "Inter",
   },
   dinarsTypo: {
     fontSize: 20,
@@ -75,7 +132,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     top: 825,
     textAlign: "left",
-    fontFamily: "Inter",
+    fontWeight: "Inter",
     position: "absolute",
   },
   onePostItemPosition: {
@@ -83,8 +140,9 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   onePostInnerLayout: {
-    height: 366,
+    height: 360,
     position: "absolute",
+    marginRight:20
   },
   somewhereInThe: {
     top: 624,
@@ -131,7 +189,7 @@ const styles = StyleSheet.create({
     letterSpacing: 3.2,
     color: "#1a3e4f",
     textAlign: "left",
-    fontFamily: "Inter",
+    fontWeight: "Inter",
     position: "absolute",
   },
   onePostInner: {

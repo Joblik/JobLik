@@ -4,13 +4,18 @@ import { TouchableOpacity } from 'react-native'
 import Theme from '../../components/theme.css'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import client from "../../api/client"
+import client from "../../api/client";
+import { Card } from "react-native-elements";
+
 
 
 
 const Post = ({navigation}) => {
     const [userId, setUserId] = useState(null);  
-   
+    const [description, setDescription] = useState("");
+    const [title, setTitle] = useState("");
+   const [adress, setAddress] = useState("");
+   const [clicked, setClicked] = useState(false);
     useEffect(() => {
       async function getUserId() {
         const id = await AsyncStorage.getItem("id"); 
@@ -20,22 +25,17 @@ const Post = ({navigation}) => {
       
     }, []);
   
-    const [description, setDescription] = useState("");
-    const adress  = {
-        lgt : AsyncStorage.getItem('lgt'),
-        lat : AsyncStorage.getItem('lat')
-    }
-    const [title, setTitle] = useState("");
+    
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(JSON.stringify(adress));
+     
       try {
         const response = await client.post(
           "/post/addPost",
           {
             description: description,
-            adress: JSON.stringify(adress),
+            adress: adress,
             userId: userId, // use the userId state variable here
             title: title,
         
@@ -53,25 +53,29 @@ const Post = ({navigation}) => {
             <View style={[Theme.flex1, Theme.flxDirectionRow, style.bottomBorder]}>
                 <View style={[Theme.justifyCenter, Theme.pl10]}>
                     <TouchableOpacity
-                        onPress={()=>navigation.navigate("home") }
+                        onPress={()=>navigation.navigate("home", {
+                            refresh: 'true'
+                        })}
                         
                     >
-                        <Icon name="close" color="#0274b3" size={27} />
+                        <Icon name="close" color="#0084ff" size={27} />
                     </TouchableOpacity>
                 </View>
                 <View style={[Theme.justifyCenter, Theme.pl10]}>
                     <Text style={[Theme.f20, Theme.fontBold, Theme.txtDark]}>Share Post</Text>
                 </View>
                 <View style={[Theme.flex1, Theme.justifyCenter, Theme.alignEnd, Theme.pr30]}>
-                    <TouchableOpacity
-                       onPress={
-                        handleSubmit
-                    }
-                       
-                    >
-                        <Text style={[Theme.f17, Theme.fontBold, { color: "#0274b3" }]}>Post</Text>
-                    </TouchableOpacity>
-                </View>
+      <TouchableOpacity
+        onPress={() => {
+          handleSubmit();
+          setClicked(!clicked);
+        }}
+      >
+        <Text style={[Theme.f17, Theme.fontBold, { color: clicked ? 'black' : "#0084ff" }]}>
+          Post
+        </Text>
+      </TouchableOpacity>
+    </View>
             </View>
             <View style={[Theme.flex1, Theme.flxDirectionRow, Theme.p10]}>
                 <View>
@@ -84,6 +88,7 @@ const Post = ({navigation}) => {
             <View style={[Theme.flex8]}>
                 <View style={[Theme.flex8]}>
                     <Text style={[Theme.f35,Theme.mb20,Theme.ml20]}>New Job Offer</Text>
+                    <Card>
                 <ScrollView style={[Theme.p10,]}>
                         <TextInput
                             onChangeText={e => setTitle(e)}
@@ -95,15 +100,11 @@ const Post = ({navigation}) => {
                             multiline style={[Theme.f15, Theme.flex4, Theme.pb20]} placeholder={"Write down your description here..."} />
                     </ScrollView>
                     <ScrollView style={[Theme.p10, Theme.pt20,]}>
-                        <Button
-                        title={'Select Location'} 
-                        onPress={
-                        
-                            ()=> navigation.navigate('Map')
-                            
-                        }/>
-                        <Text>Your Coords : {adress.lat+':'+adress.lgt}</Text>
+                    <TextInput
+                            onChangeText={e => setAddress(e)}
+                            multiline style={[Theme.f15, Theme.flex4, Theme.pb20]} placeholder={"Write down your Adress here..."} />
                     </ScrollView>
+                    </Card>
                 </View>
                 <View style={[Theme.flex3]}>
                     <ScrollView style={[Theme.p10, Theme.pt20, Theme.flex5]}>
@@ -122,11 +123,11 @@ const Post = ({navigation}) => {
 
 const style = StyleSheet.create({
     bottomBorder: {
-        borderBottomColor: "#bdc3c7",
+        borderBottomColor: "#0084ff",
         borderBottomWidth: 1
     },
     shareBtn: {
-        borderColor: "#bdc3c7",
+        borderColor: "#0084ff",
         borderWidth: 1,
         padding: 5
     },

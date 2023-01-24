@@ -16,14 +16,14 @@ import client from "../../api/client";
 
 const Register = ({ navigation }) => {
   const { height } = Dimensions.get("window");
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   function validateForm() {
     return (
-      name.length > 0 &&
+      username.length > 0 &&
       email.length > 0 &&
       password.length > 0 &&
       confirmPassword === password
@@ -32,19 +32,18 @@ const Register = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
-      const response = await client.post(
-        "/user/register",
+      const result = await client.post("/user/register",
         {
-          name,
+         username,
           email,
           password,
         }
       );
-      alert(response.data.message);
+      alert(result.data.message);
       navigation.navigate("otp");
     } catch (error) {
       console.log(error);
-      alert(error.response.data.message);
+      alert(error.result.data.message);
     }
   }
   return (
@@ -104,6 +103,9 @@ const Register = ({ navigation }) => {
             Register Now
           </Text>
         </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.loginText}   onPress={()=>navigation.navigate("login") }>Login</Text>
+        </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
     </KeyboardAvoidingView >
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: "80%",
-    backgroundColor: "#003f5c",
+    backgroundColor: "#0084ff",
     borderRadius: 25,
     height: 50,
     alignItems: "center",

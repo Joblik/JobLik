@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
- 
   View,
- 
   Text,
   TextInput,
   ScrollView,
@@ -10,23 +8,23 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Card } from "react-native-elements";
-
-
-
 import client from "../../api/client";
-// import { useRefresh } from 'react-native-refresh-control';
-import { useNavigation } from '@react-navigation/native';
-const Home = () => {
+import { useNavigation } from "@react-navigation/native";
+
+const Home = ({route}) => {
   const navigation = useNavigation();
   // const { refresh } = useRefresh();
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
+  // const {refresh}= route.params
+  console.log(route, 'le route');
 
   useEffect(() => {
     async function fetchPosts() {
       const response = await client.get("/post/getAllPosts");
-      setPosts(response.data);  
-      setFilteredPosts(response.data)
+      console.log(response)
+      setPosts(response.data);
+      setFilteredPosts(response.data);
     }
     fetchPosts();
   }, []);
@@ -41,7 +39,7 @@ const Home = () => {
     >
       <Text
         style={{
-          color: "#B0B0B0",
+          color: "#0084ff",
           marginTop: 40,
           // fontFamily: "Bold",
           fontWeight: "bold",
@@ -86,8 +84,7 @@ const Home = () => {
                   filteredPosts.description
                     .toLowerCase()
                     .includes(e.toLowerCase()) ||
-                  filteredPosts.title.toLowerCase().includes(e.toLowerCase()) ||
-                  filteredPosts.adress.toLowerCase().includes(e.toLowerCase())
+                  filteredPosts.title.toLowerCase().includes(e.toLowerCase()) 
               )
             );
             // console.log('filtered:'+filteredfilteredPostsosts +'/'+filteredPostsosts)
@@ -95,7 +92,7 @@ const Home = () => {
         />
         <View
           style={{
-            backgroundColor: "rgb(14,49,65)",
+            backgroundColor: "#0084ff",
             width: 30,
             height: 30,
             borderRadius: 8,
@@ -154,85 +151,103 @@ const Home = () => {
         Your Today Job
       </Text>
 
-      {filteredPosts.map((post) => (
-        <TouchableOpacity onPress={() => navigation.navigate("OnePost",{ post: post })}>
-          <View
+      {filteredPosts.map((post, user) => (
+        <View
           key={post.UserId}
+          style={{
+            backgroundColor: post.status === "active" ? "#FFF" : "#DFDFDF",
+            marginTop: 10,
+            flexDirection: "row",
+            borderRadius: 10,
+            height: 130,
+            alignItems: "center",
+            paddingHorizontal: 20,
+          }}
+        >
+          <View
             style={{
-              backgroundColor: post.status === "active" ? "#FFF" : "#DFDFDF",
-              marginTop: 10,
-              flexDirection: "row",
-              borderRadius: 10,
-              height: 130,
+              backgroundColor: "#DFDFDF",
+              borderRadius: 5,
+              height: 40,
+              width: 40,
               alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Image
+              source={require("../../components/img/logo.png")}
+              style={{ width: 100, height: 100 }}
+            />
+          </View>
+
+          <View
+            style={{
               paddingHorizontal: 20,
             }}
           >
-            <View
-              style={{
-                backgroundColor: "#DFDFDF",
-                borderRadius: 5,
-                height: 40,
-                width: 40,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Image
-                source={require("../../components/img/logo.png")}
-                style={{ width: 100, height: 100 }}
-              />
-            </View>
-
-            <View
-              style={{
-                paddingHorizontal: 20,
-              }}
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("OnePost", { post: post, user: user })
+              }
             >
               <Text
                 style={{
                   // fontFamily: "ExtraBold",
                   fontSize: 13,
                   marginTop: 20,
+                  marginLeft: 190,
+                  color: "#0084ff",
                 }}
               >
-                {post.title}
+                Show Details
               </Text>
+            </TouchableOpacity>
 
-              <View
-                style={{
-                  backgroundColor:
-                    post.status === "active" ? "#DFDFDF" : "#FFF",
-                  borderRadius: 5,
-                  width: 250,
-                  alignItems: "center",
-                  marginVertical: 5,
-                }}
-              >
-                <Text
-                  style={{
-                    // fontFamily: "Medium"
-                    fontSize: 15,
-                  }}
-                >
-                  {post.description.length > 60
-                    ? `${post.description.substring(0, 60)}...`
-                    : post.description}
-                </Text>
-              </View>
-            </View>
             <Text
               style={{
                 // fontFamily: "ExtraBold",
-                fontSize: 10,
-                marginLeft: 90,
-                marginBottom: 100,
+                fontSize: 13,
+                marginTop: 20,
               }}
             >
-              {post.adress}
+              {post.title}
             </Text>
+      
+
+            <View
+              style={{
+                backgroundColor: post.status === "active" ? "#DFDFDF" : "#FFF",
+                borderRadius: 5,
+                width: 250,
+                alignItems: "center",
+                marginVertical: 5,
+                marginBottom:25
+              }}
+            >
+              <Text
+                style={{
+                  // fontFamily: "Medium"
+                  fontSize: 15,
+                  
+                }}
+              >
+                {post.description.length > 60
+                  ? `${post.description.substring(0, 60)}...`
+                  : post.description}
+              </Text>
+            </View>
           </View>
-        </TouchableOpacity>
+          <Text
+            style={{
+              // fontFamily: "ExtraBold",
+              fontSize: 10,
+              marginLeft: 90,
+              marginBottom: 100,
+            }}
+          >
+            {post.adress}
+          </Text>
+        </View>
       ))}
     </ScrollView>
   );

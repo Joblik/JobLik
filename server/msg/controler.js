@@ -1,27 +1,31 @@
-const msgSchema = require("./models")
-
+const {Msg} = require("./models")
 const getAllMessage = (req, res) => {
-    console.log("==============> done");
-    msgSchema.find()
-      .then((response) => res.status(200).send(response))
-      .catch((err) => res.status(400).send(err));
-  };
+  console.log("==============> done");
+  Msg.find().populate('sender')
+    .then((response) => res.status(200).send(response))
+    .catch((err) => res.status(400).send(err));
+};
   const addMessage = async (req, res) => {
     try {
-      const msgSchema = new msgSchema(req.body);
-      await msgSchema.save();
-      res.status(201).send(message);
-    } catch (err) {
-      res.status(400).send(err);
+      const newMessage = new Msg({
+        msg: req.body.msg,
+        sender: req.user._id, // <-- use the _id of the authenticated user
+        receiver: req.body.receiver,
+        createdAt: new Date()
+    });
+      await newMessage.save();
+      res.status(201).json({ message: "Message added successfully" });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-};
-
+  };
   const getOnemsg = (req, res) => {
-    msgSchema.findOne({ _id: req.params.id })
+    Msg.findOne({ _id: req.params.id })
       .then((response) => res.status(200).send(response))
       .catch((err) => res.status(400).send(err));
   };
   module.exports = {
     getAllMessage,
     addMessage,
+    getOnemsg
   };

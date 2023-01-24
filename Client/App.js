@@ -1,16 +1,29 @@
-import React from "react";
+import React, { Profiler } from "react";
 import { StyleSheet } from "react-native";
 import LoginScreen from "./screens/Login/LoginScreen";
 import Register from "./screens/register/register";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import OTP from "./screens/otpScreen/otpScreen";
-import TabNav from "../Client/navigation/TabNav"
+import User from "./screens/user/user";
+import EditProfile from "./screens/userProfile/EditProfile"
+import TabNav from "./navigation/TabNav"
 import OnePost from "./screens/onePost/postScreen"
-
 import EditProfile from "./screens/userProfile/EditProfile";
 import following from "./screens/followings/Followings"
 import followers from "./screens/followings/Followings";
+import Welcome from "./screens/welcome/welcome"
+// import EditProfile from "./screens/userProfile/EditProfile";
+import Posts from "./screens/posts/posts"
+// import Home from "./screens/home/home"
+// import Profile from "./screens/userProfile/UserProfile"
+import AddReclamation from "./screens/reclamation/reclamation";
+import AllChat from "./screens/Chat/AllChat"
+import OneChat from "./screens/Chat/OneChat"
+import Followings from "./screens/followings/Followings"
+import Followers from "./screens/followers/Followers"
+import CreatePost from "./screens/createPost/New"
+
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -18,20 +31,26 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="register"
+        initialRouteName="home"
         screenOptions={{ headerShown: false }}
       >
+         <Stack.Screen name="followers" component={Followers} />
+         <Stack.Screen name="CreatePost" component={CreatePost} />
+
+         <Stack.Screen name="followings" component={Followings} />
+         <Stack.Screen name="posts" component={Posts} />
+         <Stack.Screen name="AllChat" component={AllChat} />
+         <Stack.Screen name="OneChat" component={OneChat} />
         <Stack.Screen name="register" component={Register} />
+        <Stack.Screen name="welcome" component={Welcome} />
         <Stack.Screen name="OnePost" component={OnePost}  />
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="otp" component={OTP} />
+        <Stack.Screen name="user" component={User} />
         <Stack.Screen name="home" component={TabNav}/>
-        <Stack.Screen name="Search" component={TabNav} />
-        <Stack.Screen name="createPost" component={TabNav} />
+        <Stack.Screen name="reclamation" component={AddReclamation}/>
         <Stack.Screen name="UserProfile" component={TabNav} />
         <Stack.Screen name="editProfile" component={EditProfile} />
-        <Stack.Screen name="following" component={following} />
-        <Stack.Screen name="followers" component={followers} />
       </Stack.Navigator>
     </NavigationContainer>
   );

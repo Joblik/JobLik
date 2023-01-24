@@ -1,13 +1,14 @@
-const  following= require("./models")
+const  {following}= require("./models")
 
-const getAllFoloowing= (req, res) => {
-    following.find({}, (error, followings) => {
-        if (error) {
-            res.status(500).send(error);
-        } else {
-            res.send(followings);
-        }
-    });
+const getAllFoloowing= async (req, res) => {
+    try {
+        const followings = await following.find({}).populate("userId","email username image");
+        res.status(200).send(followings);
+      } catch (err) {
+        console.log(err);
+  
+        res.status(500).send(err);
+      }
 }; 
 const findByIdAndDelete =(req, res) => {
     following.findByIdAndDelete(req.params.id, (error, deletedFollowing) => {
