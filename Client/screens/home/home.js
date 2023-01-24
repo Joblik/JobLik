@@ -6,12 +6,14 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Modal
 } from "react-native";
 import { Card } from "react-native-elements";
 import client from "../../api/client";
 import { useNavigation } from "@react-navigation/native";
 
 const Home = ({route}) => {
+  const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   // const { refresh } = useRefresh();
   const [posts, setPosts] = useState([]);
@@ -40,10 +42,10 @@ const Home = ({route}) => {
       <Text
         style={{
           color: "#0084ff",
-          marginTop: 40,
+          marginTop: 70,
           // fontFamily: "Bold",
           fontWeight: "bold",
-          fontSize: 20,
+          fontSize: 25,
         }}
       >
         JobLik
@@ -52,9 +54,10 @@ const Home = ({route}) => {
       <Text
         style={{
           // fontFamily: "ExtraBold",
-          fontSize: 18,
+          fontSize: 15,
           marginTop: 13,
           color: "rgb(14,49,65)",
+          fontWeight: "bold",
         }}
       >
         Find your best jobs
@@ -96,7 +99,7 @@ const Home = ({route}) => {
             width: 30,
             height: 30,
             borderRadius: 8,
-            marginLeft: 80,
+            marginLeft: 120,
             alignItems: "center",
             justifyContent: "center",
           }}
@@ -115,30 +118,101 @@ const Home = ({route}) => {
       </Text>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <Card>
-          <View>
-            <Image
-              source={require("../../components/images/fair.jpg")}
-              style={{ width: 200, height: 200 }}
-            />
-          </View>
-        </Card>
-        <Card>
-          <View>
-            <Image
-              source={require("../../components/images/job.jpg")}
-              style={{ width: 200, height: 200 }}
-            />
-          </View>
-        </Card>
-        <Card>
-          <View>
-            <Image
-              source={require("../../components/images/empl.jpeg")}
-              style={{ width: 200, height: 200 }}
-            />
-          </View>
-        </Card>
+        
+      <View style={{
+    borderWidth: 1,
+    borderColor: '#0084ff',
+    borderRadius: 10,
+    padding: 0,
+    margin: 15
+}}>
+ <Card>
+    <TouchableOpacity onPress={() => setModalVisible(true)}>
+      <Image
+        source={require("../../components/images/fair.jpg")}
+        style={{ width: 200, height: 200 }}
+      />
+    </TouchableOpacity>
+    </Card>
+    <Modal
+    animationType="fade"
+    transparent={false}
+    visible={modalVisible}
+    onRequestClose={() => setModalVisible(false)}
+  >
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <TouchableOpacity onPress={() => setModalVisible(false)}>
+        <Image
+          source={require("../../components/images/fair.jpg")}
+          style={{ width: '100%', height: '100%' }}
+        />
+      </TouchableOpacity>
+    </View>
+  </Modal>
+</View>
+       
+          <View style={{
+    borderWidth: 1,
+    borderColor: '#0084ff',
+    borderRadius: 10,
+    padding: 0,
+    margin: 15
+}}>
+ <Card>
+    <TouchableOpacity onPress={() => setModalVisible(true)}>
+      <Image
+        source={require("../../components/images/job.jpg")}
+        style={{ width: 200, height: 200 }}
+      />
+    </TouchableOpacity>
+    </Card>
+    <Modal
+    animationType="fade"
+    transparent={false}
+    visible={modalVisible}
+    onRequestClose={() => setModalVisible(false)}
+  >
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <TouchableOpacity onPress={() => setModalVisible(false)}>
+        <Image
+          source={require("../../components/images/job.jpg")}
+          style={{ width: '100%', height: '100%' }}
+        />
+      </TouchableOpacity>
+    </View>
+  </Modal>
+</View>
+<View style={{
+    borderWidth: 1,
+    borderColor: '#0084ff',
+    borderRadius: 10,
+    padding: 0,
+    margin: 15
+}}>
+ <Card>
+    <TouchableOpacity onPress={() => setModalVisible(true)}>
+      <Image
+        source={require("../../components/images/empl.jpeg")}
+        style={{ width: 200, height: 200 }}
+      />
+    </TouchableOpacity>
+    </Card>
+    <Modal
+    animationType="fade"
+    transparent={true}
+    visible={modalVisible}
+    onRequestClose={() => setModalVisible(false)}
+  >
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: "rgba(0,0,0,0.5)"}}>
+      <TouchableOpacity onPress={() => setModalVisible(false)}>
+        <Image
+          source={require("../../components/images/empl.jpeg")}
+          style={{ width: '100%', height: '100%' }}
+        />
+      </TouchableOpacity>
+    </View>
+  </Modal>
+</View>
       </ScrollView>
       <Text
         style={{
