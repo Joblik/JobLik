@@ -120,31 +120,26 @@ const Profile = ({ navigation }) => {
             </View>
 
             <View style={[Theme.flxDirectionRow, Theme.mt20]}>
-              <View
-                style={[
-                  Theme.flex5,
-                  Theme.flxDirectionRow,
-                  Theme.alignItemsCenter,
-                ]}
-              >
-              
-              </View>
-            </View>
-            <TouchableOpacity
-                      
-                      onPress={() => navigation.navigate('posts')}>
-                      <Text>Posts</Text>
-                  </TouchableOpacity>
-            <TouchableOpacity
-                      
-                        onPress={() => navigation.navigate('Followers')}>
-                        <Text>Followers</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
+    <View style={[Theme.flex5, Theme.flxDirectionRow, Theme.alignItemsCenter]}>
+        <View style={{ marginRight: 25, fontWeight: "bold"}}>
+            <TouchableOpacity onPress={() => navigation.navigate('posts')}>
+                <Text>Posts</Text>
+            </TouchableOpacity>
+        </View>
+        <View style={{ marginRight: 25,  fontWeight: "bold"}}>
+            <TouchableOpacity onPress={() => navigation.navigate('followers')}>
+                <Text>Followers</Text>
+            </TouchableOpacity>
+        </View>
+        <View style={{ marginRight: 25,  fontWeight: "bold"}}>
+            <TouchableOpacity onPress={() => navigation.navigate('followings')}>
+                <Text >Following</Text>
+            </TouchableOpacity>
+        </View>
+    </View>
+</View>
 
-                        onPress={() => navigation.navigate('followings')}>
-                        <Text >Following</Text>
-                    </TouchableOpacity>
+           
             <View style={[Theme.flxDirectionRow]}>
               <TouchableOpacity
                 style={[Theme.btnM50, Theme.mr10, Theme.linkedinBack]}
@@ -153,7 +148,7 @@ const Profile = ({ navigation }) => {
                 }
               >
                 <Text style={[Theme.whiteFont, Theme.fontBold, Theme.f15]}>
-                  Edit Profile
+                  Edit
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity

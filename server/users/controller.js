@@ -114,10 +114,10 @@ async function login(req, res) {
 const register = async (req, res) => {
   try {
     const {
-      body: { Username, email, password },
+      body: { username, email, password },
     } = req;
 
-    if (!email && !Username && !password) {
+    if (!email && !username && !password) {
       return res.status(301).json({
         message: "Please fill all required fields",
       });
@@ -131,7 +131,7 @@ const register = async (req, res) => {
     const newPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
-      Username,
+      username,
       email,
       password: newPassword,
     });
