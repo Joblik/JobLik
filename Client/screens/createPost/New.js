@@ -33,7 +33,7 @@ const Post = ({ navigation }) => {
   }, []);
 
   const handleSubmit = async (e) => {
-    setIconColor("rgb(43,74,157)");
+    setIconColor("#00ff48");
     e.preventDefault();
 
     try {
@@ -69,7 +69,7 @@ const Post = ({ navigation }) => {
       <View style={[Theme.flex1, Theme.flxDirectionRow, Theme.p10]}>
         <View></View>
         <View style={[Theme.justifyCenter, Theme.pl10, Theme.justifyEnd]}>
-          <View></View>
+          
         </View>
       </View>
       <View style={[Theme.flex8]}>
