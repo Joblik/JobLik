@@ -11,7 +11,6 @@ import OnePost from "./screens/onePost/postScreen"
 import EditProfile from "./screens/userProfile/EditProfile";
 import following from "./screens/followings/Followings"
 import followers from "./screens/followings/Followings";
-import Map from "./screens/map/Map";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -24,7 +23,6 @@ export default function App() {
       >
         <Stack.Screen name="register" component={Register} />
         <Stack.Screen name="OnePost" component={OnePost}  />
-        <Stack.Screen name="Map" component={Map} />
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="otp" component={OTP} />
         <Stack.Screen name="home" component={TabNav}/>
