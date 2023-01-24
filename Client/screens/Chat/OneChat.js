@@ -1,31 +1,49 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, Image, ImageBackground,Dimensions } from "react-native";
+import client from "../../api/client"
 
 const OneChatIcon = ({navigation , route}) => {
-  
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
   const { messageId } = route.params;
-  const [message, setMessage] = useState({});
-  
-  useEffect(() => {
-    messages.getOnemsg(messageId)
-      .then((response) => {
-          setMessage(response);
-      })
-      .catch((error) => {
-          console.log(error);
-      });
-  }, []);
+    const [message, setMessage] = useState({});
+    const [text, setText] = useState('');
+
+    useEffect(() => {
+        client.get(`/chat/getOnemsg/${messageId}`)
+        .then((response) => {
+            setMessage(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, []);
+
+    const onSendMessage = () => {
+      // send message to backend
+      client.post(`/chat/sendMessage/${messageId}`, { msg: text })
+        .then(response => {
+          setMessage(response.data);
+          console.log(response.data);
+          setText('');
+        })
+        .catch(error => console.log(error));
+    }
+
   return (
     <ImageBackground
       style={[styles.oneChatIcon, {width: screenWidth, height: screenHeight}]}
-      
       resizeMode="cover"
       source={require("../../components/images/griis.jpg")}
     >
       <View style={[styles.oneChatChild, styles.oneLayout]} />
-      <Text style={[styles.salut, styles.salutTypo]}>salut</Text>
+      <Text style={[styles.salut, styles.salutTypo]}>
+        {message.map(msg => {
+          if (msg.sender === 'you') {
+            return <Text>{msg.msg}</Text>
+          }
+        })}
+      </Text>
       <View style={[styles.oneChatItem, styles.hoyPosition]} />
       <Text style={[styles.hoy, styles.hoyPosition]}>
         <Text style={styles.hoyTxt}>
@@ -33,26 +51,41 @@ const OneChatIcon = ({navigation , route}) => {
           <Text style={styles.text}>{` `}</Text>
         </Text>
       </Text>
+     
+
       <View style={[styles.component1,{width: screenWidth}]}>
-        <View style={[styles.allChatWrapper, styles.allChatWrapperPosition]}>
-        
-        </View>
-        <Text style={[styles.allChat1, styles.allTypo]}>Monada</Text>
-        <Image
-          style={[styles.unsplash1onzhgu751aIcon]}
-          resizeMode="cover"
-          source={require("../../components/images/griis.jpg")}
-        />
-      </View>
-      <View style={styles.component2}>
-        <View style={[styles.component2Child, styles.allChatWrapperPosition]} />
-        <Text style={styles.yourMessageHere}>Your Message Here...</Text>
-      </View>
-      <View style={[styles.oneChatInner, styles.oneLayout]} />
-      <Text style={[styles.hello, styles.salutTypo]}>hello</Text>
-    </ImageBackground>
-  );
-};
+<View style={[styles.allChatWrapper, styles.allChatWrapperPosition]}>
+<Text>{message.msg}</Text>
+</View>
+<Text style={[styles.allChat1, styles.allTypo]}>{message.receiver}</Text>
+<Image
+style={[styles.unsplash1onzhgu751aIcon]}
+resizeMode="cover"
+source={require("../../components/images/griis.jpg")}
+/>
+</View>
+<View style={styles.component2}>
+<View style={[styles.component2Child, styles.allChatWrapperPosition]}>
+<TextInput
+         style={styles.input}
+         placeholder="Type your message here..."
+       />
+<TouchableOpacity style={styles.button}>
+<Text style={styles.buttonText}>Send</Text>
+</TouchableOpacity>
+</View>
+</View>
+<View style={[styles.oneChatInner, styles.oneLayout]}>
+<Text style={[styles.hello, styles.salutTypo]}>
+{message.messages.map(msg => {
+if (msg.sender !== 'you') {
+return <Text>{msg.msg}</Text>
+}
+})}
+</Text>
+</View>
+</ImageBackground>
+  )};
 
 const styles = StyleSheet.create({
   oneLayout: {

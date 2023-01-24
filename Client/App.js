@@ -19,6 +19,9 @@ import AllChat from "./screens/Chat/AllChat"
 import OneChat from "./screens/Chat/OneChat"
 import Followings from "./screens/followings/Followings"
 import Followers from "./screens/followers/Followers"
+import CreatePost from "./screens/createPost/New"
+
+
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -29,6 +32,8 @@ export default function App() {
         screenOptions={{ headerShown: false }}
       >
          <Stack.Screen name="followers" component={Followers} />
+         <Stack.Screen name="CreatePost" component={CreatePost} />
+
          <Stack.Screen name="followings" component={Followings} />
          <Stack.Screen name="posts" component={Posts} />
          <Stack.Screen name="AllChat" component={AllChat} />

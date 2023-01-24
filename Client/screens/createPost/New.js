@@ -15,6 +15,7 @@ const Post = ({navigation}) => {
     const [description, setDescription] = useState("");
     const [title, setTitle] = useState("");
    const [adress, setAddress] = useState("");
+   const [clicked, setClicked] = useState(false);
     useEffect(() => {
       async function getUserId() {
         const id = await AsyncStorage.getItem("id"); 

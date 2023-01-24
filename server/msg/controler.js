@@ -1,18 +1,18 @@
 const {Msg} = require("./models")
 const getAllMessage = (req, res) => {
-    console.log("==============> done");
-    Msg.find()
-      .then((response) => res.status(200).send(response))
-      .catch((err) => res.status(400).send(err));
-  };
+  console.log("==============> done");
+  Msg.find().populate('sender')
+    .then((response) => res.status(200).send(response))
+    .catch((err) => res.status(400).send(err));
+};
   const addMessage = async (req, res) => {
     try {
       const newMessage = new Msg({
         msg: req.body.msg,
-        sender: req.body.sender,
+        sender: req.user._id, // <-- use the _id of the authenticated user
         receiver: req.body.receiver,
         createdAt: new Date()
-      });
+    });
       await newMessage.save();
       res.status(201).json({ message: "Message added successfully" });
     } catch (error) {
@@ -27,4 +27,5 @@ const getAllMessage = (req, res) => {
   module.exports = {
     getAllMessage,
     addMessage,
+    getOnemsg
   };

@@ -25,6 +25,7 @@ export default function TabNavigation() {
       <Tab.Screen
         name="Home"
         children={() => <Home isSearchVisible={isSearchVisible} />}
+        
         options={{
           tabBarIcon: ({ size, focused }) => (
             <MaterialCommunityIcons

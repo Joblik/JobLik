@@ -11,11 +11,13 @@ import { Card } from "react-native-elements";
 import client from "../../api/client";
 import { useNavigation } from "@react-navigation/native";
 
-const Home = () => {
+const Home = ({route}) => {
   const navigation = useNavigation();
   // const { refresh } = useRefresh();
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
+  // const {refresh}= route.params
+  console.log(route, 'le route');
 
   useEffect(() => {
     async function fetchPosts() {
