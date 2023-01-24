@@ -16,7 +16,7 @@ import client from "../../api/client";
 
 const cover = { uri: "https://wallpaper.dog/large/5477484.jpg" };
 
-const Profile = ({ navigation }) => {
+const Profile = ({ navigation, route }) => {
   //SELECTORS
   const [userId, setUserId] = useState(null);
   const [form, setForm] = useState("");
@@ -100,7 +100,7 @@ const Profile = ({ navigation }) => {
                 },
               ]}
               source={{
-                uri: "https://scontent.ftun2-2.fna.fbcdn.net/v/t1.6435-9/131895898_3099883176779586_137168566729464076_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=174925&_nc_ohc=2RaMfz1EE2AAX-pOv4R&_nc_ht=scontent.ftun2-2.fna&oh=00_AfCIqBWslRpx7_Vw29LEaUDy5pb7JmVTBWaVYaGV625Q2A&oe=63F21798",
+                uri: "https://scontent.ftun5-1.fna.fbcdn.net/v/t39.30808-6/301572632_619322496221354_8359942737408873830_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=VQ5aMWHw95MAX8IoF7U&_nc_ht=scontent.ftun5-1.fna&oh=00_AfDgQqUjSqAOtA7Rr7NpjxbtOOtZclCyVHpIBHv9L2kCmQ&oe=63C2D1C1",
               }}
               size={120}
             />
