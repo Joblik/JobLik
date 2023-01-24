@@ -15,6 +15,7 @@ const Post = ({navigation}) => {
     const [description, setDescription] = useState("");
     const [title, setTitle] = useState("");
    const [adress, setAddress] = useState("");
+   const [clicked, setClicked] = useState(false);
     useEffect(() => {
       async function getUserId() {
         const id = await AsyncStorage.getItem("id"); 
@@ -52,7 +53,9 @@ const Post = ({navigation}) => {
             <View style={[Theme.flex1, Theme.flxDirectionRow, style.bottomBorder]}>
                 <View style={[Theme.justifyCenter, Theme.pl10]}>
                     <TouchableOpacity
-                        onPress={()=>navigation.navigate("home") }
+                        onPress={()=>navigation.navigate("home", {
+                            refresh: 'true'
+                        })}
                         
                     >
                         <Icon name="close" color="#0084ff" size={27} />
@@ -62,15 +65,17 @@ const Post = ({navigation}) => {
                     <Text style={[Theme.f20, Theme.fontBold, Theme.txtDark]}>Share Post</Text>
                 </View>
                 <View style={[Theme.flex1, Theme.justifyCenter, Theme.alignEnd, Theme.pr30]}>
-                    <TouchableOpacity
-                       onPress={
-                        handleSubmit 
-                    }
-                       
-                    >
-                        <Text style={[Theme.f17, Theme.fontBold, { color: "#0084ff" }]}>Post</Text>
-                    </TouchableOpacity>
-                </View>
+      <TouchableOpacity
+        onPress={() => {
+          handleSubmit();
+          setClicked(!clicked);
+        }}
+      >
+        <Text style={[Theme.f17, Theme.fontBold, { color: clicked ? 'black' : "#0084ff" }]}>
+          Post
+        </Text>
+      </TouchableOpacity>
+    </View>
             </View>
             <View style={[Theme.flex1, Theme.flxDirectionRow, Theme.p10]}>
                 <View>
