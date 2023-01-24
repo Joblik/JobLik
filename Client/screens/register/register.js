@@ -16,14 +16,14 @@ import client from "../../api/client";
 
 const Register = ({ navigation }) => {
   const { height } = Dimensions.get("window");
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   function validateForm() {
     return (
-      name.length > 0 &&
+      username.length > 0 &&
       email.length > 0 &&
       password.length > 0 &&
       confirmPassword === password
@@ -32,9 +32,9 @@ const Register = ({ navigation }) => {
 
   async function handleSubmit() {
     try {
-      const result = await axios.post("/user/register",
+      const result = await client.post("/user/register",
         {
-          name,
+         username,
           email,
           password,
         }

@@ -16,7 +16,7 @@ import client from "../../api/client";
 
 const cover = { uri: "https://wallpaper.dog/large/5477484.jpg" };
 
-const Profile = ({ navigation }) => {
+const Profile = ({ navigation, route }) => {
   //SELECTORS
   const [userId, setUserId] = useState(null);
   const [form, setForm] = useState("");
@@ -121,31 +121,26 @@ const Profile = ({ navigation }) => {
             </View>
 
             <View style={[Theme.flxDirectionRow, Theme.mt20]}>
-              <View
-                style={[
-                  Theme.flex5,
-                  Theme.flxDirectionRow,
-                  Theme.alignItemsCenter,
-                ]}
-              >
-              
-              </View>
-            </View>
-            <TouchableOpacity
-                      
-                      onPress={() => navigation.navigate('posts')}>
-                      <Text>Posts</Text>
-                  </TouchableOpacity>
-            <TouchableOpacity
-                      
-                        onPress={() => navigation.navigate('Followers')}>
-                        <Text>Followers</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
+    <View style={[Theme.flex5, Theme.flxDirectionRow, Theme.alignItemsCenter]}>
+        <View style={{ marginRight: 25, fontWeight: "bold"}}>
+            <TouchableOpacity onPress={() => navigation.navigate('posts')}>
+                <Text>Posts</Text>
+            </TouchableOpacity>
+        </View>
+        <View style={{ marginRight: 25,  fontWeight: "bold"}}>
+            <TouchableOpacity onPress={() => navigation.navigate('followers')}>
+                <Text>Followers</Text>
+            </TouchableOpacity>
+        </View>
+        <View style={{ marginRight: 25,  fontWeight: "bold"}}>
+            <TouchableOpacity onPress={() => navigation.navigate('followings')}>
+                <Text >Following</Text>
+            </TouchableOpacity>
+        </View>
+    </View>
+</View>
 
-                        onPress={() => navigation.navigate('followings')}>
-                        <Text >Following</Text>
-                    </TouchableOpacity>
+           
             <View style={[Theme.flxDirectionRow]}>
               <TouchableOpacity
                 style={[Theme.btnM50, Theme.mr10, Theme.linkedinBack]}
@@ -154,12 +149,12 @@ const Profile = ({ navigation }) => {
                 }
               >
                 <Text style={[Theme.whiteFont, Theme.fontBold, Theme.f15]}>
-                  Edit Profile
+                  Edit
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[Theme.btnM20, Theme.mr10, Theme.bgSilver]}
-                onPress={() =>  navigation.navigate("reclamation")}
+                onPress={() => navigation.navigate("reclamation")}
               >
                 <Text style={[Theme.f15, Theme.whiteFont, Theme.fontBold]}>
                   Reclamation
@@ -293,7 +288,6 @@ const Profile = ({ navigation }) => {
                    
                   </View>
                 </View>
-               
               </View>
             </View>
           </View>

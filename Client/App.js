@@ -4,6 +4,7 @@ import LoginScreen from "./screens/Login/LoginScreen";
 import Register from "./screens/register/register";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import OTP from "./screens/otpScreen/otpScreen";
 import User from "./screens/user/user";
 import EditProfile from "./screens/userProfile/EditProfile"
@@ -19,16 +20,22 @@ import AllChat from "./screens/Chat/AllChat"
 import OneChat from "./screens/Chat/OneChat"
 import Followings from "./screens/followings/Followings"
 import Followers from "./screens/followers/Followers"
+import CreatePost from "./screens/createPost/New"
+
+
 export default function App() {
   const Stack = createNativeStackNavigator();
+  const StackBis = createStackNavigator();
 
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName="home"
         screenOptions={{ headerShown: false }}
       >
          <Stack.Screen name="followers" component={Followers} />
+         <Stack.Screen name="CreatePost" component={CreatePost} />
+
          <Stack.Screen name="followings" component={Followings} />
          <Stack.Screen name="posts" component={Posts} />
          <Stack.Screen name="AllChat" component={AllChat} />

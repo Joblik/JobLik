@@ -300,4 +300,4 @@ statsButton: {
   marginHorizontal: 10,
 },
 });
-export default User; 
+export default User;
