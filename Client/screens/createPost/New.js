@@ -90,39 +90,30 @@ const Post = ({navigation}) => {
             >
               New Job Offer
             </Text>
-            <Card>
+            <Card style={[Theme.p10, Theme.pt20 ]}>
               <ScrollView style={[Theme.p10]}>
                 <TextInput
                   onChangeText={(e) => setTitle(e)}
                   multiline
-                  style={[Theme.f35, Theme.flex4, Theme.p10]}
+                  style={[Theme.f35, Theme.flex4, Theme.p10, Theme.mb20]}
                   placeholder={"Title"}
                 />
-              </ScrollView>
-              <ScrollView style={[Theme.p10, Theme.pt20]}>
+
                 <TextInput
                   onChangeText={(e) => setDescription(e)}
                   multiline
-                  style={[Theme.f15, Theme.flex4, Theme.pb20]}
+                  style={[Theme.f15, Theme.flex4, Theme.pb20, Theme.mb20]}
                   placeholder={"Write down your description here..."}
                 />
-              </ScrollView>
-              <ScrollView style={[Theme.p10, Theme.pt20]}>
+
                 <TextInput
                   onChangeText={(e) => setAddress(e)}
                   multiline
-                  style={[Theme.f15, Theme.flex4, Theme.pb20]}
+                  style={[Theme.f15, Theme.flex4, Theme.pb20, Theme.mb20]}
                   placeholder={"Write down your Adress here..."}
                 />
               </ScrollView>
             </Card>
-          </View>
-          <View style={[Theme.flex3]}>
-            <ScrollView style={[Theme.p10, Theme.pt20, Theme.flex5]}>
-              <ImageBackground
-                style={[Theme.w100, { height: 400 }]}
-              ></ImageBackground>
-            </ScrollView>
           </View>
         </View>
         <View
