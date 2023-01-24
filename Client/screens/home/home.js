@@ -11,6 +11,8 @@ import { Card } from "react-native-elements";
 import client from "../../api/client";
 import { useNavigation } from "@react-navigation/native";
 
+
+
 const Home = ({route}) => {
   const navigation = useNavigation();
   // const { refresh } = useRefresh();
@@ -53,11 +55,13 @@ const Home = ({route}) => {
         style={{
           // fontFamily: "ExtraBold",
           fontSize: 18,
-          marginTop: 13,
-          color: "rgb(14,49,65)",
+          marginTop: 5,
+          marginBottom: 20,
+          color: "#0274b3",
+          textAlign: "center",
         }}
       >
-        Find your best jobs
+        Opportunities for handymen and job seekers
       </Text>
 
       <View
@@ -84,7 +88,7 @@ const Home = ({route}) => {
                   filteredPosts.description
                     .toLowerCase()
                     .includes(e.toLowerCase()) ||
-                  filteredPosts.title.toLowerCase().includes(e.toLowerCase()) 
+                  filteredPosts.title.toLowerCase().includes(e.toLowerCase())
               )
             );
             // console.log('filtered:'+filteredfilteredPostsosts +'/'+filteredPostsosts)
@@ -109,6 +113,7 @@ const Home = ({route}) => {
           // fontFamily: "ExtraBold",
           marginTop: 20,
           fontSize: 15,
+          textAlign: "auto",
         }}
       >
         Full time job offer
@@ -146,9 +151,10 @@ const Home = ({route}) => {
           marginVertical: 20,
           fontSize: 15,
           color: "rgb(14,49,65)",
+          textAlign: "auto",
         }}
       >
-        Your Today Job
+        Today Jobs
       </Text>
 
       {filteredPosts.map((post, user) => (
@@ -212,7 +218,6 @@ const Home = ({route}) => {
             >
               {post.title}
             </Text>
-      
 
             <View
               style={{
@@ -221,14 +226,13 @@ const Home = ({route}) => {
                 width: 250,
                 alignItems: "center",
                 marginVertical: 5,
-                marginBottom:25
+                marginBottom: 25,
               }}
             >
               <Text
                 style={{
                   // fontFamily: "Medium"
                   fontSize: 15,
-                  
                 }}
               >
                 {post.description.length > 60

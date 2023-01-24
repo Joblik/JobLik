@@ -5,7 +5,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { TextInput } from "react-native-paper";
 import Ionic from "react-native-vector-icons/Ionicons";
 import client from "../../api/client";
-import * as ImagePicker from 'expo-image-picker';
+// import * as ImagePicker from 'expo-image-picker';
 
 const EditProfile = ({ navigation, route }) => {
   const { form } = route.params;
