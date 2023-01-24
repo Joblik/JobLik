@@ -16,6 +16,7 @@ const Post = ({navigation}) => {
     const [title, setTitle] = useState("");
    const [adress, setAddress] = useState("");
    const [clicked, setClicked] = useState(false);
+   const [iconColor, setIconColor] = useState("#0084FF");
     useEffect(() => {
       async function getUserId() {
         const id = await AsyncStorage.getItem("id"); 
@@ -28,6 +29,7 @@ const Post = ({navigation}) => {
     
   
     const handleSubmit = async (e) => {
+      setIconColor("rgb(43,74,157)");
       e.preventDefault();
      
       try {
@@ -71,11 +73,9 @@ const Post = ({navigation}) => {
               Theme.pr30,
             ]}
           >
-            <TouchableOpacity onPress={handleSubmit}>
-              <Text style={[Theme.f17, Theme.fontBold, { color: "#00FF00" }]}>
-                Post
-              </Text>
-            </TouchableOpacity>
+           <TouchableOpacity onPress={handleSubmit}>
+            <Icon name="check" color={iconColor} size={27} />
+          </TouchableOpacity>
           </View>
         </View>
         <View style={[Theme.flex1, Theme.flxDirectionRow, Theme.p10]}>

@@ -12,7 +12,7 @@ const Theme = StyleSheet.create({
     backgroundColor: "#ecf0f1",
   },
   bgDanger: {
-    backgroundColor: "#ff6b6b",
+    backgroundColor: "rgb(110,110,128)",
   },
   bgWarning: {
     backgroundColor: "#f1c40f",
