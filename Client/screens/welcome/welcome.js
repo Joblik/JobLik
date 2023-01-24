@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Button,Image,Animated , TouchableOpacity} from "react-native";
+import { View, Text, StyleSheet, Button,Image,Animated , TouchableOpacity,Dimensions} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import PagerView from "react-native-pager-view";
 
@@ -13,6 +13,8 @@ const BackgroundImage = ({ source }) => {
 
 
 const WelcomePage = () => {
+ 
+  const screenHeight = Dimensions.get('window').height;
   const [currentView, setCurrentView] = useState(0);
   const navigation = useNavigation();
   const [animationValue] = useState(new Animated.Value(1));
@@ -30,7 +32,7 @@ const WelcomePage = () => {
   };
  
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {height: screenHeight}]}>
       <PagerView
         style={styles.viewPager}
         onPageScroll={(event) => {
@@ -40,7 +42,7 @@ const WelcomePage = () => {
       >
         
         <View style={styles.view}>
-       <BackgroundImage  source={require('../../components/welcome/1.png')}/>
+       <BackgroundImage style={styles.backgroundImage} source={require('../../components/welcome/1.png')}/>
           <Text style={styles.text1}>Be respectful to each other</Text>
           <Text style={styles.text}>
             Always be kind and respectful when communicating with others on the
@@ -50,7 +52,7 @@ const WelcomePage = () => {
         </View>
 {/* <Image/> */}
         <View style={styles.view}>
-        <BackgroundImage  source={require('../../components/welcome/2.png')}/>
+        <BackgroundImage style={styles.backgroundImage} source={require('../../components/welcome/2.png')}/>
           <Text style={styles.text1}>Safety and Security</Text>
           <Text style={styles.text}>
             Outside only allows for legal and appropriate gigs to be reflected
@@ -61,7 +63,7 @@ const WelcomePage = () => {
         </View>
 
         <View style={styles.view}>
-        <BackgroundImage  source={require('../../components/welcome/3.png')}/>
+        <BackgroundImage style={styles.backgroundImage} source={require('../../components/welcome/3.png')}/>
           <Text style={styles.text1}>Be Understanding</Text>
           <Text style={styles.text2}>
             Unforeseen circumstances can arise at any time, for anyone. Such
@@ -103,7 +105,8 @@ const WelcomePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "rgb(255,250,250)",
+   
   },
   viewPager: {
     flex: 1,
@@ -117,7 +120,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 17,
-    color: "black",
+    color: "rgb(106,106,106)",
     position: 'absolute',
     bottom: 80,
     alignSelf: 'flex-end',
@@ -126,7 +129,7 @@ const styles = StyleSheet.create({
   },
   text2: {
     fontSize: 16,
-    color: "black",
+    color: "rgb(106,106,106)",
     position: 'absolute',
     bottom: 80,
     alignSelf: 'flex-end',
@@ -156,7 +159,7 @@ const styles = StyleSheet.create({
   text1: {
     fontSize: 20,
     marginBottom:190,
-    color:"black",
+    color:"#0084FF",
     justifyContent: "center",
     fontWeight: 'bold',
     alignSelf: 'center'
@@ -188,9 +191,10 @@ const styles = StyleSheet.create({
     position: 'relative',
     alignSelf: 'center',
     alignItems: 'center',
-    width: '80%',
+    width: '50%',
     height: '50%',
     marginBottom: 50,
+    resizeMode:'contain'
 },
 });
 

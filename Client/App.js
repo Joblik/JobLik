@@ -9,14 +9,8 @@ import User from "./screens/user/user";
 import EditProfile from "./screens/userProfile/EditProfile"
 import TabNav from "./navigation/TabNav"
 import OnePost from "./screens/onePost/postScreen"
-import EditProfile from "./screens/userProfile/EditProfile";
-import following from "./screens/followings/Followings"
-import followers from "./screens/followings/Followings";
 import Welcome from "./screens/welcome/welcome"
-// import EditProfile from "./screens/userProfile/EditProfile";
 import Posts from "./screens/posts/posts"
-// import Home from "./screens/home/home"
-// import Profile from "./screens/userProfile/UserProfile"
 import AddReclamation from "./screens/reclamation/reclamation";
 import AllChat from "./screens/Chat/AllChat"
 import OneChat from "./screens/Chat/OneChat"
