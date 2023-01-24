@@ -100,7 +100,7 @@ const Profile = ({ navigation, route }) => {
                 },
               ]}
               source={{
-                uri: ''
+                uri: "https://scontent.ftun5-1.fna.fbcdn.net/v/t39.30808-6/301572632_619322496221354_8359942737408873830_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=VQ5aMWHw95MAX8IoF7U&_nc_ht=scontent.ftun5-1.fna&oh=00_AfDgQqUjSqAOtA7Rr7NpjxbtOOtZclCyVHpIBHv9L2kCmQ&oe=63C2D1C1",
               }}
               size={120}
             />
@@ -153,7 +153,7 @@ const Profile = ({ navigation, route }) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={[Theme.btnM20, Theme.mr10, Theme.bgSilver]}
-                onPress={() =>  navigation.navigate("reclamation")}
+                onPress={() => navigation.navigate("reclamation")}
               >
                 <Text style={[Theme.f15, Theme.whiteFont, Theme.fontBold]}>
                   Reclamation
@@ -283,7 +283,6 @@ const Profile = ({ navigation, route }) => {
                     </Text>
                   </View>
                 </View>
-               
               </View>
             </View>
           </View>

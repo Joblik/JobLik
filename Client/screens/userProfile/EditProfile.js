@@ -83,15 +83,19 @@ const data  = {
             <Ionic
               name="checkmark"
               style={{ fontSize: 35, color: "#3493D9" }}
-              onPress={()=>{handleSubmit();
-              navigation.navigate("UserProfile");}}
-
+              onPress={() => {
+                handleSubmit();
+                navigation.navigate("UserProfile");
+              }}
             />
           </TouchableOpacity>
         </View>
         <View style={{ padding: 20, alignItems: "center" }}>
           <Image
-            source={{uri: image}}
+            // defaultSource={image}
+            source={{
+              uri: image
+            }}
             style={{ width: 80, height: 80, borderRadius: 100 }}
           />
           <TouchableOpacity
@@ -123,7 +127,7 @@ const data  = {
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
-                borderColor: "#CDCDCD",
+                borderColor: "#FEFEE2",
               }}
             />
           </View>
@@ -142,7 +146,7 @@ const data  = {
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
-                borderColor: "#CDCDCD",
+                borderColor: "#FEFEE2",
               }}
             />
           </View>
@@ -161,7 +165,7 @@ const data  = {
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
-                borderColor: "#CDCDCD",
+                borderColor: "#FEFEE2",
               }}
             />
           </View>
@@ -180,7 +184,7 @@ const data  = {
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
-                borderColor: "#CDCDCD",
+                borderColor: "#FEFEE2",
               }}
             />
           </View>
@@ -199,7 +203,7 @@ const data  = {
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,
-                borderColor: "#CDCDCD",
+                borderColor: "#FEFEE2",
               }}
             />
           </View>

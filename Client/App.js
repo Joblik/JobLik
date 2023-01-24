@@ -30,7 +30,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="editProfile"
+        initialRouteName="home"
         screenOptions={{ headerShown: false }}
       >
          <Stack.Screen name="followers" component={Followers} />

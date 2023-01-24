@@ -43,7 +43,7 @@ export default function TabNavigation() {
         options={{
           tabBarIcon: ({ size, focused }) => (
             <MaterialCommunityIcons
-              name="post"
+              name="plus-box-outline"
               size={size}
               color={focused ? "#0274b3" : "gray"}
             />
@@ -66,10 +66,8 @@ export default function TabNavigation() {
       />
 
       <Tab.Screen
-
         name="Chat"
         component={AllChat}
-
         options={{
           tabBarIcon: ({ size, focused }) => (
             <MaterialCommunityIcons

@@ -27,19 +27,19 @@ export default function Sidebar() {
       <Flex justifyContent={["space-between", "center"]} alignItems="center">
         <Show above="md">
           <Image
-            src="./images/jbl.png"
+            src="./images/jbl.jpeg"
             className="logo"
             alt="BC Hydro Logo"
-            minW="6rem"
-            w="10rem"
+            minW="16rem"
+            w="5rem"
           />
         </Show>
         <Hide above="md">
           <Image
-            src="./images/jbl.png"
+            src="./images/jbl.jpeg"
             className="logo"
             alt="BC Hydro Logo"
-            minW="3rem"
+            minW="13rem"
             w="3.5rem"
           />
           <IconButton
