@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput, FlatList } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput, FlatList, Dimensions } from 'react-native'
 
 export default OneChat = () => {
+  const screenWidth = Dimensions.get('window').width;
+
   const [data, setData] = useState([
     { id: 1, type: 'in', message: 'aasslema' },
     { id: 2, type: 'out', message: 'aasslema' },
@@ -12,6 +14,7 @@ export default OneChat = () => {
     { id: 8,  type: 'out', message: 'ghodoua sbeeh ntkablou 9h fl aaouina yssedek ?' },
     { id: 9,  type: 'in', message: 'Ok mrygll, sbeeh netlakaou fl aaouina o taou nkallmek kbal manjii' },
     { id: 2, type: 'out', message: 'Mrygll o merci beaucoup' },
+
 
   ]) 
 
@@ -27,9 +30,8 @@ export default OneChat = () => {
 
   return (
     <View style={styles.container}>
-       <View style={styles.component1}>
+       <View style={[styles.component1, {width:screenWidth}]}>
         <View style={[styles.allChatWrapper, styles.allChatWrapperPosition]}>
-          <Text style={[styles.allChat, styles.allTypo]}>Monada</Text>
         </View>
         <Text style={[styles.allChat1, styles.allTypo]}>Monada</Text>
         <Image
