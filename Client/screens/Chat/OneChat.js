@@ -32,8 +32,11 @@ export default OneChat = () => {
     <View style={styles.container}>
        <View style={[styles.component1, {width:screenWidth}]}>
         <View style={[styles.allChatWrapper, styles.allChatWrapperPosition]}>
+
+          <Text style={[styles.allChat, styles.allTypo]}>karim</Text>
+
         </View>
-        <Text style={[styles.allChat1, styles.allTypo]}>Monada</Text>
+        <Text style={[styles.allChat1, styles.allTypo]}>karim</Text>
         <Image
           style={styles.unsplash1onzhgu751aIcon}
           resizeMode="cover"

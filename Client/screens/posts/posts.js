@@ -178,6 +178,8 @@ root: {
   height: 80,
   marginLeft:20,
   marginBottom:750,
+  padding: 10,
+  marginTop: 20
 },
 });
 export default Posts;
