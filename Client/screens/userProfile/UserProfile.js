@@ -123,7 +123,7 @@ const Profile = ({ navigation, route }) => {
             <View style={[Theme.flxDirectionRow, Theme.mt20]}>
     <View style={[Theme.flex5, Theme.flxDirectionRow, Theme.alignItemsCenter]}>
         <View style={{ marginRight: 25, fontWeight: "bold"}}>
-            <TouchableOpacity onPress={() => navigation.navigate('posts')}>
+            <TouchableOpacity onPress={() => navigation.navigate('posts')}>   
                 <Text>Posts</Text>
             </TouchableOpacity>
         </View>
