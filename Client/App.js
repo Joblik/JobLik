@@ -18,6 +18,7 @@ import OneChat from "./screens/Chat/OneChat"
 import Followings from "./screens/followings/Followings"
 import Followers from "./screens/followers/Followers"
 import CreatePost from "./screens/createPost/New"
+import UserProfile from "./screens/userProfile/UserProfile"
 
 
 export default function App() {
@@ -45,7 +46,7 @@ export default function App() {
         <Stack.Screen name="user" component={User} />
         <Stack.Screen name="home" component={TabNav}/>
         <Stack.Screen name="reclamation" component={AddReclamation}/>
-        <Stack.Screen name="UserProfile" component={TabNav} />
+        <Stack.Screen name="UserProfile" component={UserProfile} />
         <Stack.Screen name="editProfile" component={EditProfile} />
       </Stack.Navigator>
     </NavigationContainer>

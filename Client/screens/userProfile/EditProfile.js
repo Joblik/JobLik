@@ -9,7 +9,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 const EditProfile = ({ navigation, route }) => {
   const { form } = route.params;
-  const [user, setUser] = useState("");
+  const [username, setUsername] = useState("");
   const [image, setImage] = useState(null);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -87,7 +87,7 @@ const data  = {
               style={{ fontSize: 35, color: "#3493D9" }}
               onPress={() => {
                 handleSubmit();
-                navigation.navigate("UserProfile");
+                navigation.navigate("UserProfile", {pfp: image, name: username, job: job, phone: phone, email: email});
               }}
             />
           </TouchableOpacity>
@@ -124,7 +124,7 @@ const data  = {
             </Text>
             <TextInput
               placeholder="Username"
-              onChangeText={(newText) => setUserName(newText)}
+              onChangeText={(newText) => setUsername(newText)}
               style={{
                 fontSize: 16,
                 borderBottomWidth: 1,

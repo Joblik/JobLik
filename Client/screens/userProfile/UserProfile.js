@@ -20,9 +20,19 @@ const Profile = ({ navigation, route }) => {
   //SELECTORS
   const [userId, setUserId] = useState(null);
   const [form, setForm] = useState("");
-  
+  const [username, setUsername] = useState('User')
+  const [phone, setPhone] = useState('Unknown')
+  const [email, setEmail] = useState('Unknown')
+  const [job, setJob] = useState('Unknown')
 
   useEffect(() => {
+
+    if(route.params){
+      setUsername(route.params.name)
+      setJob(route.params.job)
+      setEmail(route.params.email)
+      setPhone(route.params.phone)
+    }
     async function getUserId() {
       const id = await AsyncStorage.getItem("id");
       setUserId(JSON.parse(id));
@@ -101,12 +111,15 @@ const Profile = ({ navigation, route }) => {
                 },
               ]}
               source={{
-                uri: "https://scontent.ftun5-1.fna.fbcdn.net/v/t39.30808-6/301572632_619322496221354_8359942737408873830_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=VQ5aMWHw95MAX8IoF7U&_nc_ht=scontent.ftun5-1.fna&oh=00_AfDgQqUjSqAOtA7Rr7NpjxbtOOtZclCyVHpIBHv9L2kCmQ&oe=63C2D1C1",
+                uri: route.params?route.params.pfp:null
               }}
               size={120}
             />
+           
             <View></View>
+            
           </View>
+          <Text style={{fontSize: 30, marginLeft: 125}}>{username}</Text>
           <View style={[Theme.p10]}>
             <View>
               <Text
@@ -185,7 +198,7 @@ const Profile = ({ navigation, route }) => {
                     Theme.pt10,
                   ]}
                 >
-                  <View style={[Theme.flex1, Theme.mr10]}>
+                  <View style={[Theme.flex2, Theme.mr10]}>
                     <Icon
                       color={"#2c3e50"}
                       style={[style.mr4, style.ml4]}
@@ -203,7 +216,7 @@ const Profile = ({ navigation, route }) => {
                     ]}
                   >
                     Job : 
-                 <Text style={[Theme.txtSemiDark]}> {form.job}</Text>
+                 <Text style={[Theme.txtSemiDark]}> {job}</Text>
 
                   </Text>
                   
@@ -255,7 +268,7 @@ const Profile = ({ navigation, route }) => {
                     <Text
                       style={[Theme.f15, Theme.fontBold, Theme.txtSemiDark]}
                     >
-                      Phone : <Text style={[Theme.fontSemiBold]}>{form.phone}</Text>
+                      Phone : <Text style={[Theme.fontSemiBold]}>{phone}</Text>
                     </Text>
                     
                   </View>
@@ -282,7 +295,7 @@ const Profile = ({ navigation, route }) => {
                       style={[Theme.f15, Theme.fontBold, Theme.txtSemiDark]}
                     >
                       Email : <Text style={[Theme.fontSemiBold, { marginBottom: 20 }]}>
-                      {form.email}
+                      {email}
                     </Text>
                     </Text>
                    
